@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default navbar-static-top">
+<nav class="navbar navbar-static-top uppercase">
   <div class="container">
     <div class="navbar-header">
 
@@ -11,9 +11,9 @@
       </button>
 
       <!-- Branding Image -->
-      {{--<a class="navbar-brand" href="{{ url('/') }}" target="_self">
-        {{ config('app.name', 'Campsite') }}
-      </a>--}}
+      <a class="navbar-brand" href="{{ url('/') }}" target="_self">
+         C
+      </a>
     </div>
 
     <div class="collapse navbar-collapse" id="app-navbar-collapse">
@@ -25,9 +25,11 @@
       <!-- Right Side Of Navbar -->
       <ul class="nav navbar-nav navbar-right">
         <!-- Authentication Links -->
+        <li><a href="" target="_self">{{trans('campsite.searchcampsite')}}</a></li>
+        <li><a href="" target="_self">{{trans('campsite.offercampsite')}}</a></li>
         @if (Auth::guest())
           <li><a href="{{ url('/login') }}" target="_self">Login</a></li>
-          <li><a href="{{ url('/register') }}" target="_self">Register</a></li>
+          <li class=""><a href="{{ url('/register') }}" target="_self">Register</a></li>
         @else
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -37,35 +39,35 @@
             <ul class="dropdown-menu" role="menu">
               <li>
                 <a href="{{ url('/logout') }}"
-                onclick="event.preventDefault();
+                   onclick="event.preventDefault();
                 document.getElementById('logout-form').submit();">
-                Logout
-              </a>
+                  Logout
+                </a>
 
-              <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-                {{ csrf_field() }}
-              </form>
-            </li>
+                <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                  {{ csrf_field() }}
+                </form>
+              </li>
+            </ul>
+          </li>
+        @endif
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            {{ app()->getLocale() }} <i class="fa fa-caret-down"></i>
+          </a>
+          <ul class="dropdown-menu">
+            @foreach (config('translatable.locales') as $lang => $language)
+              @if ($lang != app()->getLocale())
+                <li>
+                  <a href="{{ route('lang.switch', $lang) }}">
+                    {{ $lang }}
+                  </a>
+                </li>
+              @endif
+            @endforeach
           </ul>
         </li>
-      @endif
-      <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-          {{ app()->getLocale() }} <i class="fa fa-caret-down"></i>
-        </a>
-        <ul class="dropdown-menu">
-          @foreach (config('translatable.locales') as $lang => $language)
-            @if ($lang != app()->getLocale())
-              <li>
-                <a href="{{ route('lang.switch', $lang) }}">
-                  {{ $lang }}
-                </a>
-              </li>
-            @endif
-          @endforeach
-        </ul>
-      </li>
-    </ul>
+      </ul>
+    </div>
   </div>
-</div>
 </nav>

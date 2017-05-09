@@ -1,0 +1,27 @@
+button {
+  transition: all 0.3s ease 0s;
+  min-height: 40px;
+  border-radius: 3px;
+}
+
+.btn-main {
+  background: $brand-primary;
+  color: white;
+
+  &:hover {
+    background: transparent;
+    color: white;
+    border: 1px solid white;
+  }
+}
+
+.btn-transparent {
+  border: 1px solid white;
+  background: transparent;
+  color: white;
+
+  &:hover {
+    color: $brand-primary;
+    background: white;
+  }
+}

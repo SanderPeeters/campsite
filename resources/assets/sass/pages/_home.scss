@@ -1,0 +1,22 @@
+.main {
+  position: relative;
+  background: linear-gradient(rgba(17, 33, 49, 0.9), rgba(17, 33, 49, 0.9)), url('/assets/img/bg/campsite-bg.jpg') no-repeat;
+  background-size: cover;
+  background-position: center center;
+/*  background-attachment: fixed;*/
+
+  .section--centered {
+    color: white;
+    text-align: center;
+    font-family: 'Open Sans';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 300px;
+
+    h3 {
+      font-weight: 300;
+    }
+  }
+}
