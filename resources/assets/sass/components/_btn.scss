@@ -15,6 +15,17 @@ button {
   }
 }
 
+.btn-secundary {
+  background: $brand-primary;
+  color: white;
+
+  &:hover {
+    background: transparent;
+    color: $brand-primary;
+    border: 1px solid $brand-primary;
+  }
+}
+
 .btn-transparent {
   border: 1px solid white;
   background: transparent;

@@ -1,8 +1,17 @@
+section.main {
+  position: relative;
+  background: linear-gradient(rgba(17, 33, 49, 0.9), rgba(17, 33, 49, 0.9)), url('/assets/img/bg/campsite-bg.jpg') no-repeat;
+  background-size: cover;
+  background-position: center center;
+  /*  background-attachment: fixed;*/
+}
+
 .bg {
   height: 100%;
 
   &--transparent {
     background: rgba(255,255,255,0.5);
+    border-radius: 3px;
   }
 
   &--color {

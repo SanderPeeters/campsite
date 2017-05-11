@@ -3,7 +3,7 @@
 @section('content')
 
     <!-- Section intro with searchfield -->
-    <section class="main vh-min-100">
+    <section id="home-intro" class="main vh-min-100">
         <div class="container">
             <div class="section--centered">
                 <form action="">
@@ -14,7 +14,7 @@
                         </div>
                     </div>
                     <div class="row bg--transparent">
-                        <div class="col-sm-12 p-t-20">
+                        <div class="col-sm-12 p-t-15">
                             <input type="text" class="form-control" placeholder="Country / Region / Place / Campsite ">
                         </div>
                         <div class="col-sm-4 p-t-10">
@@ -26,7 +26,7 @@
                         <div class="col-sm-4 p-t-10 p-b-10">
                             <input type="text" class="form-control" placeholder="Until dd/mm/yy">
                         </div>
-                        <div class="col-sm-12 p-b-20">
+                        <div class="col-sm-12 p-b-15">
                             <button type="submit" class="btn btn-block btn-main">
                                 Search
                             </button>
