@@ -1,0 +1,13 @@
+.bg {
+  height: 100%;
+
+  &--transparent {
+    background: rgba(255,255,255,0.5);
+  }
+
+  &--color {
+    &__main {
+      background: $brand-primary;
+    }
+  }
+}
