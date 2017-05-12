@@ -12,7 +12,7 @@
 
       <!-- Branding Image -->
       <a class="navbar-brand" href="{{ url('/') }}" target="_self">
-         C
+        <img src="assets/img/logo/Campsite_logo_white.png" alt="Logo from Campsite">
       </a>
     </div>
 

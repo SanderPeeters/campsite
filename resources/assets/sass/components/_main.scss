@@ -1,3 +1,18 @@
 body {
   background-color: white;
 }
+
+ul.menu-horizontal {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+
+  li {
+    display: inline;
+    padding-left: 30px;
+  }
+
+  li:first-child {
+    padding-left: 0px;
+  }
+}

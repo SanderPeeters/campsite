@@ -1,5 +1,16 @@
 section#home-intro {
 
+  .image {
+    &--home {
+      max-width: 300px;
+      margin-left: auto;
+      margin-right: auto;
+      img {
+        width: 100%;
+      }
+    }
+  }
+
   .section--centered {
     color: white;
     text-align: center;

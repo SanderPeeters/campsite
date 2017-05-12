@@ -7671,6 +7671,16 @@ button.close {
   }
 }
 
+section#home-intro .image--home {
+  max-width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+section#home-intro .image--home img {
+  width: 100%;
+}
+
 section#home-intro .section--centered {
   color: white;
   text-align: center;
@@ -7745,6 +7755,21 @@ button {
 
 body {
   background-color: white;
+}
+
+ul.menu-horizontal {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+ul.menu-horizontal li {
+  display: inline;
+  padding-left: 30px;
+}
+
+ul.menu-horizontal li:first-child {
+  padding-left: 0px;
 }
 
 .uppercase {
@@ -8048,6 +8073,23 @@ a, a:hover, a:link, a:focus, a:active {
   border-bottom: 1px solid white;
 }
 
+.navbar .navbar-brand {
+  padding: 0px;
+}
+
+.navbar .navbar-brand img {
+  margin-top: 0px;
+  width: 60px;
+}
+
+footer {
+  color: #9b9da0;
+}
+
+footer a {
+  color: #9b9da0;
+}
+
 section.main {
   position: relative;
   background: linear-gradient(rgba(17, 33, 49, 0.9), rgba(17, 33, 49, 0.9)), url("/assets/img/bg/campsite-bg.jpg") no-repeat;
@@ -8083,6 +8125,10 @@ h1.color-primary, h2.color-primary, h3.color-primary, h4.color-primary, p.color-
 
 h1.color-secundary, h2.color-secundary, h3.color-secundary, h4.color-secundary, p.color-secundary {
   color: #134352;
+}
+
+h1.color-light-gray, h2.color-light-gray, h3.color-light-gray, h4.color-light-gray, p.color-light-gray {
+  color: #9b9da0;
 }
 
 h3 {
@@ -8123,6 +8169,15 @@ hr.w-20--p {
 
 hr.w-50 {
   width: 50%;
+}
+
+.icon-social {
+  width: 30px;
+  display: inline-block;
+}
+
+.icon-social img {
+  width: 100%;
 }
 
 /*# sourceMappingURL=app.css.map */

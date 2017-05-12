@@ -9,8 +9,10 @@
                 <form action="">
                     <div class="row">
                         <div class="col-sm-10 col-sm-offset-1">
-                            <h1 class="uppercase">campsite</h1>
-                            <h3 class="m-b-20">Find the perfect campsite</h3>
+                            <div class="image--home m-b-30 m-t-20">
+                                <img src="assets/img/logo/Campsite_logo_white.png" alt="Logo from Campsite">
+                            </div>
+                            {{--<h3 class="m-b-20">Find the perfect campsite</h3>--}}
                         </div>
                     </div>
                     <div class="row bg--transparent">
@@ -62,7 +64,7 @@
                     </div>
                     <h3 class="color-secundary font--bold">Easy paperworks</h3>
                     <p class="color-secundary">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis et leo venenatis, dictum tortor rutrum, mattis ante. Mauris sit amet est eleifend nisi rutrum pellentesque.
+                        When you register, all documents and forms regarding insurance etc. can be obtained here on the website or with the owner.
                     </p>
                 </div>
                 <div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-0 p-b-40">
@@ -71,7 +73,7 @@
                     </div>
                     <h3 class="color-secundary font--bold">Register for free</h3>
                     <p class="color-secundary">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis et leo venenatis, dictum tortor rutrum, mattis ante. Mauris sit amet est eleifend nisi rutrum pellentesque.
+                        Easy register/log in with Facebook or on the website. For people who search a campsite or who wants to offer a site/meadow.
                     </p>
                 </div>
                 <div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-0 p-b-40">
@@ -80,7 +82,8 @@
                     </div>
                     <h3 class="color-secundary font--bold">Verified campsites</h3>
                     <p class="color-secundary">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis et leo venenatis, dictum tortor rutrum, mattis ante. Mauris sit amet est eleifend nisi rutrum pellentesque.
+                        We assure you that our campsites and meadows are verified and insured.
+                        We’re proud of being scam-free!
                     </p>
                 </div>
             </div>

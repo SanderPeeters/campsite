@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <section class="main vh-min-100">
+    <section class="main vh-min-90">
         <div class="container">
             <div class="row">
                 <div class="col-md-6 col-md-offset-3">

@@ -11,6 +11,9 @@ h1, h2, h3, h4, p {
   &.color-secundary {
     color: $brand-secundary;
   }
+  &.color-light-gray {
+    color: $brand-light-gray;
+  }
 }
 
 h3 {
