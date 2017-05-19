@@ -11,13 +11,9 @@ h1, h2, h3, h4, p {
   &.color-secundary {
     color: $brand-secundary;
   }
-  &.color-light-gray {
-    color: $brand-light-gray;
+  &.color-light-grey {
+    color: $brand-light-grey;
   }
-}
-
-h3 {
-  font-size: 16px;
 }
 
 h4 {

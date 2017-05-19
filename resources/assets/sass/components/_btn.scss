@@ -26,6 +26,13 @@ button {
   }
 }
 
+.btn-tertiary {
+  background: transparent;
+  color: $brand-secundary;
+  border: 2px solid $brand-light-grey;
+  padding: 10px 25px;
+}
+
 .btn-transparent {
   border: 1px solid white;
   background: transparent;

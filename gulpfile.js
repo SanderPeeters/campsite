@@ -22,10 +22,13 @@ elixir(function(mix) {
         ],
         'public/assets/css/app.css'
     )
+        .copy('resources/assets/fonts', 'public/build/assets/fonts')
         .scripts(
             [
                 'plugins/angular.min.js',
-                'plugins/*.js'
+                'plugins/*.js',
+                'otherplugins/*.js',
+                'base.js'
             ],
             'public/assets/js/vendor.js'
         )
