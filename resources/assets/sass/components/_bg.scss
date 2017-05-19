@@ -1,6 +1,14 @@
 section.main {
   position: relative;
-  background: linear-gradient(rgba(17, 33, 49, 0.9), rgba(17, 33, 49, 0.9)), url('/assets/img/bg/campsite-bg.jpg') no-repeat;
+  background: linear-gradient(rgba(17, 33, 49, 0.9), rgba(17, 33, 49, 0.9)), url('/assets/img/bg/campsite-bg-1.jpg') no-repeat;
+  background-size: cover;
+  background-position: center center;
+  background-attachment: fixed;
+}
+
+section.campsite-offer {
+  position: relative;
+  background: linear-gradient(rgba(17, 33, 49, 0.9), rgba(17, 33, 49, 0.9)), url('/assets/img/bg/campsite-bg-2.jpg') no-repeat;
   background-size: cover;
   background-position: center center;
   background-attachment: fixed;

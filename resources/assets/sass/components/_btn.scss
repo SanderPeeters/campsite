@@ -33,6 +33,19 @@ button {
   padding: 10px 25px;
 }
 
+.btn-white {
+  border: 1px solid white;
+  background: white;
+  color: $brand-primary;
+
+  &:hover {
+    &:hover {
+      color: white;
+      background: transparent;
+    }
+  }
+}
+
 .btn-transparent {
   border: 1px solid white;
   background: transparent;
