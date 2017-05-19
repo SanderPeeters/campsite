@@ -9,7 +9,8 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Campsite') }}</title>
+    <title>@yield('title')</title>
+    <meta name="description" content="@yield('description')">
 
     <!-- Styles -->
     {{--<link href="/css/app.css" rel="stylesheet">--}}

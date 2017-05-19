@@ -7744,7 +7744,7 @@ section#home-offer-campsite h2 {
 }
 
 .panel {
-  margin-top: 25%;
+  margin-top: 28%;
 }
 
 .panel .panel-body {
@@ -7770,29 +7770,40 @@ button {
 .btn-main:hover {
   background: transparent;
   color: white;
-  border: 1px solid white;
+  border: 2px solid white;
 }
 
 .btn-secundary {
   background: #009133;
+  border: 2px solid #009133;
   color: white;
 }
 
 .btn-secundary:hover {
   background: transparent;
   color: #009133;
-  border: 1px solid #009133;
+}
+
+.btn-secundary-opposite {
+  background: white;
+  border: 2px solid #009133;
+  color: #009133;
+}
+
+.btn-secundary-opposite:hover {
+  background: transparent;
+  color: #134352;
+  border: 2px solid #9b9da0;
 }
 
 .btn-tertiary {
   background: transparent;
   color: #134352;
   border: 2px solid #9b9da0;
-  padding: 10px 25px;
 }
 
 .btn-white {
-  border: 1px solid white;
+  border: 2px solid white;
   background: white;
   color: #009133;
 }
@@ -7803,7 +7814,7 @@ button {
 }
 
 .btn-transparent {
-  border: 1px solid white;
+  border: 2px solid white;
   background: transparent;
   color: white;
 }
@@ -7842,6 +7853,18 @@ ul.menu-horizontal li:first-child {
 
 .capitalize {
   text-transform: capitalize;
+}
+
+.no-margin {
+  margin: 0px !important;
+}
+
+.no-padding {
+  padding: 0px !important;
+}
+
+.no-border {
+  border: none !important;
 }
 
 .m-t-0 {
@@ -7932,6 +7955,10 @@ ul.menu-horizontal li:first-child {
   margin-right: 10px;
 }
 
+.p-t-5 {
+  padding-top: 5px;
+}
+
 .p-t-10 {
   padding-top: 10px;
 }
@@ -7942,6 +7969,10 @@ ul.menu-horizontal li:first-child {
 
 .p-t-20 {
   padding-top: 20px;
+}
+
+.p-t-25 {
+  padding-top: 25px;
 }
 
 .p-t-30 {
@@ -7960,6 +7991,10 @@ ul.menu-horizontal li:first-child {
   padding-top: 80px;
 }
 
+.p-b-5 {
+  padding-bottom: 5px;
+}
+
 .p-b-10 {
   padding-bottom: 10px;
 }
@@ -7970,6 +8005,10 @@ ul.menu-horizontal li:first-child {
 
 .p-b-20 {
   padding-bottom: 20px;
+}
+
+.p-b-25 {
+  padding-bottom: 25px;
 }
 
 .p-b-30 {
@@ -8020,6 +8059,10 @@ ul.menu-horizontal li:first-child {
   padding-left: 20px;
 }
 
+.p-l-25 {
+  padding-left: 25px;
+}
+
 .p-l-30 {
   padding-left: 30px;
 }
@@ -8046,6 +8089,10 @@ ul.menu-horizontal li:first-child {
 
 .p-r-20 {
   padding-right: 20px;
+}
+
+.p-r-25 {
+  padding-right: 25px;
 }
 
 .p-r-30 {
@@ -8100,6 +8147,10 @@ a, a:hover, a:link, a:focus, a:active {
   text-decoration: none;
 }
 
+.no-border-radius {
+  border-radius: 0px;
+}
+
 .navbar {
   font-family: 'Open Sans';
   position: absolute;
@@ -8129,7 +8180,7 @@ a, a:hover, a:link, a:focus, a:active {
   /*padding-right: 0px;*/
 }
 
-.navbar li:hover {
+.navbar li:hover, .navbar li.active {
   border-bottom: 1px solid white;
 }
 
@@ -8185,6 +8236,15 @@ section.campsite-offer {
   background-size: cover;
   background-position: center center;
   background-attachment: fixed;
+}
+
+section#offer-campsite-section .image--wrapper {
+  position: relative;
+  background: url("/assets/img/bg/campsite-signs-1.jpg") no-repeat;
+  background-size: cover;
+  background-position: center center;
+  height: 250px;
+  overflow: hidden;
 }
 
 .bg {

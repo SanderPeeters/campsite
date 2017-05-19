@@ -10,7 +10,6 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('lang/{language}', ['as' => 'lang.switch', 'uses' => 'LanguageController@switchLang']);
 
 Route::get('/', function () {
     return view('welcome');
@@ -18,4 +17,10 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('routes.home', ['as' => 'home', 'uses' => 'HomeController@index']);
+Route::get(trans('routes.home'), ['as' => 'home', 'uses' => 'HomeController@index']);
+
+Route::get(trans('routes.offer-campsite'), function() {
+    return view('campsite.campsite-offer');
+})->name('offer-campsite');
+
+Route::get('lang/{language}', 'LanguageController@switchLang')->name('lang.switch');

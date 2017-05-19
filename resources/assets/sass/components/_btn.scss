@@ -11,18 +11,30 @@ button {
   &:hover {
     background: transparent;
     color: white;
-    border: 1px solid white;
+    border: 2px solid white;
   }
 }
 
 .btn-secundary {
   background: $brand-primary;
+  border: 2px solid $brand-primary;
   color: white;
 
   &:hover {
     background: transparent;
     color: $brand-primary;
-    border: 1px solid $brand-primary;
+  }
+}
+
+.btn-secundary-opposite {
+  background: white;
+  border: 2px solid $brand-primary;
+  color: $brand-primary;
+
+  &:hover {
+    background: transparent;
+    color: $brand-secundary;
+    border: 2px solid $brand-light-grey;
   }
 }
 
@@ -30,11 +42,10 @@ button {
   background: transparent;
   color: $brand-secundary;
   border: 2px solid $brand-light-grey;
-  padding: 10px 25px;
 }
 
 .btn-white {
-  border: 1px solid white;
+  border: 2px solid white;
   background: white;
   color: $brand-primary;
 
@@ -47,7 +58,7 @@ button {
 }
 
 .btn-transparent {
-  border: 1px solid white;
+  border: 2px solid white;
   background: transparent;
   color: white;
 

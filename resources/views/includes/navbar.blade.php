@@ -22,10 +22,10 @@
       <ul class="nav navbar-nav navbar-right">
         <!-- Authentication Links -->
         <li><a href="" target="_self">{{trans('campsite.searchcampsite')}}</a></li>
-        <li><a href="" target="_self">{{trans('campsite.offercampsite')}}</a></li>
+        <li class="{{ Route::is('offer-campsite') ? 'active' : '' }}"><a href="{{ route('offer-campsite') }}" target="_self">{{ trans('campsite.offercampsite') }}</a></li>
         @if (Auth::guest())
-          <li><a href="{{ url('/login') }}" target="_self">Login</a></li>
-          <li class=""><a href="{{ url('/register') }}" target="_self">Register</a></li>
+          <li><a href="{{ route('login') }}" target="_self">Login</a></li>
+          <li class=""><a href="{{ route('register') }}" target="_self">Register</a></li>
         @else
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">

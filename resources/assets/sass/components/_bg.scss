@@ -14,6 +14,17 @@ section.campsite-offer {
   background-attachment: fixed;
 }
 
+section#offer-campsite-section {
+  .image--wrapper {
+    position: relative;
+    background: url('/assets/img/bg/campsite-signs-1.jpg') no-repeat;
+    background-size: cover;
+    background-position: center center;
+    height:250px;
+    overflow: hidden;
+  }
+}
+
 .bg {
   height: 100%;
 

@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+@section('title', 'Campsite - Home')
+@section('description', 'Campsite, the website for youth movements to find their unique camping spot.')
+
 @section('content')
 
     <!-- Section intro with searchfield -->
@@ -101,7 +104,7 @@
             </div>
             <div class="row text-center m-b-40">
                 <a href="" target="_self">
-                    <button type="button" class="btn btn-tertiary">
+                    <button type="button" class="btn btn-tertiary p-t-5 p-b-5 p-l-25 p-r-25">
                         Browse more
                     </button>
                 </a>
@@ -165,7 +168,7 @@
                         Do you have a campsite and/or meadow for rent? <br>
                         Please register here for free and create your campsite!
                     </h2>
-                    <a href="{{ url('/register') }}" target="_self">
+                    <a href="{{ route('register') }}" target="_self">
                         <button type="button" class="btn btn-white p-t-10 p-b-10 p-l-40 p-r-40 m-t-60">
                             Register
                         </button>

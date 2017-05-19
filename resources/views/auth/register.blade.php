@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+@section('title', 'Campsite - Register')
+@section('description', 'Register now and join Campsite for free')
+
 @section('content')
 <section class="main vh-min-90">
     <div class="container">
@@ -10,7 +13,7 @@
                         <div class="col-md-12 text-center p-b-20">
                             <h1 class="color-primary">Campsite</h1>
                         </div>
-                        <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
+                        <form class="form-horizontal" role="form" method="POST" action="{{ route('register') }}">
                             {{ csrf_field() }}
 
                             <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">

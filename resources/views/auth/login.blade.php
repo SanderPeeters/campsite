@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+@section('title', 'Campsite - Login')
+@section('description', 'Login to your account on Campsite')
+
 @section('content')
 
     <section class="main vh-min-90">
@@ -11,7 +14,7 @@
                             <div class="col-md-12 text-center p-b-20">
                                 <h1 class="color-primary">Campsite</h1>
                             </div>
-                            <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
+                            <form class="form-horizontal" role="form" method="POST" action="{{ route('login') }}">
                                 {{ csrf_field() }}
 
                                 <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
