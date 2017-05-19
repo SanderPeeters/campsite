@@ -13,6 +13,7 @@
 
     <!-- Styles -->
     {{--<link href="/css/app.css" rel="stylesheet">--}}
+    <link rel="shortcut icon" href="{{ url('assets/img/favicon.ico') }}">
     <link href="{{elixir('assets/css/app.css')}}" rel="stylesheet">
 
     <!-- Scripts -->

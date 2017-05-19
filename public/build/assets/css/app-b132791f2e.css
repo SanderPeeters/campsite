@@ -8111,13 +8111,34 @@ a, a:hover, a:link, a:focus, a:active {
   border-bottom: 1px solid white;
 }
 
+@media screen and (max-width: 767px) {
+  .navbar .navbar-collapse {
+    background: rgba(255, 255, 255, 0.7);
+  }
+  .navbar li {
+    text-align: center;
+  }
+  .navbar li a {
+    border: none;
+    color: #009133;
+  }
+  .navbar li:hover {
+    border: none;
+  }
+}
+
 .navbar .navbar-brand {
   padding: 0px;
+  padding-left: 15px;
 }
 
 .navbar .navbar-brand img {
   margin-top: 0px;
   width: 60px;
+}
+
+.navbar .navbar-toggle .icon-bar {
+  background: white;
 }
 
 footer {
