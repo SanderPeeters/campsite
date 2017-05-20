@@ -17,6 +17,9 @@ $(document).ready(function(){
             },
             900:{
                 items:3
+            },
+            1440:{
+                items:4
             }
         }
     });

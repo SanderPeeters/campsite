@@ -21,7 +21,7 @@
       <!-- Right Side Of Navbar -->
       <ul class="nav navbar-nav navbar-right">
         <!-- Authentication Links -->
-        <li><a href="" target="_self">{{trans('campsite.searchcampsite')}}</a></li>
+        <li class="{{ Route::is('search-campsite') ? 'active' : '' }}"><a href="{{ route('search-campsite') }}" target="_self">{{trans('campsite.searchcampsite')}}</a></li>
         <li class="{{ Route::is('offer-campsite') ? 'active' : '' }}"><a href="{{ route('offer-campsite') }}" target="_self">{{ trans('campsite.offercampsite') }}</a></li>
         @if (Auth::guest())
           <li><a href="{{ route('login') }}" target="_self">Login</a></li>
@@ -40,7 +40,7 @@
                   Logout
                 </a>
 
-                <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                   {{ csrf_field() }}
                 </form>
               </li>
@@ -55,7 +55,7 @@
             @foreach (config('translatable.locales') as $lang => $language)
               @if ($lang != app()->getLocale())
                 <li>
-                  <a href="{{ route('lang.switch', $lang) }}">
+                  <a href="{{ route('lang.switch', $lang) }}" target="_self">
                     {{ $lang }}
                   </a>
                 </li>

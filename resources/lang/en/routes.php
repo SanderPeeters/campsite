@@ -10,7 +10,9 @@ return [
     */
 
     'login' => 'login',
+    'logout' => 'logout',
     'register' => 'register',
     'home' => 'home',
-    'offer-campsite' => 'offer-campsite'
+    'offer-campsite' => 'offer-campsite',
+    'search-campsite' => 'search-campsite'
 ];
