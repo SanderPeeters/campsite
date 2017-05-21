@@ -23,6 +23,7 @@ elixir(function(mix) {
         'public/assets/css/app.css'
     )
         .copy('resources/assets/fonts', 'public/build/assets/fonts')
+        .copy('resources/views/campsite/offer/new-states', 'public/assets/templates/offer')
         .scripts(
             [
                 'plugins/angular.min.js',

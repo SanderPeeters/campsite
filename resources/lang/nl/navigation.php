@@ -8,9 +8,9 @@ return [
     |--------------------------------------------------------------------------
     */
 
-    'campsite-search' => 'Search a Campsite',
-    'campsite-offer'  => 'Offer a Campsite',
+    'campsite-search' => 'Zoek Campsite',
+    'campsite-offer'  => 'Campsite aanbieden',
     'login'           => 'Login',
-    'register'        => 'Register'
+    'register'        => 'Registreer'
 
 ];

@@ -89,23 +89,23 @@ campsite.directives.directive('pwCheck', function() {
 });
 
 campsite.services.service('service', ["$http", "$q", function($http, $q){
-  this.fetch = function(method, url, data) {
-    var _promise = $q.defer();
-    $http({
-      method: method,
-      url: url,
-      data: data,
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    }).then(function(response) {
-      _promise.resolve(response.data);
-    }, function(error) {
-      _promise.reject(error);
-    });
+    this.fetch = function(method, url, data) {
+        var _promise = $q.defer();
+        $http({
+            method: method,
+            url: url,
+            data: data,
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(function(response) {
+            _promise.resolve(response.data);
+        }, function(error) {
+            _promise.reject(error);
+        });
 
-    return _promise.promise;
-  };
+        return _promise.promise;
+    };
 
     this.fetch2 = function(method, url, data) {
         var _promise = $q.defer();
@@ -126,152 +126,94 @@ campsite.services.service('service', ["$http", "$q", function($http, $q){
         return _promise.promise;
     };
 
-  this.get = function(url, data) {
-    //var data = {};
-    return this.fetch2('GET', url, data);
-  };
+    this.get = function(url, data) {
+        //var data = {};
+        return this.fetch2('GET', url, data);
+    };
 
-  this.post = function(url, data) {
-    return this.fetch('POST', url, data);
-  };
+    this.post = function(url, data) {
+        return this.fetch('POST', url, data);
+    };
 
-  this.jsonp = function(url) {
-      return this.fetch('JSONP', url);
-  }
+    this.jsonp = function(url) {
+        return this.fetch('JSONP', url);
+    }
 }]);
 
-campsite.controllers.controller('InventoryCtrl', ["$scope", "$rootScope", "$location", "service", "$window", "$route", "$timeout", function($scope, $rootScope, $location, service, $window, $route, $timeout){
-  var self = this;
-  var carinventoryurl = "/auto/offers";
-  var carsearchurl = "/auto/search";
-  var savequeryurl = "/auto/search/save";
-  var updateemailurl = "/dealer/zoekopdrachten/update";
+campsite.controllers.controller('OfferCtrl', ["$scope", "$rootScope", "$location", "service", "$window", "$route", "$timeout", function($scope, $rootScope, $location, service, $window, $route, $timeout){
+    var self = this;
+    var savecampsiteurl = '/campsite-offer/store';
 
+    // Events
+    this.events = {
 
-  // Events
-  this.events = {
+        changeTemplate: function (index) {
+            self.state.template = self.state.templates[index];
+            /*var templateIndex = self.state.template.index;
+             var previousTemplateIndex = templateIndex - 1;
+             var nextTemplateIndex = templateIndex + 1;
 
-    changePage: function(url){
-      self.handlers.getPagination(url);
-    }
+             var currentEl = angular.element( document.querySelector( '#head_step' + templateIndex ) );
+             var previousEl = angular.element( document.querySelector( '#head_step' + previousTemplateIndex) );
+             var nextEl = angular.element( document.querySelector( '#head_step' + nextTemplateIndex) );
 
-  };
+             for (i = 0; i < self.state.templates.length; i++) {
+             if (i === templateIndex)
+             {
+             currentEl.addClass('step-now');
+             previousEl.addClass('step-success');
+             nextEl.removeClass('step-success');
+             } else {
+             previousEl.removeClass('step-now');
+             nextEl.removeClass('step-now');
+             }
+             }*/
+        },
 
-  // Handlers
-  this.handlers = {
-    getAllOffers: function() {
-      self.state.car_offers_loading = true;
-      service.get(carinventoryurl)
-      .then(function success(response) {
-        console.log(response);
-        self.state.car_offers = response.data;
-        self.state.car_offers_loading = false;
-        self.state.paginate_nexturl = response.next_page_url;
-        self.state.paginate_previousurl = response.prev_page_url;
+        updateCampsiteData: function (index) {
+            sessionStorage.campsitetosend = JSON.stringify(self.state.campsitetosend);
+            self.state.datatosend.campsite = JSON.parse(sessionStorage.campsitetosend);
+            self.handlers.postDataToServer();
+            //self.events.changeTemplate(index);
+        }
 
-        self.state.number_of_cars = response.total;
-        self.state.current_page = response.current_page;
-        self.state.number_of_pages = response.last_page;
-      }, function error(response) {
-        console.log(response);
-      });
-    },
+    };
 
-    search: function() {
-      self.state.car_offers_loading = true;
-      self.state.car_models_loading = true;
-      self.state.searchObject.car_model = JSON.stringify(self.state.searchObject.car_model);
-      console.log(self.state.searchObject);
-      $timeout( function(){
-        service.get(carsearchurl, self.state.searchObject)
-        .then(function success(response) {
-          $location.path('/inventaris');
-          console.log(response);
-          self.state.car_offers = response.data;
-          self.state.car_offers_loading = false;
-          self.state.paginate_nexturl = response.next_page_url;
-          self.state.paginate_previousurl = response.prev_page_url;
+    // Handlers
+    this.handlers = {
+        fillOfferTemplates: function () {
+            self.state.templates =[
+                { name: 'state-1.html', url: 'assets/templates/offer/state-1.html', index: 0},
+                { name: 'state-finish.html', url: 'assets/templates/offer/state-finish.html', index: 1}];
+            self.state.template = self.state.templates[0];
+        },
 
-          self.state.number_of_cars = response.total;
-          self.state.current_page = response.current_page;
-          self.state.number_of_pages = response.last_page;
-          self.state.searchObject.car_model = JSON.parse(self.state.searchObject.car_model);
-          self.state.car_models_loading = false;
-        }, function error(response) {
-          console.log(response);
-          self.state.searchObject.car_model = JSON.parse(self.state.searchObject.car_model);
-        });
-      }, 10 );
-    },
-    saveSearchQuery: function() {
-      self.state.searchObject.car_model = JSON.stringify(self.state.searchObject.car_model);
-      service.post(savequeryurl, self.state.searchObject)
-      .then(function success(response) {
-        self.state.searchObject.searchquery_name = '';
-        self.state.searchObject.car_model = JSON.parse(self.state.searchObject.car_model)
-      }, function error(response) {
-        console.log(response);
-        self.state.searchObject.car_model = JSON.parse(self.state.searchObject.car_model)
-      });
+        postDataToServer: function () {
+            console.log(self.state.datatosend);
+            service.post(savecampsiteurl, self.state.datatosend).then (
+                function successCallback(response) {
+                    console.log(response);
 
-    },
+                    self.events.changeTemplate(1);
 
-    resetFilters: function() {
-      self.state.searchObject = {};
-    },
+                }, function errorCallback(response) {
+                    console.log(response);
+                });
+        }
+    };
 
-    getPagination: function(url) {
-      self.state.car_offers_loading = true;
-      service.get(url)
-      .then(function success(response) {
-        console.log(response);
-        self.state.car_offers = response.data;
-        self.state.car_offers_loading = false;
-        self.state.paginate_nexturl = response.next_page_url;
-        self.state.paginate_previousurl = response.prev_page_url;
+    // Listeners
+    $rootScope.$on('$locationChangeSuccess', function() {
+        self.handlers.fillOfferTemplates();
+        //self.handlers.fillStateFromsessionStorage();
+    });
 
-        self.state.number_of_cars = response.total;
-        self.state.current_page = response.current_page;
-        self.state.number_of_pages = response.last_page;
-      }, function error(response) {
-        console.log(response);
-      });
-    },
+    // Init
+    this.state = {
+        templates: [],
+        template: '',
 
-    onChange: function(id) {
-      self.state.emailid.id = id;
-      service.post(updateemailurl, self.state.emailid)
-      .then(function success(response) {
-        console.log(response.needs_email);
-      }, function error(response) {
-        console.log(response);
-      });
-    }
-  };
-
-  // Listeners
-  $rootScope.$on('$locationChangeSuccess', function() {
-    //  self.handlers.getAllOffers();
-  });
-
-  // Init
-  this.state = {
-    car_offers: [],
-    car_offers_loading: false,
-    sortBy: 'end_date_bidding',  // set the default sort type
-    sortReverse: true, // set the default sort order
-    searchObject: {},
-
-    emailid: {},
-    searchqueries: {},
-
-    searchAdvanced: false,
-
-    paginate_nexturl: null,
-    paginate_previousurl: null,
-
-    number_of_cars: null,
-    current_page: null,
-    number_of_pages: null
-  };
+        campsitetosend: {},
+        datatosend: {}
+    };
 }]);

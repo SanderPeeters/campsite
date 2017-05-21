@@ -26,4 +26,8 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function campsites () {
+        return $this->hasMany('App\Models\Campsite');
+    }
 }

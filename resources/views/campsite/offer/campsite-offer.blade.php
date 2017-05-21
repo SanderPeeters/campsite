@@ -9,7 +9,7 @@
         <div class="container">
             <div class="col-md-10 col-md-offset-1">
                 {{-- If user is not logged in, show login/register panel --}}
-                @if(!Auth())
+                @if(!Auth::user())
                     <div class="panel no-border-radius no-border">
                         <div class="panel-body no-padding">
                             <div class="row">
@@ -55,7 +55,7 @@
                                         <p>Or click the My Campsite button to view or edit your existing Campsite!</p>
                                         <div class="row">
                                             <div class="col-xs-6">
-                                                <a href="{{ route('login') }}" target="_self">
+                                                <a href="{{ route('offer-campsite.new') }}" target="_self">
                                                     <button type="button" class="btn btn-secundary btn-block">
                                                         Start
                                                     </button>
