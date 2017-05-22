@@ -73,6 +73,56 @@ campsite.app.config(["$locationProvider", "$interpolateProvider", "$sceDelegateP
 
 }]);
 
+campsite.directives.directive('googleplace', function() {
+    return {
+        require: 'ngModel',
+        scope: {
+            ngModel: '=',
+            latitude: '=?',
+            longitude: '=?'
+        },
+        link: function(scope, element, attrs, model) {
+            var options = {
+                types: [],
+            };
+            scope.gPlace = new google.maps.places.Autocomplete(element[0], options);
+
+            google.maps.event.addListener(scope.gPlace, 'place_changed', function() {
+                var geoComponents = scope.gPlace.getPlace();
+
+                var latitude = geoComponents.geometry.location.lat();
+                var longitude = geoComponents.geometry.location.lng();
+
+                /*var addressComponents = geoComponents.address_components;
+
+                addressComponents = addressComponents.filter(function(component){
+                    switch (component.types[0]) {
+                        case "locality": // city
+                            return true;
+                        case "administrative_area_level_1": // state
+                            return true;
+                        case "country": // country
+                            return true;
+                        default:
+                            return false;
+                    }
+                }).map(function(obj) {
+                    return obj.long_name;
+                });
+
+                addressComponents.push(latitude, longitude);*/
+
+                scope.$apply(function() {
+                    //scope.details = addressComponents; // array containing each location component
+                    scope.latitude = latitude;
+                    scope.longitude = longitude;
+                    model.$setViewValue(element.val());
+                });
+            });
+        }
+    };
+});
+
 campsite.directives.directive('pwCheck', function() {
   return {
     require: 'ngModel',
@@ -142,7 +192,7 @@ campsite.services.service('service', ["$http", "$q", function($http, $q){
 
 campsite.controllers.controller('OfferCtrl', ["$scope", "$rootScope", "$location", "service", "$window", "$route", "$timeout", function($scope, $rootScope, $location, service, $window, $route, $timeout){
     var self = this;
-    var savecampsiteurl = '/campsite-offer/store';
+    var savecampsiteurl = '/en/campsite-offer/store';
 
     // Events
     this.events = {
@@ -173,9 +223,10 @@ campsite.controllers.controller('OfferCtrl', ["$scope", "$rootScope", "$location
         updateCampsiteData: function (index) {
             sessionStorage.campsitetosend = JSON.stringify(self.state.campsitetosend);
             self.state.datatosend.campsite = JSON.parse(sessionStorage.campsitetosend);
+            console.log(self.state.datatosend.campsite);
             self.handlers.postDataToServer();
             //self.events.changeTemplate(index);
-        }
+        },
 
     };
 
@@ -194,7 +245,7 @@ campsite.controllers.controller('OfferCtrl', ["$scope", "$rootScope", "$location
                 function successCallback(response) {
                     console.log(response);
 
-                    self.events.changeTemplate(1);
+                    //self.events.changeTemplate(1);
 
                 }, function errorCallback(response) {
                     console.log(response);

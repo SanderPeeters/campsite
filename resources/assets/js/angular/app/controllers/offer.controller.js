@@ -1,6 +1,6 @@
 campsite.controllers.controller('OfferCtrl', function($scope, $rootScope, $location, service, $window, $route, $timeout){
     var self = this;
-    var savecampsiteurl = '/campsite-offer/store';
+    var savecampsiteurl = '/en/campsite-offer/store';
 
     // Events
     this.events = {
@@ -31,9 +31,10 @@ campsite.controllers.controller('OfferCtrl', function($scope, $rootScope, $locat
         updateCampsiteData: function (index) {
             sessionStorage.campsitetosend = JSON.stringify(self.state.campsitetosend);
             self.state.datatosend.campsite = JSON.parse(sessionStorage.campsitetosend);
+            console.log(self.state.datatosend.campsite);
             self.handlers.postDataToServer();
             //self.events.changeTemplate(index);
-        }
+        },
 
     };
 
@@ -52,7 +53,7 @@ campsite.controllers.controller('OfferCtrl', function($scope, $rootScope, $locat
                 function successCallback(response) {
                     console.log(response);
 
-                    self.events.changeTemplate(1);
+                    //self.events.changeTemplate(1);
 
                 }, function errorCallback(response) {
                     console.log(response);

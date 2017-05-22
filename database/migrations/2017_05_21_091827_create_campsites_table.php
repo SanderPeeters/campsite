@@ -19,8 +19,8 @@ class CreateCampsitesTable extends Migration
             $table->string('campsite_name');
             $table->string('address');
             $table->integer('price_per_night');
-            $table->integer('latitude');
-            $table->integer('longitude');
+            $table->float('latitude', 11, 8);
+            $table->float('longitude', 11, 8);
             $table->text('description');
             $table->timestamps();
         });
