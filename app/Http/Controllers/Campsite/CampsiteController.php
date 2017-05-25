@@ -12,6 +12,11 @@ use Illuminate\Support\Facades\Validator;
 
 class CampsiteController extends Controller
 {
+    public function index()
+    {
+        $campsites = Campsite::all();
+        return view('welcome')->with('campsites', $campsites);
+    }
     public function storeCampsite (Request $request)
     {
         $campsitedata = $request->get('campsite');
