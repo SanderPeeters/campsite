@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Campsite;
 
 use App\User;
 use App\Models\Campsite;
+use App\Models\Campimage;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -14,6 +15,7 @@ class CampsiteController extends Controller
     public function storeCampsite (Request $request)
     {
         $campsitedata = $request->get('campsite');
+        $images = $request->get('images');
 
         $campsitevalidator = Validator::make($campsitedata, [
             'placename' => 'required',
@@ -41,6 +43,16 @@ class CampsiteController extends Controller
         $campsite->price_per_night = $campsitedata['price'];
         $campsite->user_id = Auth::user()->id;
         $campsite->save();
+
+        foreach ($images as $image){
+            if ($image && $image != null){
+                $campimage = Campimage::where('identifier', $image)->firstOrFail();
+                if ($campimage->count()){
+                    $campimage->campsite_id = $campsite->id;
+                    $campimage->save();
+                }
+            }
+        }
 
         $returnData = array(
             'status' => 'Succes',

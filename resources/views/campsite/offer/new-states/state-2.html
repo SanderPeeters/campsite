@@ -1,7 +1,7 @@
-<form name="campsite-basic-information">
-    <h2>Basic information</h2>
+<form name="campsite-facilities-information">
+    <h2>Facility information</h2>
 
-    <div class="form-group">
+<!--    <div class="form-group">
         <label for="placename"><strong>Place name</strong></label>
         <input ng-model="offer.state.campsitetosend.placename" class="form-control" id="placename" type="text" name="placename">
     </div>
@@ -19,10 +19,13 @@
     <div class="form-group">
         <label for="price"><strong>Price per night</strong></label>
         <input ng-model="offer.state.campsitetosend.price" class="form-control" id="price" type="number" name="price">
-    </div>
+    </div>-->
 
     <div class="form-group">
-        <button type="submit" class="btn btn-secundary p-l-25 p-r-25" data-ng-click="offer.events.updateCampsiteData(1)">
+        <button type="button" class="btn btn-secundary p-l-25 p-r-25" data-ng-click="offer.events.updateCampsiteData(0)">
+            Back
+        </button>
+        <button type="submit" class="btn btn-secundary p-l-25 p-r-25" data-ng-click="offer.events.updateCampsiteData(2)">
             Next
         </button>
     </div>

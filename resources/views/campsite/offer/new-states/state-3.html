@@ -1,0 +1,77 @@
+<form name="campsite-photos">
+
+
+    <h3>Select photos</h3>
+
+    <label for="inputimages">Upload photos</label>
+    <input type="file" accept="image/*" nv-file-select id="inputimages" name="inputimages" uploader="offer.state.imageuploader" multiple  /><br/>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th width="50%">Name</th>
+            <th ng-show="offer.state.imageuploader.isHTML5">Size</th>
+            <th ng-show="offer.state.imageuploader.isHTML5">Progress</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="item in offer.state.imageuploader.queue">
+            <td>
+                <div ng-show="offer.state.imageuploader.isHTML5" ng-thumb="{ file: item._file, height: 100 }"></div>
+            </td>
+            <td ng-show="offer.state.imageuploader.isHTML5" nowrap>## item.file.size/1024/1024|number:2 ## MB</td>
+            <td ng-show="offer.state.imageuploader.isHTML5">
+                <div class="progress" style="margin-bottom: 0;">
+                    <div class="progress-bar" role="progressbar" ng-style="{ 'width': item.progress + '%' }"></div>
+                </div>
+            </td>
+            <td class="text-center">
+                <span ng-show="item.isSuccess">Ok</span>
+                <span ng-show="item.isCancel">Cancel</span>
+                <span ng-show="item.isError">Remove</span>
+            </td>
+            <td nowrap>
+                <button type="button" class="btn btn-success btn-xs" ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">
+                    Upload
+                </button>
+                <button type="button" class="btn btn-warning btn-xs" ng-click="item.cancel()" ng-disabled="!item.isUploading">
+                    Cancel
+                </button>
+                <button type="button" class="btn btn-danger btn-xs" ng-click="item.remove()">
+                    Remove
+                </button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div>
+        <div>
+            Queue progress:
+            <div class="progress" style="">
+                <div class="progress-bar" role="progressbar" ng-style="{ 'width': offer.state.imageuploader.progress + '%' }"></div>
+            </div>
+        </div>
+        <button type="button" class="btn btn-success btn-s" ng-click="offer.state.imageuploader.uploadAll()" ng-disabled="!offer.state.imageuploader.getNotUploadedItems().length">
+            Upload all
+        </button>
+        <button type="button" class="btn btn-warning btn-s" ng-click="offer.state.imageuploader.cancelAll()" ng-disabled="!offer.state.imageuploader.isUploading">
+            Cancel all
+        </button>
+        <button type="button" class="btn btn-danger btn-s" ng-click="offer.state.imageuploader.clearQueue()" ng-disabled="!offer.state.imageuploader.queue.length">
+            Remove all
+        </button>
+    </div>
+
+    <div class="form-group">
+        <button type="button" class="btn btn-secundary p-l-25 p-r-25" data-ng-click="offer.events.updateCampsiteData(1)">
+            Back
+        </button>
+        <button type="submit" class="btn btn-secundary p-l-25 p-r-25" data-ng-click="offer.events.updateCampsiteData(3)">
+            Next
+        </button>
+    </div>
+
+</form>

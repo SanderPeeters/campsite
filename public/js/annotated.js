@@ -123,6 +123,51 @@ campsite.directives.directive('googleplace', function() {
     };
 });
 
+campsite.directives.directive('ngThumb', ["$window", function($window) {
+    var helper = {
+        support: !!($window.FileReader && $window.CanvasRenderingContext2D),
+        isFile: function(item) {
+            return angular.isObject(item) && item instanceof $window.File;
+        },
+        isImage: function(file) {
+            var type =  '|' + file.type.slice(file.type.lastIndexOf('/') + 1) + '|';
+            return '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1;
+        }
+    };
+
+    return {
+        restrict: 'A',
+        template: '<canvas/>',
+        link: function(scope, element, attributes) {
+            if (!helper.support) return;
+
+            var params = scope.$eval(attributes.ngThumb);
+
+            if (!helper.isFile(params.file)) return;
+            if (!helper.isImage(params.file)) return;
+
+            var canvas = element.find('canvas');
+            var reader = new FileReader();
+
+            reader.onload = onLoadFile;
+            reader.readAsDataURL(params.file);
+
+            function onLoadFile(event) {
+                var img = new Image();
+                img.onload = onLoadImage;
+                img.src = event.target.result;
+            }
+
+            function onLoadImage() {
+                var width = params.width || this.width / this.height * params.height;
+                var height = params.height || this.height / this.width * params.width;
+                canvas.attr({ width: width, height: height });
+                canvas[0].getContext('2d').drawImage(this, 0, 0, width, height);
+            }
+        }
+    };
+}]);
+
 campsite.directives.directive('pwCheck', function() {
   return {
     require: 'ngModel',
@@ -190,9 +235,10 @@ campsite.services.service('service', ["$http", "$q", function($http, $q){
     }
 }]);
 
-campsite.controllers.controller('OfferCtrl', ["$scope", "$rootScope", "$location", "service", "$window", "$route", "$timeout", function($scope, $rootScope, $location, service, $window, $route, $timeout){
+campsite.controllers.controller('OfferCtrl', ["$scope", "$rootScope", "$location", "service", "$window", "FileUploader", "toastr", function($scope, $rootScope, $location, service, $window, FileUploader, toastr){
     var self = this;
     var savecampsiteurl = '/en/campsite-offer/store';
+    var imagesaveurl = '/en/campsite-offer/images/store';
 
     // Events
     this.events = {
@@ -222,11 +268,21 @@ campsite.controllers.controller('OfferCtrl', ["$scope", "$rootScope", "$location
 
         updateCampsiteData: function (index) {
             sessionStorage.campsitetosend = JSON.stringify(self.state.campsitetosend);
-            self.state.datatosend.campsite = JSON.parse(sessionStorage.campsitetosend);
-            console.log(self.state.datatosend.campsite);
-            self.handlers.postDataToServer();
-            //self.events.changeTemplate(index);
+            sessionStorage.imagestosend = JSON.stringify(self.state.imagestosend);
+
+            if (index == 3)
+            {
+                self.events.storeInfo();
+            }
+            self.events.changeTemplate(index);
         },
+
+        storeInfo: function () {
+            self.state.datatosend.campsite = JSON.parse(sessionStorage.campsitetosend);
+            self.state.datatosend.images = JSON.parse(sessionStorage.imagestosend);
+            console.log(self.state.datatosend);
+            self.handlers.postDataToServer();
+        }
 
     };
 
@@ -235,7 +291,9 @@ campsite.controllers.controller('OfferCtrl', ["$scope", "$rootScope", "$location
         fillOfferTemplates: function () {
             self.state.templates =[
                 { name: 'state-1.html', url: 'assets/templates/offer/state-1.html', index: 0},
-                { name: 'state-finish.html', url: 'assets/templates/offer/state-finish.html', index: 1}];
+                { name: 'state-2.html', url: 'assets/templates/offer/state-2.html', index: 1},
+                { name: 'state-3.html', url: 'assets/templates/offer/state-3.html', index: 2},
+                { name: 'state-finish.html', url: 'assets/templates/offer/state-finish.html', index: 4}];
             self.state.template = self.state.templates[0];
         },
 
@@ -244,8 +302,10 @@ campsite.controllers.controller('OfferCtrl', ["$scope", "$rootScope", "$location
             service.post(savecampsiteurl, self.state.datatosend).then (
                 function successCallback(response) {
                     console.log(response);
+                    sessionStorage.removeItem("campsitetosend");
+                    sessionStorage.removeItem("imagestosend");
 
-                    //self.events.changeTemplate(1);
+                    self.events.changeTemplate(4);
 
                 }, function errorCallback(response) {
                     console.log(response);
@@ -265,6 +325,57 @@ campsite.controllers.controller('OfferCtrl', ["$scope", "$rootScope", "$location
         template: '',
 
         campsitetosend: {},
-        datatosend: {}
+        imagestosend: [],
+        datatosend: {},
+
+        csrf_token: laravel_csrf,
+
+        imageuploader: new FileUploader({
+            url: imagesaveurl,
+            filters: [{
+                name: 'sizeSmallerThan',
+                // Image must be smaller than 10 mb +-
+                fn: function(item) {
+                    if(item.size < 10000000){
+                        return true;
+                    }
+                    else{
+                        toastr.warning('Images must be smaller than 10MB!', 'Attention');
+                    }
+                }
+            },
+                {
+                    name: 'isImage',
+                    // file must be of type image
+                    fn: function(item) {
+                        if(item.type = 'image/*'){
+                            console.log(item);
+                            return true;
+                        }
+                        else{
+                            console.log(item);
+                            toastr.warning('File has to be an image!', 'Attention');
+                        }
+                    }
+                }]
+        })
+    };
+
+    self.state.imageuploader.onCompleteItem = function(fileItem, response, status, headers) {
+        console.info('onCompleteItem', headers);
+        if(status == 200 && response.identifier){
+            console.log(response);
+            self.state.imagestosend.push(response.identifier);
+        }
+        else{
+            if(response.error.imagetosave){
+                toastr.error(response.error.imagetosave[0], 'Error');
+            }
+            else{
+                toastr.error('Something went wrong during the upload of this picture!', 'Error');
+            }
+            //console.log(response.error);
+        }
+        //console.log(self.state.imagestosend);
     };
 }]);
