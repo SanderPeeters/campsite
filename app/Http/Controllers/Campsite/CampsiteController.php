@@ -12,6 +12,11 @@ use Illuminate\Support\Facades\Validator;
 
 class CampsiteController extends Controller
 {
+    public function index()
+    {
+        $campsites = Campsite::all();
+        return view('welcome')->with('campsites', $campsites);
+    }
     public function storeCampsite (Request $request)
     {
         $campsitedata = $request->get('campsite');
@@ -36,7 +41,11 @@ class CampsiteController extends Controller
 
         $campsite = new Campsite();
         $campsite->campsite_name = $campsitedata['placename'];
-        $campsite->address = $campsitedata['address'];
+        $campsite->street = $campsitedata['street'].' '.$campsitedata['street_number'];
+        $campsite->city = $campsitedata['city'];
+        $campsite->zipcode = $campsitedata['zipcode'];
+        $campsite->province = $campsitedata['province'];
+        $campsite->state = $campsitedata['state'];
         $campsite->latitude = number_format($campsitedata['latitude'], 8);
         $campsite->longitude = number_format($campsitedata['longitude'], 8);
         $campsite->description = $campsitedata['description'];

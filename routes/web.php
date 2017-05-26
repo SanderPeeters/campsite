@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'Campsite\CampsiteController@index')->name('welcome');
 
 Auth::routes();
 

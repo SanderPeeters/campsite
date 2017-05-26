@@ -3,26 +3,26 @@
 
     <div class="form-group">
         <label for="placename"><strong>Place name</strong></label>
-        <input ng-model="offer.state.campsitetosend.placename" class="form-control" id="placename" type="text" name="placename">
+        <input ng-model="offer.state.campsitetosend.placename" class="form-control" id="placename" type="text" name="placename" validator="required">
     </div>
 
     <div class="form-group">
         <label for="address"><strong>Address</strong></label>
-        <input ng-model="offer.state.campsitetosend.address" latitude="offer.state.campsitetosend.latitude" longitude="offer.state.campsitetosend.longitude" class="form-control" id="address" type="text" name="address" googleplace>
+        <input ng-model="offer.state.campsitetosend.address" details="offer.state.campsitetosend.details" street="offer.state.campsitetosend.street" number="offer.state.campsitetosend.street_number" city="offer.state.campsitetosend.city" zipcode="offer.state.campsitetosend.zipcode" province="offer.state.campsitetosend.province" state="offer.state.campsitetosend.state" latitude="offer.state.campsitetosend.latitude" longitude="offer.state.campsitetosend.longitude" class="form-control" id="address" type="text" name="address" googleplace validator="required">
     </div>
 
     <div class="form-group">
         <label for="description"><strong>Description</strong></label>
-        <textarea ng-model="offer.state.campsitetosend.description" class="form-control" id="description" type="text" name="description"></textarea>
+        <textarea ng-model="offer.state.campsitetosend.description" class="form-control" id="description" type="text" name="description" validator="required"></textarea>
     </div>
 
     <div class="form-group">
         <label for="price"><strong>Price per night</strong></label>
-        <input ng-model="offer.state.campsitetosend.price" class="form-control" id="price" type="number" name="price">
+        <input ng-model="offer.state.campsitetosend.price" class="form-control" id="price" type="number" name="price" validator="required, number">
     </div>
 
     <div class="form-group">
-        <button type="submit" class="btn btn-secundary p-l-25 p-r-25" data-ng-click="offer.events.updateCampsiteData(1)">
+        <button type="button" class="btn btn-secundary p-l-25 p-r-25" validation-submit="campsite-basic-information" data-ng-click="offer.events.updateCampsiteData(1)">
             Next
         </button>
     </div>

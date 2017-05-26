@@ -1,5 +1,7 @@
 <?php
+
 return [
+
     /*
     |--------------------------------------------------------------------------
     | Validation Language Lines
@@ -10,12 +12,13 @@ return [
     | such as the size rules. Feel free to tweak each of these messages.
     |
     */
+
     'accepted'             => ':attribute moet geaccepteerd zijn.',
     'active_url'           => ':attribute is geen geldige URL.',
     'after'                => ':attribute moet een datum na :date zijn.',
     'after_or_equal'       => ':attribute moet een datum na of gelijk aan :date zijn.',
     'alpha'                => ':attribute mag alleen letters bevatten.',
-    'alpha_dash'           => ':attribute mag alleen letters, nummers, underscores (_) en streepjes (-) bevatten.',
+    'alpha_dash'           => ':attribute mag alleen letters, nummers, onderstreep(_) en strepen(-) bevatten.',
     'alpha_num'            => ':attribute mag alleen letters en nummers bevatten.',
     'array'                => ':attribute moet geselecteerde elementen bevatten.',
     'before'               => ':attribute moet een datum voor :date zijn.',
@@ -26,7 +29,7 @@ return [
         'string'  => ':attribute moet tussen :min en :max karakters zijn.',
         'array'   => ':attribute moet tussen :min en :max items bevatten.',
     ],
-    'boolean'              => ':attribute moet ja of nee zijn.',
+    'boolean'              => ':attribute moet true of false zijn.',
     'confirmed'            => ':attribute bevestiging komt niet overeen.',
     'date'                 => ':attribute moet een datum bevatten.',
     'date_format'          => ':attribute moet een geldig datum formaat bevatten.',
@@ -82,6 +85,7 @@ return [
     'unique'               => ':attribute is al in gebruik.',
     'uploaded'             => 'Het uploaden van :attribute is mislukt.',
     'url'                  => ':attribute is geen geldige URL.',
+
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Language Lines
@@ -92,11 +96,13 @@ return [
     | specify a specific custom language line for a given attribute rule.
     |
     */
+
     'custom'               => [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
     ],
+
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Attributes
@@ -107,11 +113,13 @@ return [
     | of "email". This simply helps us make messages a little cleaner.
     |
     */
+
     'attributes'           => [
         'address'               => 'adres',
         'age'                   => 'leeftijd',
         'available'             => 'beschikbaar',
         'city'                  => 'stad',
+        'zipcode'               =>  'postcode',
         'content'               => 'inhoud',
         'country'               => 'land',
         'date'                  => 'datum',
@@ -119,18 +127,19 @@ return [
         'description'           => 'omschrijving',
         'email'                 => 'e-mailadres',
         'excerpt'               => 'uittreksel',
-        'first_name'            => 'voornaam',
+        'firstname'             => 'voornaam',
         'gender'                => 'geslacht',
         'hour'                  => 'uur',
-        'last_name'             => 'achternaam',
+        'lastname'              => 'achternaam',
         'message'               => 'boodschap',
         'minute'                => 'minuut',
         'mobile'                => 'mobiel',
         'month'                 => 'maand',
         'name'                  => 'naam',
         'password'              => 'wachtwoord',
-        'password_confirmation' => 'wachtwoord bevestiging',
+        'password_confirmation' => 'wachtwoordbevestiging',
         'phone'                 => 'telefoonnummer',
+        'telephone'             => 'telefoonnummer',
         'second'                => 'seconde',
         'sex'                   => 'geslacht',
         'size'                  => 'grootte',
@@ -140,4 +149,5 @@ return [
         'username'              => 'gebruikersnaam',
         'year'                  => 'jaar',
     ],
+
 ];
