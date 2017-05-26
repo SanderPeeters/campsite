@@ -52,82 +52,42 @@
     </section>
 
     @if($campsites->count())
-    <section id="top-campsites-section">
-        <div class="container-fluid">
-            <div class="row m-b-20 text-center">
-                <div class="col-sm-6 col-sm-offset-3">
-                    <h3 class="color-light-grey uppercase">popular campsites</h3>
-                    <hr class="color-primary w-20--p m-t-0">
+        <section id="top-campsites-section">
+            <div class="container-fluid">
+                <div class="row m-b-20 text-center">
+                    <div class="col-sm-6 col-sm-offset-3">
+                        <h3 class="color-light-grey uppercase">popular campsites</h3>
+                        <hr class="color-primary w-20--p m-t-0">
+                    </div>
+                </div>
+                <div class="m-b-40">
+                    <div id="owl-carousel-home" class="owl-carousel owl-theme">
+                        @foreach($campsites as $campsite)
+                            <div class="item card">
+                                <div class="card--img">
+                                    <a href="http://placehold.it" target="_self">
+                                        <img src="/img/campsites/{{$campsite->campimages[0]->filename}}">
+                                    </a>
+                                </div>
+                                <div class="card--info">
+                                    <p>{{$campsite->province}} - {{$campsite->city}}</p>
+                                    <a href="http://placehold.it" target="_self">
+                                        <h3>{{$campsite->campsite_name}}</h3>
+                                    </a>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+                <div class="row text-center m-b-40">
+                    <a href="" target="_self">
+                        <button type="button" class="btn btn-tertiary p-t-5 p-b-5 p-l-25 p-r-25">
+                            Browse more
+                        </button>
+                    </a>
                 </div>
             </div>
-            <div class="m-b-40">
-                <div id="owl-carousel-home" class="owl-carousel owl-theme">
-                    @foreach($campsites as $campsite)
-                        <div class="item card">
-                            <div class="card--img">
-                                <a href="http://placehold.it" target="_self">
-                                    <img src="/img/campsites/{{$campsite->campimages[0]->filename}}">
-                                </a>
-                            </div>
-                            <div class="card--info">
-                                <p>Belgium - Haunait - Tournai</p>
-                                <a href="http://placehold.it" target="_self">
-                                    <h3>{{$campsite->campsite_name}}</h3>
-                                </a>
-                            </div>
-                        </div>
-                    @endforeach
-
-                    {{--<div class="item card">
-                        <div class="card--img">
-                            <a href="http://placehold.it" target="_self">
-                                <img src="http://placehold.it/340x260">
-                            </a>
-                        </div>
-                        <div class="card--info">
-                            <p>Belgium - Haunait - Tournai</p>
-                            <a href="http://placehold.it" target="_self">
-                                <h3>JC Liénart</h3>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="item card">
-                        <div class="card--img">
-                            <a href="http://placehold.it" target="_self">
-                                <img src="http://placehold.it/340x260">
-                            </a>
-                        </div>
-                        <div class="card--info">
-                            <p>Belgium - Haunait - Tournai</p>
-                            <a href="http://placehold.it" target="_self">
-                                <h3>Camping de l'Ourthe</h3>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="item card">
-                        <div class="card--img">
-                            <a href="http://placehold.it" target="_self">
-                                <img src="http://placehold.it/340x260">
-                            </a>
-                        </div>
-                        <div class="card--info">
-                            <p>Belgium - Haunait - Tournai</p>
-                            <a href="http://placehold.it" target="_self">
-                                <h3>Camping de l'Orient</h3>
-                            </a>
-                        </div>
-                    </div>--}}
-                </div>
-            </div>
-            <div class="row text-center m-b-40">
-                <a href="" target="_self">
-                    <button type="button" class="btn btn-tertiary p-t-5 p-b-5 p-l-25 p-r-25">
-                        Browse more
-                    </button>
-                </a>
-            </div>
-        </div>
-    </section>
+        </section>
     @endif
 
     <!-- Section why use our service-->

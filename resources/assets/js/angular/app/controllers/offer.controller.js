@@ -30,8 +30,10 @@ campsite.controllers.controller('OfferCtrl', function($scope, $rootScope, $locat
         },
 
         updateCampsiteData: function (index) {
+
             sessionStorage.campsitetosend = JSON.stringify(self.state.campsitetosend);
             sessionStorage.imagestosend = JSON.stringify(self.state.imagestosend);
+            console.log(self.state.campsitetosend);
 
             if (index == 3)
             {
