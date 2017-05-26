@@ -13,7 +13,9 @@ var dependencies = [
     '720kb.tooltips',
     'toastr',
     'angular.vertilize',
-    'ui.select'
+    'ui.select',
+    'textAngularSetup',
+    'textAngular'
 ];
 
 var campsite = {
