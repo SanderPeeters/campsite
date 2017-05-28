@@ -56,7 +56,7 @@
         </div>
         <div class="form-group">
             <label for="extrainfo"><strong>Extra info</strong></label>
-            <text-angular ng-model="building.extrainfo" id="extrainfo" type="text" name="extrainfo"></text-angular>
+            <textarea class="form-control" ng-model="building.extrainfo" id="extrainfo" type="text" name="extrainfo"></textarea>
         </div>
 
         <button type="button" class="btn btn-secundary"  ng-click="offer.events.removeBuilding($index)">Remove building</button>

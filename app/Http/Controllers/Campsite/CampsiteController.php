@@ -60,43 +60,34 @@ class CampsiteController extends Controller
         foreach ($buildings as $building) {
             $newbuilding = new Building();
             $newbuilding->campsite_id = $campsite->id;
-            $newbuilding->capacity = $building['capacity'];
-            $newbuilding->beds = $building['beds'];
-            $newbuilding->showers = $building['showers'];
-            $newbuilding->toilets = $building['toilets'];
-            $newbuilding->has_water = $building['haswater'];
-            $newbuilding->has_electricity = $building['haselectricity'];
-            $newbuilding->has_wifi = $building['haswifi'];
-            $newbuilding->has_kitchen = $building['haskitchen'];
-            $newbuilding->extra_info = $building['extrainfo'];
 
-            /*if(isset($building['capacity'])){
-                $newbuilding->capacity = $building->capacity;
+            if(isset($building['capacity'])){
+                $newbuilding->capacity = $building['capacity'];
             }
             if(isset($building['beds'])){
-                $newbuilding->beds = $building->beds;
+                $newbuilding->beds = $building['beds'];
             }
             if(isset($building['showers'])){
-                $newbuilding->showers = $building->showers;
+                $newbuilding->showers = $building['showers'];
             }
             if(isset($building['toilets'])){
-                $newbuilding->toilets = $building->toilets;
+                $newbuilding->toilets = $building['toilets'];
             }
             if(isset($building['haswater'])){
-                $newbuilding->has_water = $building->has_water;
+                $newbuilding->has_water = $building['haswater'];
             }
             if(isset($building['haselectricity'])){
-                $newbuilding->has_electricity = $building->has_electricity;
+                $newbuilding->has_electricity = $building['haselectricity'];
             }
             if(isset($building['haswifi'])){
-                $newbuilding->has_wifi = $building->has_wifi;
+                $newbuilding->has_wifi = $building['haswifi'];
             }
             if(isset($building['haskitchen'])){
-                $newbuilding->has_kitchen = $building->has_kitchen;
+                $newbuilding->has_kitchen = $building['haskitchen'];
             }
             if(isset($building['extrainfo'])){
-                $newbuilding->has_kitchen = $building->has_kitchen;
-            }*/
+                $newbuilding->extra_info = $building['extrainfo'];
+            }
 
             $newbuilding->save();
         }

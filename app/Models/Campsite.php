@@ -20,4 +20,8 @@ class Campsite extends Model
     public function buildings() {
         return $this->hasMany('App\Models\Building');
     }
+
+    public function meadows() {
+        return $this->hasMany('App\Models\Meadow');
+    }
 }

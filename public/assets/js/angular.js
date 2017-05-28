@@ -322,6 +322,11 @@ campsite.controllers.controller('OfferCtrl', ["$scope", "$rootScope", "$location
             self.state.buildings.push({'index': newItemNo});
         },
 
+        addNewMeadow: function () {
+            var newItemNo = self.state.meadows.length + 1;
+            self.state.meadows.push({'index': newItemNo});
+        },
+
         removeBuilding: function (index) {
             // remove the row specified in index
             self.state.buildings.splice(index, 1);
@@ -329,7 +334,17 @@ campsite.controllers.controller('OfferCtrl', ["$scope", "$rootScope", "$location
             // if no rows left in the array create a blank array
             if (self.state.buildings.length === 0 || self.state.buildings.length == null) {
                 alert('no rec');
-                self.state.buildings.push = [{"index": 1}];
+            }
+        },
+
+        removeMeadow: function (index) {
+            // remove the row specified in index
+            self.state.meadows.splice(index, 1);
+            console.log(self.state.meadows);
+            // if no rows left in the array create a blank array
+            if (self.state.meadows.length === 0 || self.state.meadows.length == null) {
+                alert('no rec');
+                self.state.meadows.push = [{"index": 1}];
             }
         }
 
@@ -376,9 +391,9 @@ campsite.controllers.controller('OfferCtrl', ["$scope", "$rootScope", "$location
         campsitetosend: {},
         imagestosend: [],
         datatosend: {},
-
-        buildings: [{index: 1, capacity:'', haswater:false, haselectricity:false, haswifi:false, beds:'', showers:'', toilets:'', haskitchen:false, extrainfo:'' }],
-        meadows: {},
+        buildings: [],
+        //buildings: [{index: 1, capacity:'', haswater:false, haselectricity:false, haswifi:false, beds:'', showers:'', toilets:'', haskitchen:false, extrainfo:'' }],
+        meadows: [{index:1, capacity:'', sqmeters:'', tentsallowed:false, campfireallowed:false, haswater:false, haselectricity:false, extrainfo:''}],
 
         csrf_token: laravel_csrf,
 
