@@ -46,7 +46,7 @@
                     <div class="panel-body no-padding" ng-controller="OfferCtrl as offer">
                         <div class="row">
                             <div class="col-sm-12">
-                                <div class="p-b-20 p-t-20 p-l-20 p-r-20">
+                                <div class="p-b-60 p-t-20 p-l-20 p-r-20">
                                     <div ng-include="offer.state.template.url"></div>
                                 </div>
                             </div>

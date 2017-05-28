@@ -299,7 +299,8 @@ campsite.controllers.controller('OfferCtrl', ["$scope", "$rootScope", "$location
 
             sessionStorage.campsitetosend = JSON.stringify(self.state.campsitetosend);
             sessionStorage.imagestosend = JSON.stringify(self.state.imagestosend);
-            console.log(self.state.campsitetosend);
+            sessionStorage.buildings = JSON.stringify(self.state.buildings);
+            console.log(self.state.buildings);
 
             if (index == 3)
             {
@@ -311,8 +312,25 @@ campsite.controllers.controller('OfferCtrl', ["$scope", "$rootScope", "$location
         storeInfo: function () {
             self.state.datatosend.campsite = JSON.parse(sessionStorage.campsitetosend);
             self.state.datatosend.images = JSON.parse(sessionStorage.imagestosend);
+            self.state.datatosend.buildings = JSON.parse(sessionStorage.buildings);
             console.log(self.state.datatosend);
             self.handlers.postDataToServer();
+        },
+
+        addNewBuilding: function () {
+            var newItemNo = self.state.buildings.length + 1;
+            self.state.buildings.push({'index': newItemNo});
+        },
+
+        removeBuilding: function (index) {
+            // remove the row specified in index
+            self.state.buildings.splice(index, 1);
+            console.log(self.state.buildings);
+            // if no rows left in the array create a blank array
+            if (self.state.buildings.length === 0 || self.state.buildings.length == null) {
+                alert('no rec');
+                self.state.buildings.push = [{"index": 1}];
+            }
         }
 
     };
@@ -358,6 +376,9 @@ campsite.controllers.controller('OfferCtrl', ["$scope", "$rootScope", "$location
         campsitetosend: {},
         imagestosend: [],
         datatosend: {},
+
+        buildings: [{index: 1, capacity:'', haswater:false, haselectricity:false, haswifi:false, beds:'', showers:'', toilets:'', haskitchen:false, extrainfo:'' }],
+        meadows: {},
 
         csrf_token: laravel_csrf,
 

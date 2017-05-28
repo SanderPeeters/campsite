@@ -19,27 +19,27 @@
 
       var defaultMsg = {
         required: {
-          error: 'Dit veld is verplicht',
+          error: 'This field is required',
           success: ''
         },
         url: {
-          error: 'Dit is geen geldige URL',
+          error: 'This is not a valid URL',
           success: ''
         },
         email: {
-          error: 'Dit is geen geldig e-mailadres',
+          error: 'This is not a valid email address',
           success: ''
         },
         number: {
-          error: 'Dit veld moet een nummer zijn',
+          error: 'This field must be numeric',
           success: ''
         },
         minlength: {
-          error: 'Dit is niet lang genoeg',
+          error: 'This field is nog long enough',
           success: ''
         },
         maxlength: {
-          error: 'Dit moet korter',
+          error: 'This field is too long',
           success: ''
         }
       };

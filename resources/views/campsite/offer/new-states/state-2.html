@@ -1,31 +1,76 @@
-<form name="campsite-facilities-information">
+<form name="campsitefacilitiesinformation">
     <h2>Facility information</h2>
 
-<!--    <div class="form-group">
-        <label for="placename"><strong>Place name</strong></label>
-        <input ng-model="offer.state.campsitetosend.placename" class="form-control" id="placename" type="text" name="placename">
-    </div>
+    <fieldset  ng-repeat="building in offer.state.buildings">
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label for="capacity"><strong>Capacity</strong></label>
+                    <input ng-model="building.capacity" class="form-control" id="capacity" type="number" name="capacity">
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label for="beds"><strong>Beds</strong></label>
+                    <input ng-model="building.beds" class="form-control" id="beds" type="number" name="beds">
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label for="showers"><strong>Showers</strong></label>
+                    <input ng-model="building.showers" class="form-control" id="showers" type="number" name="showers">
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label for="toilets"><strong>Toilets</strong></label>
+                    <input ng-model="building.toilets" class="form-control" id="toilets" type="number" name="toilets">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label for="haswater"><strong>Water?</strong></label>
+                    <input ng-model="building.haswater" id="haswater" value="1" type="checkbox" name="haswater">
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label for="haselectricity"><strong>Electricity?</strong></label>
+                    <input ng-model="building.haselectricity" id="haselectricity" value="1" type="checkbox" name="haselectricity">
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label for="haswifi"><strong>Wifi?</strong></label>
+                    <input ng-model="building.haswifi" id="haswifi" value="1" type="checkbox" name="haswifi">
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label for="haskitchen"><strong>Kitchen?</strong></label>
+                    <input ng-model="building.haskitchen" id="haskitchen" value="1" type="checkbox" name="haskitchen">
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="extrainfo"><strong>Extra info</strong></label>
+            <text-angular ng-model="building.extrainfo" id="extrainfo" type="text" name="extrainfo"></text-angular>
+        </div>
+
+        <button type="button" class="btn btn-secundary"  ng-click="offer.events.removeBuilding($index)">Remove building</button>
+
+        <hr class="color-primary">
+    </fieldset>
+
+    <button type="button" class="btn btn-secundary" ng-click="offer.events.addNewBuilding()">Add Building</button>
 
     <div class="form-group">
-        <label for="address"><strong>Address</strong></label>
-        <input ng-model="offer.state.campsitetosend.address" latitude="offer.state.campsitetosend.latitude" longitude="offer.state.campsitetosend.longitude" class="form-control" id="address" type="text" name="address" googleplace>
-    </div>
-
-    <div class="form-group">
-        <label for="description"><strong>Description</strong></label>
-        <textarea ng-model="offer.state.campsitetosend.description" class="form-control" id="description" type="text" name="description"></textarea>
-    </div>
-
-    <div class="form-group">
-        <label for="price"><strong>Price per night</strong></label>
-        <input ng-model="offer.state.campsitetosend.price" class="form-control" id="price" type="number" name="price">
-    </div>-->
-
-    <div class="form-group">
-        <button type="button" class="btn btn-secundary p-l-25 p-r-25" data-ng-click="offer.events.updateCampsiteData(0)">
+        <button type="button" class="btn btn-secundary p-l-25 p-r-25 pull-left" data-ng-click="offer.events.updateCampsiteData(0)">
             Back
         </button>
-        <button type="submit" class="btn btn-secundary p-l-25 p-r-25" data-ng-click="offer.events.updateCampsiteData(2)">
+        <button type="submit" class="btn btn-secundary p-l-25 p-r-25 pull-right" validation-submit="campsitefacilitiesinformation" data-ng-click="offer.events.updateCampsiteData(2)">
             Next
         </button>
     </div>
