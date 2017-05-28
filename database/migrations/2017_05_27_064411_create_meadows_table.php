@@ -16,13 +16,13 @@ class CreateMeadowsTable extends Migration
         Schema::create('meadows', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('campsite_id')->unsigned;
-            $table->integer('capacity');
-            $table->integer('sq_meters');
+            $table->integer('capacity')->nullable();
+            $table->integer('sq_meters')->nullable();
             $table->boolean('tents_allowed')->default(0);
             $table->boolean('campfire_allowed')->default(0);
             $table->boolean('has_water')->default(0);
             $table->boolean('has_electricity')->default(0);
-            $table->text('extra_info');
+            $table->text('extra_info')->nullable();
             $table->timestamps();
         });
     }

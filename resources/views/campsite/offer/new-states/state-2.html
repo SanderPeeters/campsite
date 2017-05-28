@@ -1,62 +1,63 @@
 <form name="campsitefacilitiesinformation">
     <h2>Facility information</h2>
 
+    <!-- Fieldset for adding building -->
     <fieldset  ng-repeat="building in offer.state.buildings">
         <div class="row">
             <div class="col-sm-3">
                 <div class="form-group">
-                    <label for="capacity"><strong>Capacity</strong></label>
-                    <input ng-model="building.capacity" class="form-control" id="capacity" type="number" name="capacity">
+                    <label for="building_capacity"><strong>Capacity</strong></label>
+                    <input ng-model="building.capacity" class="form-control" id="building_capacity" type="number" name="building_capacity">
                 </div>
             </div>
             <div class="col-sm-3">
                 <div class="form-group">
-                    <label for="beds"><strong>Beds</strong></label>
-                    <input ng-model="building.beds" class="form-control" id="beds" type="number" name="beds">
+                    <label for="building_beds"><strong>Beds</strong></label>
+                    <input ng-model="building.beds" class="form-control" id="building_beds" type="number" name="building_beds">
                 </div>
             </div>
             <div class="col-sm-3">
                 <div class="form-group">
-                    <label for="showers"><strong>Showers</strong></label>
-                    <input ng-model="building.showers" class="form-control" id="showers" type="number" name="showers">
+                    <label for="building_showers"><strong>Showers</strong></label>
+                    <input ng-model="building.showers" class="form-control" id="building_showers" type="number" name="building_showers">
                 </div>
             </div>
             <div class="col-sm-3">
                 <div class="form-group">
-                    <label for="toilets"><strong>Toilets</strong></label>
-                    <input ng-model="building.toilets" class="form-control" id="toilets" type="number" name="toilets">
+                    <label for="building_toilets"><strong>Toilets</strong></label>
+                    <input ng-model="building.toilets" class="form-control" id="building_toilets" type="number" name="building_toilets">
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-sm-3">
                 <div class="form-group">
-                    <label for="haswater"><strong>Water?</strong></label>
-                    <input ng-model="building.haswater" id="haswater" value="1" type="checkbox" name="haswater">
+                    <label for="building_haswater"><strong>Water?</strong></label>
+                    <input ng-model="building.haswater" id="building_haswater" value="1" type="checkbox" name="building_haswater">
                 </div>
             </div>
             <div class="col-sm-3">
                 <div class="form-group">
-                    <label for="haselectricity"><strong>Electricity?</strong></label>
-                    <input ng-model="building.haselectricity" id="haselectricity" value="1" type="checkbox" name="haselectricity">
+                    <label for="building_haselectricity"><strong>Electricity?</strong></label>
+                    <input ng-model="building.haselectricity" id="building_haselectricity" value="1" type="checkbox" name="building_haselectricity">
                 </div>
             </div>
             <div class="col-sm-3">
                 <div class="form-group">
-                    <label for="haswifi"><strong>Wifi?</strong></label>
-                    <input ng-model="building.haswifi" id="haswifi" value="1" type="checkbox" name="haswifi">
+                    <label for="building_haswifi"><strong>Wifi?</strong></label>
+                    <input ng-model="building.haswifi" id="building_haswifi" value="1" type="checkbox" name="building_haswifi">
                 </div>
             </div>
             <div class="col-sm-3">
                 <div class="form-group">
-                    <label for="haskitchen"><strong>Kitchen?</strong></label>
-                    <input ng-model="building.haskitchen" id="haskitchen" value="1" type="checkbox" name="haskitchen">
+                    <label for="building_haskitchen"><strong>Kitchen?</strong></label>
+                    <input ng-model="building.haskitchen" id="building_haskitchen" value="1" type="checkbox" name="building_haskitchen">
                 </div>
             </div>
         </div>
         <div class="form-group">
-            <label for="extrainfo"><strong>Extra info</strong></label>
-            <textarea class="form-control" ng-model="building.extrainfo" id="extrainfo" type="text" name="extrainfo"></textarea>
+            <label for="building_extrainfo"><strong>Extra info</strong></label>
+            <textarea class="form-control" ng-model="building.extrainfo" id="building_extrainfo" type="text" name="building_extrainfo"></textarea>
         </div>
 
         <button type="button" class="btn btn-secundary"  ng-click="offer.events.removeBuilding($index)">Remove building</button>
@@ -64,7 +65,60 @@
         <hr class="color-primary">
     </fieldset>
 
+    <!-- Fieldset for adding meadow -->
+    <fieldset  ng-repeat="meadow in offer.state.meadows">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="meadow_capacity"><strong>Capacity</strong></label>
+                    <input ng-model="meadow.capacity" class="form-control" id="meadow_capacity" type="number" name="meadow_capacity">
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="meadow_sq_meters"><strong>Square meters</strong></label>
+                    <input ng-model="meadow.sqmeters" class="form-control" id="meadow_sq_meters" type="number" name="meadow_sq_meters">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label for="meadow_haswater"><strong>Water?</strong></label>
+                    <input ng-model="meadow.haswater" id="meadow_haswater" value="1" type="checkbox" name="meadow_haswater">
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label for="meadow_haselectricity"><strong>Electricity?</strong></label>
+                    <input ng-model="meadow.haselectricity" id="meadow_haselectricity" value="1" type="checkbox" name="meadow_haselectricity">
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label for="meadow_tentsallowed"><strong>Tents allowed?</strong></label>
+                    <input ng-model="meadow.tentsallowed" id="meadow_tentsallowed" value="1" type="checkbox" name="meadow_tentsallowed">
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label for="meadow_campfireallowed"><strong>Campfires allowed?</strong></label>
+                    <input ng-model="meadow.campfireallowed" id="meadow_campfireallowed" value="1" type="checkbox" name="meadow_campfireallowed">
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="meadow_extrainfo"><strong>Extra info</strong></label>
+            <textarea class="form-control" ng-model="meadow.extrainfo" id="meadow_extrainfo" type="text" name="meadow_extrainfo"></textarea>
+        </div>
+
+        <button type="button" class="btn btn-secundary"  ng-click="offer.events.removeBuilding($index)">Remove meadow</button>
+
+        <hr class="color-primary">
+    </fieldset>
+
     <button type="button" class="btn btn-secundary" ng-click="offer.events.addNewBuilding()">Add Building</button>
+    <button type="button" class="btn btn-secundary" ng-click="offer.events.addNewMeadow()">Add Meadow</button>
 
     <div class="form-group">
         <button type="button" class="btn btn-secundary p-l-25 p-r-25 pull-left" data-ng-click="offer.events.updateCampsiteData(0)">

@@ -16,7 +16,7 @@ class CreateBuildingsTable extends Migration
         Schema::create('buildings', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('campsite_id')->unsigned;
-            $table->integer('capacity');
+            $table->integer('capacity')->nullable();
             $table->boolean('has_water')->default(0);
             $table->boolean('has_electricity')->default(0);
             $table->boolean('has_wifi')->default(0);
@@ -24,7 +24,7 @@ class CreateBuildingsTable extends Migration
             $table->integer('beds')->nullable();
             $table->integer('showers')->nullable();
             $table->integer('toilets')->nullable();
-            $table->text('extra_info');
+            $table->text('extra_info')->nullable();
             $table->timestamps();
         });
     }

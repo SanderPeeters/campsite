@@ -34,7 +34,7 @@ campsite.controllers.controller('OfferCtrl', function($scope, $rootScope, $locat
             sessionStorage.campsitetosend = JSON.stringify(self.state.campsitetosend);
             sessionStorage.imagestosend = JSON.stringify(self.state.imagestosend);
             sessionStorage.buildings = JSON.stringify(self.state.buildings);
-            console.log(self.state.buildings);
+            sessionStorage.meadows = JSON.stringify(self.state.meadows);
 
             if (index == 3)
             {
@@ -47,6 +47,7 @@ campsite.controllers.controller('OfferCtrl', function($scope, $rootScope, $locat
             self.state.datatosend.campsite = JSON.parse(sessionStorage.campsitetosend);
             self.state.datatosend.images = JSON.parse(sessionStorage.imagestosend);
             self.state.datatosend.buildings = JSON.parse(sessionStorage.buildings);
+            self.state.datatosend.meadows = JSON.parse(sessionStorage.meadows);
             console.log(self.state.datatosend);
             self.handlers.postDataToServer();
         },
@@ -64,22 +65,11 @@ campsite.controllers.controller('OfferCtrl', function($scope, $rootScope, $locat
         removeBuilding: function (index) {
             // remove the row specified in index
             self.state.buildings.splice(index, 1);
-            console.log(self.state.buildings);
-            // if no rows left in the array create a blank array
-            if (self.state.buildings.length === 0 || self.state.buildings.length == null) {
-                alert('no rec');
-            }
         },
 
         removeMeadow: function (index) {
             // remove the row specified in index
             self.state.meadows.splice(index, 1);
-            console.log(self.state.meadows);
-            // if no rows left in the array create a blank array
-            if (self.state.meadows.length === 0 || self.state.meadows.length == null) {
-                alert('no rec');
-                self.state.meadows.push = [{"index": 1}];
-            }
         }
 
     };
@@ -126,8 +116,7 @@ campsite.controllers.controller('OfferCtrl', function($scope, $rootScope, $locat
         imagestosend: [],
         datatosend: {},
         buildings: [],
-        //buildings: [{index: 1, capacity:'', haswater:false, haselectricity:false, haswifi:false, beds:'', showers:'', toilets:'', haskitchen:false, extrainfo:'' }],
-        meadows: [{index:1, capacity:'', sqmeters:'', tentsallowed:false, campfireallowed:false, haswater:false, haselectricity:false, extrainfo:''}],
+        meadows: [],
 
         csrf_token: laravel_csrf,
 
