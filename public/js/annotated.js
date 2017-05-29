@@ -273,7 +273,7 @@ campsite.services.service('service', ["$http", "$q", function($http, $q){
     }
 }]);
 
-campsite.controllers.controller('OfferCtrl', ["$scope", "$rootScope", "$location", "service", "$window", "FileUploader", "toastr", function($scope, $rootScope, $location, service, $window, FileUploader, toastr){
+campsite.controllers.controller('OfferCtrl', ["$scope", "$rootScope", "$location", "service", "$window", "FileUploader", "toastr", "$injector", function($scope, $rootScope, $location, service, $window, FileUploader, toastr, $injector){
     var self = this;
     var savecampsiteurl = '/en/campsite-offer/store';
     var imagesaveurl = '/en/campsite-offer/images/store';
@@ -283,25 +283,6 @@ campsite.controllers.controller('OfferCtrl', ["$scope", "$rootScope", "$location
 
         changeTemplate: function (index) {
             self.state.template = self.state.templates[index];
-            /*var templateIndex = self.state.template.index;
-             var previousTemplateIndex = templateIndex - 1;
-             var nextTemplateIndex = templateIndex + 1;
-
-             var currentEl = angular.element( document.querySelector( '#head_step' + templateIndex ) );
-             var previousEl = angular.element( document.querySelector( '#head_step' + previousTemplateIndex) );
-             var nextEl = angular.element( document.querySelector( '#head_step' + nextTemplateIndex) );
-
-             for (i = 0; i < self.state.templates.length; i++) {
-             if (i === templateIndex)
-             {
-             currentEl.addClass('step-now');
-             previousEl.addClass('step-success');
-             nextEl.removeClass('step-success');
-             } else {
-             previousEl.removeClass('step-now');
-             nextEl.removeClass('step-now');
-             }
-             }*/
         },
 
         updateCampsiteData: function (index) {
@@ -345,6 +326,10 @@ campsite.controllers.controller('OfferCtrl', ["$scope", "$rootScope", "$location
         removeMeadow: function (index) {
             // remove the row specified in index
             self.state.meadows.splice(index, 1);
+        },
+
+        checkValid: function () {
+            self.state.validationProvider.checkValid();
         }
 
     };
@@ -357,7 +342,7 @@ campsite.controllers.controller('OfferCtrl', ["$scope", "$rootScope", "$location
                 { name: 'state-2.html', url: 'assets/templates/offer/state-2.html', index: 1},
                 { name: 'state-3.html', url: 'assets/templates/offer/state-3.html', index: 2},
                 { name: 'state-finish.html', url: 'assets/templates/offer/state-finish.html', index: 4}];
-            self.state.template = self.state.templates[0];
+            self.state.template = self.state.templates[1];
         },
 
         postDataToServer: function () {
@@ -378,19 +363,30 @@ campsite.controllers.controller('OfferCtrl', ["$scope", "$rootScope", "$location
                     console.log(response);
                     self.state.finish_message = "<h1>Something went wrong!</h1>";
                 });
+        },
+
+        changeClass: function(e) {
+            if (angular.element(e.target).hasClass('not-checked')) {
+                console.log('gechecked');
+                angular.element(e.target).removeClass('not-checked');
+            } else {
+                console.log('niet meer checked');
+                angular.element(e.target).addClass('not-checked');
+            }
         }
     };
 
     // Listeners
     $rootScope.$on('$locationChangeSuccess', function() {
         self.handlers.fillOfferTemplates();
-        //self.handlers.fillStateFromsessionStorage();
     });
 
     // Init
     this.state = {
         templates: [],
         template: '',
+
+        validationProvider: $injector.get('$validation'),
 
         campsitetosend: {},
         imagestosend: [],

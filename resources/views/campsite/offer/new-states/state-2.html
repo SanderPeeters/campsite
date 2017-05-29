@@ -29,29 +29,37 @@
                 </div>
             </div>
         </div>
-        <div class="row">
+        <div class="row icons">
             <div class="col-sm-3">
                 <div class="form-group">
-                    <label for="building_haswater"><strong>Water?</strong></label>
-                    <input ng-model="building.haswater" id="building_haswater" value="1" type="checkbox" name="building_haswater">
+                    <label for="building_haswater" class="btn">
+                        <img src="/assets/img/icons/icon-water.png" alt="" class="not-checked" ng-click="offer.handlers.changeClass($event)">
+                        <input ng-model="building.haswater" id="building_haswater" value="1" type="checkbox" class="hidden" autocomplete="off" name="building_haswater">
+                    </label>
                 </div>
             </div>
             <div class="col-sm-3">
                 <div class="form-group">
-                    <label for="building_haselectricity"><strong>Electricity?</strong></label>
-                    <input ng-model="building.haselectricity" id="building_haselectricity" value="1" type="checkbox" name="building_haselectricity">
+                    <label for="building_haselectricity" class="btn">
+                        <img src="/assets/img/icons/icon-electricity.png" alt="..." class="not-checked" ng-click="offer.handlers.changeClass($event)">
+                        <input ng-model="building.haselectricity" id="building_haselectricity" value="1" type="checkbox" class="hidden" autocomplete="off" name="building_haselectricity">
+                    </label>
                 </div>
             </div>
             <div class="col-sm-3">
                 <div class="form-group">
-                    <label for="building_haswifi"><strong>Wifi?</strong></label>
-                    <input ng-model="building.haswifi" id="building_haswifi" value="1" type="checkbox" name="building_haswifi">
+                   <label for="building_haswifi" class="btn">
+                       <img src="/assets/img/icons/icon-wifi.png" alt="..." class="not-checked" ng-click="offer.handlers.changeClass($event)">
+                       <input ng-model="building.haswifi" id="building_haswifi" value="1" type="checkbox" class="hidden" autocomplete="off" name="building_haswifi">
+                   </label>
                 </div>
             </div>
             <div class="col-sm-3">
                 <div class="form-group">
-                    <label for="building_haskitchen"><strong>Kitchen?</strong></label>
-                    <input ng-model="building.haskitchen" id="building_haskitchen" value="1" type="checkbox" name="building_haskitchen">
+                    <label for="building_haskitchen" class="btn">
+                        <img src="/assets/img/icons/icon-kitchen.png" alt="..." class="not-checked" ng-click="offer.handlers.changeClass($event)">
+                        <input ng-model="building.haskitchen" id="building_haskitchen" value="1" type="checkbox" class="hidden" autocomplete="off" name="building_haskitchen">
+                    </label>
                 </div>
             </div>
         </div>

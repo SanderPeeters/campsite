@@ -7751,6 +7751,18 @@ section#home-offer-campsite h2 {
   padding: 25px;
 }
 
+section#create-new-campsite-section .icons .btn:active {
+  box-shadow: none;
+}
+
+section#create-new-campsite-section .icons img {
+  width: 100%;
+}
+
+section#create-new-campsite-section .icons .not-checked {
+  opacity: 0.5;
+}
+
 .form-control {
   min-height: 40px;
   padding: 10px 15px;
@@ -7760,6 +7772,14 @@ button {
   transition: all 0.3s ease 0s;
   min-height: 40px;
   border-radius: 3px;
+}
+
+button:focus {
+  outline: 0 !important;
+}
+
+a:focus {
+  outline: 0;
 }
 
 .btn-main {
@@ -7779,6 +7799,12 @@ button {
   color: white;
 }
 
+.btn-secundary:focus {
+  background: #009133;
+  border: 2px solid #009133;
+  color: white;
+}
+
 .btn-secundary:hover {
   background: transparent;
   color: #009133;
@@ -7790,13 +7816,19 @@ button {
   color: #009133;
 }
 
+.btn-secundary-opposite:focus {
+  background: white;
+  border: 2px solid #009133;
+  color: #009133;
+}
+
 .btn-secundary-opposite:hover {
   background: transparent;
   color: #134352;
   border: 2px solid #9b9da0;
 }
 
-.btn-tertiary {
+.btn-tertiary, .btn-tertiary:focus {
   background: transparent;
   color: #134352;
   border: 2px solid #9b9da0;
@@ -7808,12 +7840,24 @@ button {
   color: #009133;
 }
 
+.btn-white:focus {
+  border: 2px solid white;
+  background: white;
+  color: #009133;
+}
+
 .btn-white:hover:hover {
   color: white;
   background: transparent;
 }
 
 .btn-transparent {
+  border: 2px solid white;
+  background: transparent;
+  color: white;
+}
+
+.btn-transparent:focus {
   border: 2px solid white;
   background: transparent;
   color: white;
