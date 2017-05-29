@@ -92,11 +92,16 @@ campsite.controllers.controller('OfferCtrl', function($scope, $rootScope, $locat
                     console.log(response);
                     sessionStorage.removeItem("campsitetosend");
                     sessionStorage.removeItem("imagestosend");
+                    sessionStorage.removeItem("buildings");
+                    sessionStorage.removeItem("meadows");
 
                     self.events.changeTemplate(4);
 
+                    self.state.finish_message = "<h1>Success!</h1>";
+
                 }, function errorCallback(response) {
                     console.log(response);
+                    self.state.finish_message = "<h1>Something went wrong!</h1>";
                 });
         }
     };
@@ -117,6 +122,8 @@ campsite.controllers.controller('OfferCtrl', function($scope, $rootScope, $locat
         datatosend: {},
         buildings: [],
         meadows: [],
+
+        finish_message: '',
 
         csrf_token: laravel_csrf,
 

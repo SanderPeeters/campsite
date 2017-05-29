@@ -66,7 +66,11 @@
                             <div class="item card">
                                 <div class="card--img">
                                     <a href="http://placehold.it" target="_self">
-                                        <img src="/img/campsites/{{$campsite->campimages[0]->filename}}">
+                                        @if (count($campsite->campimages))
+                                            <img src="/img/campsites/{{$campsite->campimages[0]->filename}}">
+                                        @else
+                                            <img src="/assets/img/defaults/default-campsite-1.jpg">
+                                        @endif
                                     </a>
                                 </div>
                                 <div class="card--info">

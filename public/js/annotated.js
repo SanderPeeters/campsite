@@ -88,7 +88,7 @@ campsite.directives.directive('googleplace', function() {
             state: '=?',
             province: '=?',
             zipcode: '=?',
-            /*details: '=?'*/
+            notvalid: '=?'
         },
         link: function(scope, element, attrs, model) {
             var options = {
@@ -99,54 +99,63 @@ campsite.directives.directive('googleplace', function() {
 
             google.maps.event.addListener(scope.gPlace, 'place_changed', function() {
                 var geoComponents = scope.gPlace.getPlace();
+                console.log(geoComponents);
+                if (geoComponents.geometry !== undefined) {
 
-                var latitude = geoComponents.geometry.location.lat();
-                var longitude = geoComponents.geometry.location.lng();
-                var street_number, street, zipcode, city, state, province;
+                    var latitude = geoComponents.geometry.location.lat();
+                    var longitude = geoComponents.geometry.location.lng();
+                    var street_number, street, zipcode, city, state, province;
 
-                var addressComponents = geoComponents.address_components;
+                    var addressComponents = geoComponents.address_components;
 
-                addressComponents = addressComponents.filter(function(component){
-                    switch (component.types[0]) {
-                        case "street_number": // street number
-                            street_number = component.long_name;
-                            return true;
-                        case "route": // street
-                            street = component.long_name;
-                            return true;
-                        case "postal_code": // zipcode
-                            zipcode = component.long_name;
-                            return true;
-                        case "locality": // city
-                            city = component.long_name;
-                            return true;
-                        case "administrative_area_level_1": // state
-                            state = component.long_name;
-                            return true;
-                        case "administrative_area_level_2": // province
-                            province = component.long_name;
-                            return true;
-                        default:
-                            return false;
-                    }
-                }).map(function(obj) {
-                    return obj.long_name;
-                });
+                    addressComponents = addressComponents.filter(function (component) {
+                        switch (component.types[0]) {
+                            case "street_number": // street number
+                                street_number = component.long_name;
+                                return true;
+                            case "route": // street
+                                street = component.long_name;
+                                return true;
+                            case "postal_code": // zipcode
+                                zipcode = component.long_name;
+                                return true;
+                            case "locality": // city
+                                city = component.long_name;
+                                return true;
+                            case "administrative_area_level_1": // state
+                                state = component.long_name;
+                                return true;
+                            case "administrative_area_level_2": // province
+                                province = component.long_name;
+                                return true;
+                            default:
+                                return false;
+                        }
+                    }).map(function (obj) {
+                        return obj.long_name;
+                    });
 
-                //addressComponents.push(latitude, longitude);
+                    //addressComponents.push(latitude, longitude);
 
-                scope.$apply(function() {
-                    //scope.details = addressComponents; // array containing each location component
-                    scope.latitude = latitude;
-                    scope.longitude = longitude;
-                    scope.number = street_number;
-                    scope.street = street;
-                    scope.zipcode = zipcode;
-                    scope.city = city;
-                    scope.state = state;
-                    scope.province = province;
-                    model.$setViewValue(element.val());
-                });
+                    scope.$apply(function () {
+                        //scope.details = addressComponents; // array containing each location component
+                        scope.latitude = latitude;
+                        scope.longitude = longitude;
+                        scope.number = street_number;
+                        scope.street = street;
+                        scope.zipcode = zipcode;
+                        scope.city = city;
+                        scope.state = state;
+                        scope.province = province;
+                        scope.notvalid = false;
+                        model.$setViewValue(element.val());
+                    });
+                } else {
+                    scope.$apply(function () {
+                        scope.notvalid = true;
+                        model.$setViewValue(element.val());
+                    });
+                }
             });
         }
     };
@@ -358,11 +367,16 @@ campsite.controllers.controller('OfferCtrl', ["$scope", "$rootScope", "$location
                     console.log(response);
                     sessionStorage.removeItem("campsitetosend");
                     sessionStorage.removeItem("imagestosend");
+                    sessionStorage.removeItem("buildings");
+                    sessionStorage.removeItem("meadows");
 
                     self.events.changeTemplate(4);
 
+                    self.state.finish_message = "<h1>Success!</h1>";
+
                 }, function errorCallback(response) {
                     console.log(response);
+                    self.state.finish_message = "<h1>Something went wrong!</h1>";
                 });
         }
     };
@@ -383,6 +397,8 @@ campsite.controllers.controller('OfferCtrl', ["$scope", "$rootScope", "$location
         datatosend: {},
         buildings: [],
         meadows: [],
+
+        finish_message: '',
 
         csrf_token: laravel_csrf,
 
