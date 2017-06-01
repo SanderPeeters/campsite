@@ -1,0 +1,39 @@
+section#search-campsite-section {
+  .results {
+    .result {
+      &__image {
+        width: 100%;
+        overflow: hidden;
+
+        img {
+          object-fit: cover;
+          max-height: 260px;
+          width: 100%;
+        }
+      }
+
+      &__info {
+        &--address {
+          margin: 0px;
+          padding-top: 15px;
+          padding-bottom: 0px;
+          font-size: 12px;
+          color: $brand-light-grey;
+        }
+        &--name {
+          margin: 0px;
+          padding-top: 5px;
+          padding-bottom: 10px;
+          font-size: 20px;
+          color: $brand-secundary;
+        }
+      }
+    }
+  }
+
+  .search {
+    margin: 15px;
+    padding: 15px;
+    background: $brand-light-grey;
+  }
+}

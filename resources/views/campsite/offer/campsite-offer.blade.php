@@ -10,7 +10,7 @@
             <div class="col-md-10 col-md-offset-1">
                 {{-- If user is not logged in, show login/register panel --}}
                 @if(!Auth::user())
-                    <div class="panel no-border-radius no-border">
+                    <div class="panel marg-top-rel no-border-radius no-border">
                         <div class="panel-body no-padding">
                             <div class="row">
                                 <div class="col-sm-7 col-xs-12">
@@ -44,7 +44,7 @@
                         </div>
                     </div>
                 @else
-                    <div class="panel no-border-radius no-border">
+                    <div class="panel marg-top-rel no-border-radius no-border">
                         <div class="panel-body no-padding">
                             <div class="row">
                                 <div class="col-sm-7 col-xs-12">

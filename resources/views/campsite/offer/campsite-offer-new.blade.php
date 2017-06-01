@@ -5,10 +5,10 @@
 
 
 @section('content')
-    <section id="offer-campsite-section" class="main vh-min-90">
+    <section id="offer-campsite-section" class="main vh-min-60">
         <div class="container">
             <div class="col-md-10 col-md-offset-1">
-                <div class="panel no-border-radius no-border">
+                <div class="panel marg-top-rel no-border-radius no-border">
                     <div class="panel-body no-padding">
                         <div class="row">
                             <div class="col-sm-7 col-xs-12">
