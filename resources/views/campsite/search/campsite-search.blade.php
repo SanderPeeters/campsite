@@ -36,40 +36,17 @@
                 </div>
             </div>
 
-            <div class="container">
-                <div class="panel no-border-radius no-border">
+            <div id="search-results-section" class="container" ng-controller="SearchCtrl as search">
+                <div class="panel no-border-radius no-border m-b-80">
                     <div class="row">
-                        <div class="col-sm-4">
-                            <div class="search">
-                                <h3>Search for Campsites</h3>
+                        <div class="col-sm-4 no-right-padding">
+                            <div class="search" ng-cloak>
+                                @include('campsite.search.partials.searchbar')
                             </div>
                         </div>
                         <div class="col-sm-8">
-                            <div class="results">
-                                @if($campsites->count())
-                                    @foreach($campsites as $campsite)
-                                        <div class="row result">
-                                            <div class="col-sm-5">
-                                                <div class="result__image">
-                                                    @if (count($campsite->campimages))
-                                                        <img src="/img/campsites/{{$campsite->campimages[0]->filename}}">
-                                                    @else
-                                                        <img src="/assets/img/defaults/default-campsite-1.jpg">
-                                                    @endif
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-7">
-                                                <div class="result__info">
-                                                    <p class="result__info--address">{{$campsite->province}} - {{$campsite->city}}</p>
-                                                    <a href="http://placehold.it" target="_self">
-                                                        <h3 class="result__info--name">{{$campsite->campsite_name}}</h3>
-                                                    </a>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                    @endforeach
-                                @endif
+                            <div class="results" ng-cloak>
+                                @include('campsite.search.partials.results')
                             </div>
                         </div>
                     </div>
@@ -77,4 +54,7 @@
             </div>
         </div>
     </section>
+
+    @include('includes.register');
+
 @endsection

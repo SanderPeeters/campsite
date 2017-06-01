@@ -7732,11 +7732,11 @@ section#why-use-service .icon img {
   width: 40%;
 }
 
-section#home-offer-campsite {
+section#new-offer-campsite {
   min-height: 500px;
 }
 
-section#home-offer-campsite h2 {
+section#new-offer-campsite h2 {
   color: #cbcbcb;
   font-size: 28px;
   line-height: 120%;
@@ -7759,16 +7759,24 @@ section#create-new-campsite-section .icons .notchecked {
   opacity: 0.5;
 }
 
+section#search-campsite-section .results .result {
+  height: 260px;
+  border-bottom: 2px solid #9b9da0;
+}
+
 section#search-campsite-section .results .result__image {
   width: 100%;
+  height: 100%;
   overflow: hidden;
 }
 
 section#search-campsite-section .results .result__image img {
   -o-object-fit: cover;
   object-fit: cover;
+  height: 100%;
   max-height: 260px;
-  width: 100%;
+  -o-object-position: 50%;
+  object-position: 50%;
 }
 
 section#search-campsite-section .results .result__info--address {
@@ -7793,6 +7801,24 @@ section#search-campsite-section .search {
   background: #9b9da0;
 }
 
+@media screen and (max-width: 767px) {
+  section#search-campsite-section .result {
+    height: auto !important;
+  }
+  section#search-campsite-section .result__image img {
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 767px) {
+  section#search-campsite-section .result .wrapper {
+    padding-left: 0;
+  }
+  section#search-campsite-section .no-right-padding {
+    padding-right: 0;
+  }
+}
+
 .form-control {
   min-height: 40px;
   padding: 10px 15px;
@@ -7813,6 +7839,11 @@ a:focus {
 }
 
 .btn-main {
+  background: #009133;
+  color: white;
+}
+
+.btn-main:focus {
   background: #009133;
   color: white;
 }

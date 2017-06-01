@@ -18,6 +18,11 @@ a {
   background: $brand-primary;
   color: white;
 
+  &:focus {
+    background: $brand-primary;
+    color: white;
+  }
+
   &:hover {
     background: transparent;
     color: white;

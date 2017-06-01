@@ -10,12 +10,11 @@ class SearchController extends Controller
 {
     public function index ()
     {
-        $campsites = $this->getAllCampsites();
-        return view('campsite.search.campsite-search')->with('campsites', $campsites);
+        return view('campsite.search.campsite-search');
     }
-    public function getAllCampsites ()
+
+    public function searchCampsites(Request $request)
     {
-        $campsites = Campsite::all();
-        return $campsites;
+
     }
 }
