@@ -28,7 +28,7 @@
                 </div>
             </div>
         </div>
-        <div class="container-fluid bg--color__main">
+        <div class="container-fluid bg--color__main"  ng-controller="SearchCtrl as search">
             <div class="row m-t-20 m-b-20 text-center">
                 <div class="col-sm-6 col-sm-offset-3">
                     <h3 class="color-white uppercase">{{ trans('search.searchresults') }}</h3>
@@ -36,8 +36,8 @@
                 </div>
             </div>
 
-            <div id="search-results-section" class="container" ng-controller="SearchCtrl as search">
-                <div class="panel no-border-radius no-border m-b-80">
+            <div id="search-results-section" class="container">
+                <div class="panel no-border-radius no-border m-b-20">
                     <div class="row">
                         <div class="col-sm-4 no-right-padding">
                             <div class="search" ng-cloak>
@@ -52,6 +52,15 @@
                     </div>
                 </div>
             </div>
+
+            <div class="row m-t-20 m-b-80 text-center" ng-cloak>
+                <div class="col-sm-6 col-sm-offset-3">
+                    <p>Page ##search.state.current_page## of ##search.state.number_of_pages##</p>
+                    <button class="btn" ng-disabled="!search.state.paginate_previousurl" ng-click="search.events.changePage(search.state.paginate_previousurl)">{{trans('pagination.previous')}}</button>
+                    <button class="btn" ng-disabled="!search.state.paginate_nexturl" ng-click="search.events.changePage(search.state.paginate_nexturl)">{{trans('pagination.next')}}</button>
+                </div>
+            </div>
+
         </div>
     </section>
 

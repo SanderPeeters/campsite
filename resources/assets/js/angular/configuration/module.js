@@ -15,7 +15,8 @@ var dependencies = [
     'angular.vertilize',
     'ui.select',
     'textAngularSetup',
-    'textAngular'
+    'textAngular',
+    'rzModule'
 ];
 
 var campsite = {
