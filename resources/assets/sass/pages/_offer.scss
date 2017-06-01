@@ -4,11 +4,14 @@ section#create-new-campsite-section {
     {
       box-shadow:none;
     }
+    .pointer {
+      cursor: pointer;
+    }
     img {
       width: 100%;
     }
 
-    .not-checked {
+    .notchecked {
       opacity: 0.5;
     }
   }

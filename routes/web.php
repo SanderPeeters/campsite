@@ -21,9 +21,7 @@ Route::get(trans('routes.search-campsite'), function() {
     return view('campsite.search.campsite-search');
 })->name('search-campsite');
 
-Route::get(trans('routes.offer-campsite'), function() {
-    return view('campsite.offer.campsite-offer');
-})->name('offer-campsite');
+Route::get(trans('routes.offer-campsite'), 'Campsite\CampsiteController@indexOfferCampsite')->name('offer-campsite');
 
 Route::get('lang/{language}', 'LanguageController@switchLang')->name('lang.switch');
 

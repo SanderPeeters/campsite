@@ -16,9 +16,22 @@ class CampsiteController extends Controller
 {
     public function index()
     {
-        $campsites = Campsite::all();
+        $campsites = $this->getAllCampsites();
         return view('welcome')->with('campsites', $campsites);
     }
+
+    public function indexOfferCampsite()
+    {
+        $campsites = $this->getAllCampsites();
+        return view('campsite.offer.campsite-offer')->with('campsites', $campsites);
+    }
+
+    public function getAllCampsites()
+    {
+        $campsites = Campsite::all();
+        return $campsites;
+    }
+
     public function storeCampsite (Request $request)
     {
         $campsitedata = $request->get('campsite');

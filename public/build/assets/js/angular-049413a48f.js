@@ -342,7 +342,7 @@ campsite.controllers.controller('OfferCtrl', ["$scope", "$rootScope", "$location
                 { name: 'state-2.html', url: 'assets/templates/offer/state-2.html', index: 1},
                 { name: 'state-3.html', url: 'assets/templates/offer/state-3.html', index: 2},
                 { name: 'state-finish.html', url: 'assets/templates/offer/state-finish.html', index: 4}];
-            self.state.template = self.state.templates[1];
+            self.state.template = self.state.templates[0];
         },
 
         postDataToServer: function () {
@@ -357,21 +357,21 @@ campsite.controllers.controller('OfferCtrl', ["$scope", "$rootScope", "$location
 
                     self.events.changeTemplate(4);
 
-                    self.state.finish_message = "<h1>Success!</h1>";
+                    self.state.finish_message = "Success!";
 
                 }, function errorCallback(response) {
                     console.log(response);
-                    self.state.finish_message = "<h1>Something went wrong!</h1>";
+                    self.state.finish_message = "Something went wrong!";
                 });
         },
 
         changeClass: function(e) {
-            if (angular.element(e.target).hasClass('not-checked')) {
+            if (angular.element(e.target).hasClass('notchecked')) {
                 console.log('gechecked');
-                angular.element(e.target).removeClass('not-checked');
+                angular.element(e.target).removeClass('notchecked');
             } else {
                 console.log('niet meer checked');
-                angular.element(e.target).addClass('not-checked');
+                angular.element(e.target).addClass('notchecked');
             }
         }
     };

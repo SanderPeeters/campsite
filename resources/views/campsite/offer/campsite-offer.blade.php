@@ -16,7 +16,7 @@
                                 <div class="col-sm-7 col-xs-12">
                                     <div class="p-b-20 p-t-20 p-l-20 p-r-20">
                                         <h1 class="color-primary">Offer a campsite</h1>
-                                        <h3 class="color-secundary">342 already offered a campsite/meadow</h3>
+                                        <h3 class="color-secundary">Already {{$campsites->count()}} campsites were offered on Campsite!</h3>
                                         <p>Are you an owner of an open space, campsite and/or a meadow you want to rent out to youth groups?</p>
                                         <div class="row">
                                             <div class="col-xs-6">

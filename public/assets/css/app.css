@@ -7755,11 +7755,15 @@ section#create-new-campsite-section .icons .btn:active {
   box-shadow: none;
 }
 
+section#create-new-campsite-section .icons .pointer {
+  cursor: pointer;
+}
+
 section#create-new-campsite-section .icons img {
   width: 100%;
 }
 
-section#create-new-campsite-section .icons .not-checked {
+section#create-new-campsite-section .icons .notchecked {
   opacity: 0.5;
 }
 
