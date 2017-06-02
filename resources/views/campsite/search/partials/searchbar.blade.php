@@ -28,15 +28,15 @@
         <div class="form-group">
             <label for="">Facilities</label>
             <div class="checkbox">
-                <label><input type="checkbox" value="1" ng-model="search.state.searchObject.hasbuilding">Building</label>
+                <label><input type="checkbox" value="1" ng-model="search.state.searchObject.hasbuilding" data-toggle="collapse" data-target="#building-facility-info">Building</label>
             </div>
             <div class="checkbox">
-                <label><input type="checkbox" value="1" ng-model="search.state.searchObject.hasmeadow">Meadow</label>
+                <label><input type="checkbox" value="1" ng-model="search.state.searchObject.hasmeadow" data-toggle="collapse" data-target="#meadow-facility-info">Meadow</label>
             </div>
         </div>
     </div>
 
-    <div class="form-group" id="building-facility-info" ng-if="search.state.searchObject.hasbuilding">
+    <div class="form-group collapse" id="building-facility-info" ng-if="search.state.searchObject.hasbuilding">
         <div class="search--block">
             <label for="">Building options</label>
             <div class="checkbox">
@@ -54,7 +54,7 @@
         </div>
     </div>
 
-    <div class="form-group" id="meadow-facility-info" ng-if="search.state.searchObject.hasmeadow">
+    <div class="form-group collapse" id="meadow-facility-info" ng-if="search.state.searchObject.hasmeadow">
         <div class="search--block">
             <label for="">Meadow options</label>
             <div class="checkbox">

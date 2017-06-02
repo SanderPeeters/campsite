@@ -28,6 +28,7 @@ campsite.controllers.controller('SearchCtrl', function($scope, $rootScope, $loca
                     self.state.paginate_previousurl = response.prev_page_url;
 
                     self.state.number_of_campsites = response.total;
+                    self.state.number_of_all_campsites = response.total;
                     self.state.current_page = response.current_page;
                     self.state.number_of_pages = response.last_page;
                 }, function error(response) {
@@ -118,6 +119,7 @@ campsite.controllers.controller('SearchCtrl', function($scope, $rootScope, $loca
     // Init
     this.state = {
         campsite_offers: [],
+        number_of_all_campsites: '',
         campsite_offers_loading: false,
         sortBy: 'end_date_bidding',  // set the default sort type
         sortReverse: true, // set the default sort order

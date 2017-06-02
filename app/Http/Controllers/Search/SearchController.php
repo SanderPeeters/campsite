@@ -36,7 +36,9 @@ class SearchController extends Controller
             {
                 $query->whereHas('buildings', function ($query) use ($options) {
                     foreach ($options as $option => $value){
-                        $query->where($option, $value);
+                        if ($value) {
+                            $query->where($option, $value);
+                        }
                     }
                 });
             }
@@ -47,8 +49,9 @@ class SearchController extends Controller
             {
                 $query->whereHas('meadows', function ($query) use ($options) {
                     foreach ($options as $option => $value){
-                        $query->where($option, $value);
-                    }
+                        if ($value) {
+                            $query->where($option, $value);
+                        }                    }
                 });
             }
         }
