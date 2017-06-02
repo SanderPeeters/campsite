@@ -25,4 +25,9 @@ class Campsite extends Model
     public function meadows() {
         return $this->hasMany('App\Models\Meadow');
     }
+
+    public function province()
+    {
+        return $this->belongsTo('App\Models\Province');
+    }
 }

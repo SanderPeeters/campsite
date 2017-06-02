@@ -59,6 +59,11 @@ class SearchController extends Controller
 
         $campsites = $query->with('campimages')->latest()->paginate($this->paginatenumber);
 
+        foreach ($campsites as $campsite)
+        {
+            $campsite->province->name = trans('provinces.'.$campsite->province->id);
+        }
+
         return $campsites;
     }
 }

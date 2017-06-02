@@ -8,7 +8,11 @@
 
     <div class="form-group">
         <label for="address"><strong>Address</strong></label>
-        <input ng-model="offer.state.campsitetosend.address" notvalid="offer.state.validaddress" details="offer.state.campsitetosend.details" street="offer.state.campsitetosend.street" number="offer.state.campsitetosend.street_number" city="offer.state.campsitetosend.city" zipcode="offer.state.campsitetosend.zipcode" province="offer.state.campsitetosend.province" state="offer.state.campsitetosend.state" latitude="offer.state.campsitetosend.latitude" longitude="offer.state.campsitetosend.longitude" class="form-control" id="address" type="text" name="address" googleplace validator="required">
+        <input ng-model="offer.state.campsitetosend.address" notvalid="offer.state.validaddress" details="offer.state.campsitetosend.details"
+               street="offer.state.campsitetosend.street" number="offer.state.campsitetosend.street_number" city="offer.state.campsitetosend.city"
+               zipcode="offer.state.campsitetosend.zipcode" province="offer.state.campsitetosend.province" state="offer.state.campsitetosend.state"
+               latitude="offer.state.campsitetosend.latitude" longitude="offer.state.campsitetosend.longitude" class="form-control" id="address"
+               type="text" name="address" googleplace validator="required">
         <p class="help-block validation-invalid" ng-show="offer.state.validaddress">This is not a valid address!</p>
     </div>
 

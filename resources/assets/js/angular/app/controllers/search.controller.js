@@ -1,7 +1,7 @@
 campsite.controllers.controller('SearchCtrl', function($scope, $rootScope, $location, service, $window, $route, $timeout){
     var self = this;
-    var campsiteinventoryurl = "/en/campsite/offers";
-    var carsearchurl = "/en/campsite/search";
+    var campsiteinventoryurl = "/" + currentlanguage + "/campsite/offers";
+    var campsitesearchurl = "/" + currentlanguage + "/campsite/search";
     //var savequeryurl = "/auto/search/save";
     //var updateemailurl = "/dealer/zoekopdrachten/update";
 
@@ -39,7 +39,7 @@ campsite.controllers.controller('SearchCtrl', function($scope, $rootScope, $loca
         search: function() {
             console.log(self.state.searchObject);
             $timeout( function(){
-                service.get(carsearchurl, self.state.searchObject)
+                service.get(campsitesearchurl, self.state.searchObject)
                     .then(function success(response) {
 
                         console.log(response);
@@ -144,6 +144,9 @@ campsite.controllers.controller('SearchCtrl', function($scope, $rootScope, $loca
                     noSwitching: true
                 }
             }},
+
+        language: currentlanguage,
+
         noresultsfound: false,
         searchAdvanced: false,
 

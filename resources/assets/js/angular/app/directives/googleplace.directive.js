@@ -47,9 +47,49 @@ campsite.directives.directive('googleplace', function() {
                                 return true;
                             case "administrative_area_level_1": // state
                                 state = component.long_name;
+                                if (component.short_name == "Brussels" || component.short_name == "Bruxelles" || component.short_name == "Brussel")
+                                {
+                                    province = 2;
+                                }
                                 return true;
                             case "administrative_area_level_2": // province
-                                province = component.long_name;
+                                switch (component.short_name) {
+                                    case "AN":
+                                        province = 1;
+                                        return true;
+                                    case "BX":
+                                        province = 2;
+                                        return true;
+                                    case "HT":
+                                        province = 3;
+                                        return true;
+                                    case "LI":
+                                        province = 4;
+                                        return true;
+                                    case "LG":
+                                        province = 5;
+                                        return true;
+                                    case "LX":
+                                        province = 6;
+                                        return true;
+                                    case "NA":
+                                        province = 7;
+                                        return true;
+                                    case "OV":
+                                        province = 8;
+                                        return true;
+                                    case "VB":
+                                        province = 9;
+                                        return true;
+                                    case "BW":
+                                        province = 10;
+                                        return true;
+                                    case "WV":
+                                        province = 11;
+                                        return true;
+                                    default:
+                                        return false;
+                                }
                                 return true;
                             default:
                                 return false;

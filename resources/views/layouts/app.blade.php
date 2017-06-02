@@ -23,6 +23,7 @@
             'csrfToken' => csrf_token(),
         ]); ?>;
         laravel_csrf = "{{ csrf_token() }}";
+        currentlanguage = "{{ app()->getLocale() }}"
     </script>
     <!-- Scripts -->
     <script src="{{elixir('js/app.js')}}"></script>

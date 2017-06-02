@@ -30,7 +30,11 @@ class CampsiteController extends Controller
 
     public function getAllCampsites()
     {
-        $campsites = Campsite::with('campimages')->latest()->paginate($this->paginatenumber);
+        $campsites = Campsite::with('campimages')->with('province')->latest()->paginate($this->paginatenumber);
+        foreach ($campsites as $campsite)
+        {
+            $campsite->province->name = trans('provinces.'.$campsite->province->id);
+        }
         return $campsites;
     }
 
@@ -64,7 +68,7 @@ class CampsiteController extends Controller
         $campsite->street = $campsitedata['street'].' '.$campsitedata['street_number'];
         $campsite->city = $campsitedata['city'];
         $campsite->zipcode = $campsitedata['zipcode'];
-        $campsite->province = $campsitedata['province'];
+        $campsite->province_id = $campsitedata['province'];
         $campsite->state = $campsitedata['state'];
         $campsite->latitude = number_format($campsitedata['latitude'], 8);
         $campsite->longitude = number_format($campsitedata['longitude'], 8);
