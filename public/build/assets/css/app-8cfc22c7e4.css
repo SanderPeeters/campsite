@@ -7759,6 +7759,16 @@ section#create-new-campsite-section .icons .notchecked {
   opacity: 0.5;
 }
 
+section#search-campsite-section .panel.no-bg {
+  background-color: transparent;
+  box-shadow: none;
+}
+
+section#search-campsite-section .whitebg {
+  background-clip: content-box;
+  background-color: white;
+}
+
 section#search-campsite-section .results .result {
   height: 260px;
   border-bottom: 2px solid #9b9da0;
@@ -7797,8 +7807,18 @@ section#search-campsite-section .results .result__info--name {
 
 section#search-campsite-section .search {
   margin: 15px;
+}
+
+section#search-campsite-section .search--block {
   padding: 15px;
-  background: #9b9da0;
+}
+
+section#search-campsite-section .search--block.greybg {
+  background: #d8d8d8;
+}
+
+section#search-campsite-section .search label {
+  color: #134352;
 }
 
 @media screen and (max-width: 767px) {
@@ -7822,6 +7842,10 @@ section#search-campsite-section .search {
 .form-control {
   min-height: 40px;
   padding: 10px 15px;
+}
+
+input[type='checkbox']:focus {
+  outline: 0 !important;
 }
 
 button {
@@ -12113,7 +12137,7 @@ input.ng-valid.ng-dirty, select.ng-valid.ng-dirty, textarea.ng-valid.ng-dirty {
 
 .rzslider .rz-selection {
   z-index: 2;
-  background: #0db9f0;
+  background: #009133;
   border-radius: 2px;
 }
 
@@ -12123,8 +12147,12 @@ input.ng-valid.ng-dirty, select.ng-valid.ng-dirty, textarea.ng-valid.ng-dirty {
   width: 32px;
   height: 32px;
   cursor: pointer;
-  background-color: #0db9f0;
+  background-color: #009133;
   border-radius: 16px;
+}
+
+.rzslider .rz-pointer:focus {
+  outline: none;
 }
 
 .rzslider .rz-pointer:after {
@@ -12147,7 +12175,7 @@ input.ng-valid.ng-dirty, select.ng-valid.ng-dirty, textarea.ng-valid.ng-dirty {
 }
 
 .rzslider .rz-pointer.rz-active:after {
-  background-color: #451aff;
+  background-color: #134352;
 }
 
 .rzslider .rz-bubble {
@@ -12192,7 +12220,7 @@ input.ng-valid.ng-dirty, select.ng-valid.ng-dirty, textarea.ng-valid.ng-dirty {
 }
 
 .rzslider .rz-tick.rz-selected {
-  background: #0db9f0;
+  background: #009133;
 }
 
 .rzslider .rz-tick-value {

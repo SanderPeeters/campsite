@@ -30,7 +30,7 @@ class CampsiteController extends Controller
 
     public function getAllCampsites()
     {
-        $campsites = Campsite::with('campimages')->paginate($this->paginatenumber);
+        $campsites = Campsite::with('campimages')->latest()->paginate($this->paginatenumber);
         return $campsites;
     }
 

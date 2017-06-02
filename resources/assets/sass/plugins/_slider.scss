@@ -81,7 +81,7 @@
 
 .rzslider .rz-selection {
   z-index: 2;
-  background: #0db9f0;
+  background: $brand-primary;
   border-radius: 2px;
 }
 
@@ -91,8 +91,12 @@
   width: 32px;
   height: 32px;
   cursor: pointer;
-  background-color: #0db9f0;
+  background-color: $brand-primary;
   border-radius: 16px;
+
+  &:focus {
+    outline: none;
+  }
 }
 
 .rzslider .rz-pointer:after {
@@ -115,7 +119,7 @@
 }
 
 .rzslider .rz-pointer.rz-active:after {
-  background-color: #451aff;
+  background-color: $brand-secundary;
 }
 
 .rzslider .rz-bubble {
@@ -160,7 +164,7 @@
 }
 
 .rzslider .rz-tick.rz-selected {
-  background: #0db9f0;
+  background: $brand-primary;
 }
 
 .rzslider .rz-tick-value {

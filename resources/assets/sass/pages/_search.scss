@@ -1,5 +1,17 @@
 section#search-campsite-section {
+
+  .panel.no-bg {
+    background-color: transparent;
+    box-shadow: none;
+  }
+
+  .whitebg {
+    background-clip:content-box;
+    background-color: white;
+  }
+
   .results {
+
     .result {
 
       height: 260px;
@@ -39,8 +51,20 @@ section#search-campsite-section {
 
   .search {
     margin: 15px;
-    padding: 15px;
-    background: $brand-light-grey;
+
+    &--block {
+      padding: 15px;
+
+      &.greybg {
+        background: #d8d8d8;
+      }
+
+    }
+
+    label {
+      color: $brand-secundary;
+    }
+
   }
 
   @media screen and (max-width: 767px) {

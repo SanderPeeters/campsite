@@ -43,6 +43,12 @@ campsite.controllers.controller('SearchCtrl', function($scope, $rootScope, $loca
 
                         console.log(response);
                         self.state.campsite_offers = response.data;
+                        if (response.total == 0)
+                        {
+                            self.state.noresultsfound = true;
+                        } else {
+                            self.state.noresultsfound = false;
+                        }
                         self.state.campsite_offers_loading = false;
                         self.state.paginate_nexturl = response.next_page_url;
                         self.state.paginate_previousurl = response.prev_page_url;
@@ -135,12 +141,8 @@ campsite.controllers.controller('SearchCtrl', function($scope, $rootScope, $loca
                     step: 1,
                     noSwitching: true
                 }
-            },
-            facilities: {
-                building: false,
-                meadow: false
             }},
-
+        noresultsfound: false,
         searchAdvanced: false,
 
         paginate_nexturl: null,

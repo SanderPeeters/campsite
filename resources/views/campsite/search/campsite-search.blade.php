@@ -37,14 +37,14 @@
             </div>
 
             <div id="search-results-section" class="container">
-                <div class="panel no-border-radius no-border m-b-20">
+                <div class="panel no-bg no-border-radius no-border m-b-20">
                     <div class="row">
-                        <div class="col-sm-4 no-right-padding">
+                        <div class="col-sm-4 no-right-padding whitebg">
                             <div class="search" ng-cloak>
                                 @include('campsite.search.partials.searchbar')
                             </div>
                         </div>
-                        <div class="col-sm-8">
+                        <div class="col-sm-8 whitebg">
                             <div class="results" ng-cloak>
                                 @include('campsite.search.partials.results')
                             </div>
