@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Campsite;
 
 use App\User;
+use App\Models\Meadow;
+use App\Models\Building;
 use App\Models\Campsite;
 use App\Models\Campimage;
 use Illuminate\Http\Request;
@@ -12,21 +14,39 @@ use Illuminate\Support\Facades\Validator;
 
 class CampsiteController extends Controller
 {
+    private $paginatenumber = 25;
+
     public function index()
     {
-        $campsites = Campsite::all();
+        $campsites = $this->getAllCampsites();
         return view('welcome')->with('campsites', $campsites);
     }
+
+    public function indexOfferCampsite()
+    {
+        $campsites = $this->getAllCampsites();
+        return view('campsite.offer.campsite-offer')->with('campsites', $campsites);
+    }
+
+    public function getAllCampsites()
+    {
+        $campsites = Campsite::with('campimages')->latest()->paginate($this->paginatenumber);
+        return $campsites;
+    }
+
     public function storeCampsite (Request $request)
     {
         $campsitedata = $request->get('campsite');
         $images = $request->get('images');
+        $buildings = $request->get('buildings');
+        $meadows = $request->get('meadowse');
 
         $campsitevalidator = Validator::make($campsitedata, [
             'placename' => 'required',
             'address' => 'required',
             'description' => 'required',
-            'price' => 'required|integer'
+            'price' => 'required|integer',
+            'website' => 'url'
         ]);
 
         //If validator fails return object with all rules it failed on.
@@ -50,10 +70,79 @@ class CampsiteController extends Controller
         $campsite->longitude = number_format($campsitedata['longitude'], 8);
         $campsite->description = $campsitedata['description'];
         $campsite->price_per_night = $campsitedata['price'];
+        $campsite->website = $campsitedata['website'];
         $campsite->user_id = Auth::user()->id;
         $campsite->save();
 
-        foreach ($images as $image){
+        if (isset($buildings)) {
+            foreach ($buildings as $building) {
+                $newbuilding = new Building();
+                $newbuilding->campsite_id = $campsite->id;
+
+                if(isset($building['capacity'])){
+                    $newbuilding->capacity = $building['capacity'];
+                }
+                if(isset($building['beds'])){
+                    $newbuilding->beds = $building['beds'];
+                }
+                if(isset($building['showers'])){
+                    $newbuilding->showers = $building['showers'];
+                }
+                if(isset($building['toilets'])){
+                    $newbuilding->toilets = $building['toilets'];
+                }
+                if(isset($building['haswater'])){
+                    $newbuilding->has_water = $building['haswater'];
+                }
+                if(isset($building['haselectricity'])){
+                    $newbuilding->has_electricity = $building['haselectricity'];
+                }
+                if(isset($building['haswifi'])){
+                    $newbuilding->has_wifi = $building['haswifi'];
+                }
+                if(isset($building['haskitchen'])){
+                    $newbuilding->has_kitchen = $building['haskitchen'];
+                }
+                if(isset($building['extrainfo'])){
+                    $newbuilding->extra_info = $building['extrainfo'];
+                }
+
+                $newbuilding->save();
+            }
+        }
+
+        if (isset($meadows)) {
+            foreach ($meadows as $meadow) {
+                $newmeadow = new Meadow();
+                $newmeadow->campsite_id = $campsite->id;
+
+                if (isset($building['capacity'])) {
+                    $newmeadow->capacity = $meadow['capacity'];
+                }
+                if (isset($building['sqmeters'])) {
+                    $newmeadow->beds = $building['beds'];
+                }
+                if (isset($building['haswater'])) {
+                    $newmeadow->has_water = $building['haswater'];
+                }
+                if (isset($building['haselectricity'])) {
+                    $newmeadow->has_electricity = $building['haselectricity'];
+                }
+                if (isset($building['campfiresallowed'])) {
+                    $newmeadow->campfire_allowed = $building['campfireallowed'];
+                }
+                if (isset($building['tentsallowed'])) {
+                    $newmeadow->tents_allowed = $building['tentsallowed'];
+                }
+                if (isset($building['extrainfo'])) {
+                    $newmeadow->extra_info = $building['extrainfo'];
+                }
+
+                $newmeadow->save();
+            }
+        }
+
+        foreach ($images as $image) {
             if ($image && $image != null){
                 $campimage = Campimage::where('identifier', $image)->firstOrFail();
                 if ($campimage->count()){

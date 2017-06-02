@@ -1,29 +1,40 @@
-<form name="campsite-basic-information">
+<form name="campsitebasicinformation">
     <h2>Basic information</h2>
 
     <div class="form-group">
-        <label for="placename"><strong>Place name</strong></label>
-        <input ng-model="offer.state.campsitetosend.placename" class="form-control" id="placename" type="text" name="placename" validator="required">
+        <label for="placename"><strong>Name your Campsite</strong></label>
+        <input ng-model="offer.state.campsitetosend.placename" class="form-control" id="placename" type="text" name="placename" validator="required" placeholder="What's the name of your Campsite?">
     </div>
 
     <div class="form-group">
         <label for="address"><strong>Address</strong></label>
-        <input ng-model="offer.state.campsitetosend.address" details="offer.state.campsitetosend.details" street="offer.state.campsitetosend.street" number="offer.state.campsitetosend.street_number" city="offer.state.campsitetosend.city" zipcode="offer.state.campsitetosend.zipcode" province="offer.state.campsitetosend.province" state="offer.state.campsitetosend.state" latitude="offer.state.campsitetosend.latitude" longitude="offer.state.campsitetosend.longitude" class="form-control" id="address" type="text" name="address" googleplace validator="required">
+        <input ng-model="offer.state.campsitetosend.address" notvalid="offer.state.validaddress" details="offer.state.campsitetosend.details" street="offer.state.campsitetosend.street" number="offer.state.campsitetosend.street_number" city="offer.state.campsitetosend.city" zipcode="offer.state.campsitetosend.zipcode" province="offer.state.campsitetosend.province" state="offer.state.campsitetosend.state" latitude="offer.state.campsitetosend.latitude" longitude="offer.state.campsitetosend.longitude" class="form-control" id="address" type="text" name="address" googleplace validator="required">
+        <p class="help-block validation-invalid" ng-show="offer.state.validaddress">This is not a valid address!</p>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label for="price"><strong>Price per night (€)</strong></label>
+                <input ng-model="offer.state.campsitetosend.price" class="form-control" id="price" type="number" name="price" validator="required, number" min="0" placeholder="Price (€)">
+            </div>
+        </div>
+        <div class="col-sm-9">
+            <div class="form-group">
+                <label for="website"><strong>Website</strong></label>
+                <input ng-model="offer.state.campsitetosend.website" class="form-control" id="website" type="url" validator="required, url" name="website" placeholder="Type here your url">
+            </div>
+        </div>
     </div>
 
     <div class="form-group">
-        <label for="description"><strong>Description</strong></label>
-        <textarea ng-model="offer.state.campsitetosend.description" class="form-control" id="description" type="text" name="description" validator="required"></textarea>
+        <label for="description"><strong>Add a description for your Campsite</strong></label>
+        <text-angular ng-model="offer.state.campsitetosend.description" id="description" type="text" name="description" validator="required"></text-angular>
     </div>
 
     <div class="form-group">
-        <label for="price"><strong>Price per night</strong></label>
-        <input ng-model="offer.state.campsitetosend.price" class="form-control" id="price" type="number" name="price" validator="required, number">
-    </div>
-
-    <div class="form-group">
-        <button type="button" class="btn btn-secundary p-l-25 p-r-25" validation-submit="campsite-basic-information" data-ng-click="offer.events.updateCampsiteData(1)">
-            Next
+        <button type="button" class="btn btn-secundary p-l-40 p-r-40 pull-right" validation-submit="campsitebasicinformation" data-ng-click="offer.events.updateCampsiteData(1)" ng-disabled="offer.state.validaddress">
+            Next step
         </button>
     </div>
 </form>

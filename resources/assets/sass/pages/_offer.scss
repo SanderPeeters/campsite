@@ -1,0 +1,18 @@
+section#create-new-campsite-section {
+  .icons {
+    .btn:active
+    {
+      box-shadow:none;
+    }
+    .pointer {
+      cursor: pointer;
+    }
+    img {
+      width: 100%;
+    }
+
+    .notchecked {
+      opacity: 0.5;
+    }
+  }
+}

@@ -17,13 +17,12 @@ Auth::routes();
 
 Route::get(trans('routes.home'), ['as' => 'home', 'uses' => 'HomeController@index']);
 
-Route::get(trans('routes.search-campsite'), function() {
-    return view('campsite.search.campsite-search');
-})->name('search-campsite');
+Route::get(trans('routes.search-campsite'), 'Search\SearchController@index')->name('search-campsite');
+Route::get('/campsite/search', 'Search\SearchController@searchCampsites');
 
-Route::get(trans('routes.offer-campsite'), function() {
-    return view('campsite.offer.campsite-offer');
-})->name('offer-campsite');
+Route::get(trans('routes.offer-campsite'), 'Campsite\CampsiteController@indexOfferCampsite')->name('offer-campsite');
+
+Route::get('/campsite/offers', 'Campsite\CampsiteController@getAllCampsites');
 
 Route::get('lang/{language}', 'LanguageController@switchLang')->name('lang.switch');
 

@@ -6,7 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Campsite extends Model
 {
-    protected $fillable = [''];
+    protected $fillable = ['campsite_name', 'website', 'price_per_night',
+        'description', 'latitude', 'longitude', 'city', 'zipcode', 'street',
+        'state', 'province', 'price_is_per_person'];
 
     public function user() {
         return $this->belongsTo('App\User');
@@ -14,5 +16,13 @@ class Campsite extends Model
 
     public function campimages() {
         return $this->hasMany('App\Models\Campimage');
+    }
+
+    public function buildings() {
+        return $this->hasMany('App\Models\Building');
+    }
+
+    public function meadows() {
+        return $this->hasMany('App\Models\Meadow');
     }
 }

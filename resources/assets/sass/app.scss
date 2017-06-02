@@ -11,8 +11,11 @@
 // Pages
 @import "pages/home";
 @import "pages/auth";
+@import "pages/offer";
+@import "pages/search";
 
 // Components
+@import "components/animations";
 @import "components/fonts";
 @import "components/forms";
 @import "components/btn";
@@ -24,8 +27,11 @@
 @import "components/text";
 @import "components/icons";
 @import "components/validation";
+@import "components/panels";
 
 // Plugins
 @import "plugins/owlcarousel";
 @import "plugins/owlcarouseldefault";
 @import "plugins/fontawesome";
+@import "plugins/textangular";
+@import "plugins/slider";

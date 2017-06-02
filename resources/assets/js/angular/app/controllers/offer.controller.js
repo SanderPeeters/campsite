@@ -1,4 +1,4 @@
-campsite.controllers.controller('OfferCtrl', function($scope, $rootScope, $location, service, $window, FileUploader, toastr){
+campsite.controllers.controller('OfferCtrl', function($scope, $rootScope, $location, service, $window, FileUploader, toastr, $injector){
     var self = this;
     var savecampsiteurl = '/en/campsite-offer/store';
     var imagesaveurl = '/en/campsite-offer/images/store';
@@ -8,32 +8,14 @@ campsite.controllers.controller('OfferCtrl', function($scope, $rootScope, $locat
 
         changeTemplate: function (index) {
             self.state.template = self.state.templates[index];
-            /*var templateIndex = self.state.template.index;
-             var previousTemplateIndex = templateIndex - 1;
-             var nextTemplateIndex = templateIndex + 1;
-
-             var currentEl = angular.element( document.querySelector( '#head_step' + templateIndex ) );
-             var previousEl = angular.element( document.querySelector( '#head_step' + previousTemplateIndex) );
-             var nextEl = angular.element( document.querySelector( '#head_step' + nextTemplateIndex) );
-
-             for (i = 0; i < self.state.templates.length; i++) {
-             if (i === templateIndex)
-             {
-             currentEl.addClass('step-now');
-             previousEl.addClass('step-success');
-             nextEl.removeClass('step-success');
-             } else {
-             previousEl.removeClass('step-now');
-             nextEl.removeClass('step-now');
-             }
-             }*/
         },
 
         updateCampsiteData: function (index) {
 
             sessionStorage.campsitetosend = JSON.stringify(self.state.campsitetosend);
             sessionStorage.imagestosend = JSON.stringify(self.state.imagestosend);
-            console.log(self.state.campsitetosend);
+            sessionStorage.buildings = JSON.stringify(self.state.buildings);
+            sessionStorage.meadows = JSON.stringify(self.state.meadows);
 
             if (index == 3)
             {
@@ -45,8 +27,34 @@ campsite.controllers.controller('OfferCtrl', function($scope, $rootScope, $locat
         storeInfo: function () {
             self.state.datatosend.campsite = JSON.parse(sessionStorage.campsitetosend);
             self.state.datatosend.images = JSON.parse(sessionStorage.imagestosend);
+            self.state.datatosend.buildings = JSON.parse(sessionStorage.buildings);
+            self.state.datatosend.meadows = JSON.parse(sessionStorage.meadows);
             console.log(self.state.datatosend);
             self.handlers.postDataToServer();
+        },
+
+        addNewBuilding: function () {
+            var newItemNo = self.state.buildings.length + 1;
+            self.state.buildings.push({'index': newItemNo});
+        },
+
+        addNewMeadow: function () {
+            var newItemNo = self.state.meadows.length + 1;
+            self.state.meadows.push({'index': newItemNo});
+        },
+
+        removeBuilding: function (index) {
+            // remove the row specified in index
+            self.state.buildings.splice(index, 1);
+        },
+
+        removeMeadow: function (index) {
+            // remove the row specified in index
+            self.state.meadows.splice(index, 1);
+        },
+
+        checkValid: function () {
+            self.state.validationProvider.checkValid();
         }
 
     };
@@ -69,19 +77,33 @@ campsite.controllers.controller('OfferCtrl', function($scope, $rootScope, $locat
                     console.log(response);
                     sessionStorage.removeItem("campsitetosend");
                     sessionStorage.removeItem("imagestosend");
+                    sessionStorage.removeItem("buildings");
+                    sessionStorage.removeItem("meadows");
 
                     self.events.changeTemplate(4);
 
+                    self.state.finish_message = "Success!";
+
                 }, function errorCallback(response) {
                     console.log(response);
+                    self.state.finish_message = "Something went wrong!";
                 });
+        },
+
+        changeClass: function(e) {
+            if (angular.element(e.target).hasClass('notchecked')) {
+                console.log('gechecked');
+                angular.element(e.target).removeClass('notchecked');
+            } else {
+                console.log('niet meer checked');
+                angular.element(e.target).addClass('notchecked');
+            }
         }
     };
 
     // Listeners
     $rootScope.$on('$locationChangeSuccess', function() {
         self.handlers.fillOfferTemplates();
-        //self.handlers.fillStateFromsessionStorage();
     });
 
     // Init
@@ -89,9 +111,15 @@ campsite.controllers.controller('OfferCtrl', function($scope, $rootScope, $locat
         templates: [],
         template: '',
 
+        validationProvider: $injector.get('$validation'),
+
         campsitetosend: {},
         imagestosend: [],
         datatosend: {},
+        buildings: [],
+        meadows: [],
+
+        finish_message: '',
 
         csrf_token: laravel_csrf,
 

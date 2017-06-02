@@ -13,7 +13,10 @@ var dependencies = [
     '720kb.tooltips',
     'toastr',
     'angular.vertilize',
-    'ui.select'
+    'ui.select',
+    'textAngularSetup',
+    'textAngular',
+    'rzModule'
 ];
 
 var campsite = {
@@ -86,7 +89,7 @@ campsite.directives.directive('googleplace', function() {
             state: '=?',
             province: '=?',
             zipcode: '=?',
-            /*details: '=?'*/
+            notvalid: '=?'
         },
         link: function(scope, element, attrs, model) {
             var options = {
@@ -97,54 +100,63 @@ campsite.directives.directive('googleplace', function() {
 
             google.maps.event.addListener(scope.gPlace, 'place_changed', function() {
                 var geoComponents = scope.gPlace.getPlace();
+                console.log(geoComponents);
+                if (geoComponents.geometry !== undefined) {
 
-                var latitude = geoComponents.geometry.location.lat();
-                var longitude = geoComponents.geometry.location.lng();
-                var street_number, street, zipcode, city, state, province;
+                    var latitude = geoComponents.geometry.location.lat();
+                    var longitude = geoComponents.geometry.location.lng();
+                    var street_number, street, zipcode, city, state, province;
 
-                var addressComponents = geoComponents.address_components;
+                    var addressComponents = geoComponents.address_components;
 
-                addressComponents = addressComponents.filter(function(component){
-                    switch (component.types[0]) {
-                        case "street_number": // street number
-                            street_number = component.long_name;
-                            return true;
-                        case "route": // street
-                            street = component.long_name;
-                            return true;
-                        case "postal_code": // zipcode
-                            zipcode = component.long_name;
-                            return true;
-                        case "locality": // city
-                            city = component.long_name;
-                            return true;
-                        case "administrative_area_level_1": // state
-                            state = component.long_name;
-                            return true;
-                        case "administrative_area_level_2": // province
-                            province = component.long_name;
-                            return true;
-                        default:
-                            return false;
-                    }
-                }).map(function(obj) {
-                    return obj.long_name;
-                });
+                    addressComponents = addressComponents.filter(function (component) {
+                        switch (component.types[0]) {
+                            case "street_number": // street number
+                                street_number = component.long_name;
+                                return true;
+                            case "route": // street
+                                street = component.long_name;
+                                return true;
+                            case "postal_code": // zipcode
+                                zipcode = component.long_name;
+                                return true;
+                            case "locality": // city
+                                city = component.long_name;
+                                return true;
+                            case "administrative_area_level_1": // state
+                                state = component.long_name;
+                                return true;
+                            case "administrative_area_level_2": // province
+                                province = component.long_name;
+                                return true;
+                            default:
+                                return false;
+                        }
+                    }).map(function (obj) {
+                        return obj.long_name;
+                    });
 
-                //addressComponents.push(latitude, longitude);
+                    //addressComponents.push(latitude, longitude);
 
-                scope.$apply(function() {
-                    //scope.details = addressComponents; // array containing each location component
-                    scope.latitude = latitude;
-                    scope.longitude = longitude;
-                    scope.number = street_number;
-                    scope.street = street;
-                    scope.zipcode = zipcode;
-                    scope.city = city;
-                    scope.state = state;
-                    scope.province = province;
-                    model.$setViewValue(element.val());
-                });
+                    scope.$apply(function () {
+                        //scope.details = addressComponents; // array containing each location component
+                        scope.latitude = latitude;
+                        scope.longitude = longitude;
+                        scope.number = street_number;
+                        scope.street = street;
+                        scope.zipcode = zipcode;
+                        scope.city = city;
+                        scope.state = state;
+                        scope.province = province;
+                        scope.notvalid = false;
+                        model.$setViewValue(element.val());
+                    });
+                } else {
+                    scope.$apply(function () {
+                        scope.notvalid = true;
+                        model.$setViewValue(element.val());
+                    });
+                }
             });
         }
     };
@@ -262,7 +274,7 @@ campsite.services.service('service', ["$http", "$q", function($http, $q){
     }
 }]);
 
-campsite.controllers.controller('OfferCtrl', ["$scope", "$rootScope", "$location", "service", "$window", "FileUploader", "toastr", function($scope, $rootScope, $location, service, $window, FileUploader, toastr){
+campsite.controllers.controller('OfferCtrl', ["$scope", "$rootScope", "$location", "service", "$window", "FileUploader", "toastr", "$injector", function($scope, $rootScope, $location, service, $window, FileUploader, toastr, $injector){
     var self = this;
     var savecampsiteurl = '/en/campsite-offer/store';
     var imagesaveurl = '/en/campsite-offer/images/store';
@@ -272,32 +284,14 @@ campsite.controllers.controller('OfferCtrl', ["$scope", "$rootScope", "$location
 
         changeTemplate: function (index) {
             self.state.template = self.state.templates[index];
-            /*var templateIndex = self.state.template.index;
-             var previousTemplateIndex = templateIndex - 1;
-             var nextTemplateIndex = templateIndex + 1;
-
-             var currentEl = angular.element( document.querySelector( '#head_step' + templateIndex ) );
-             var previousEl = angular.element( document.querySelector( '#head_step' + previousTemplateIndex) );
-             var nextEl = angular.element( document.querySelector( '#head_step' + nextTemplateIndex) );
-
-             for (i = 0; i < self.state.templates.length; i++) {
-             if (i === templateIndex)
-             {
-             currentEl.addClass('step-now');
-             previousEl.addClass('step-success');
-             nextEl.removeClass('step-success');
-             } else {
-             previousEl.removeClass('step-now');
-             nextEl.removeClass('step-now');
-             }
-             }*/
         },
 
         updateCampsiteData: function (index) {
 
             sessionStorage.campsitetosend = JSON.stringify(self.state.campsitetosend);
             sessionStorage.imagestosend = JSON.stringify(self.state.imagestosend);
-            console.log(self.state.campsitetosend);
+            sessionStorage.buildings = JSON.stringify(self.state.buildings);
+            sessionStorage.meadows = JSON.stringify(self.state.meadows);
 
             if (index == 3)
             {
@@ -309,8 +303,34 @@ campsite.controllers.controller('OfferCtrl', ["$scope", "$rootScope", "$location
         storeInfo: function () {
             self.state.datatosend.campsite = JSON.parse(sessionStorage.campsitetosend);
             self.state.datatosend.images = JSON.parse(sessionStorage.imagestosend);
+            self.state.datatosend.buildings = JSON.parse(sessionStorage.buildings);
+            self.state.datatosend.meadows = JSON.parse(sessionStorage.meadows);
             console.log(self.state.datatosend);
             self.handlers.postDataToServer();
+        },
+
+        addNewBuilding: function () {
+            var newItemNo = self.state.buildings.length + 1;
+            self.state.buildings.push({'index': newItemNo});
+        },
+
+        addNewMeadow: function () {
+            var newItemNo = self.state.meadows.length + 1;
+            self.state.meadows.push({'index': newItemNo});
+        },
+
+        removeBuilding: function (index) {
+            // remove the row specified in index
+            self.state.buildings.splice(index, 1);
+        },
+
+        removeMeadow: function (index) {
+            // remove the row specified in index
+            self.state.meadows.splice(index, 1);
+        },
+
+        checkValid: function () {
+            self.state.validationProvider.checkValid();
         }
 
     };
@@ -333,19 +353,33 @@ campsite.controllers.controller('OfferCtrl', ["$scope", "$rootScope", "$location
                     console.log(response);
                     sessionStorage.removeItem("campsitetosend");
                     sessionStorage.removeItem("imagestosend");
+                    sessionStorage.removeItem("buildings");
+                    sessionStorage.removeItem("meadows");
 
                     self.events.changeTemplate(4);
 
+                    self.state.finish_message = "Success!";
+
                 }, function errorCallback(response) {
                     console.log(response);
+                    self.state.finish_message = "Something went wrong!";
                 });
+        },
+
+        changeClass: function(e) {
+            if (angular.element(e.target).hasClass('notchecked')) {
+                console.log('gechecked');
+                angular.element(e.target).removeClass('notchecked');
+            } else {
+                console.log('niet meer checked');
+                angular.element(e.target).addClass('notchecked');
+            }
         }
     };
 
     // Listeners
     $rootScope.$on('$locationChangeSuccess', function() {
         self.handlers.fillOfferTemplates();
-        //self.handlers.fillStateFromsessionStorage();
     });
 
     // Init
@@ -353,9 +387,15 @@ campsite.controllers.controller('OfferCtrl', ["$scope", "$rootScope", "$location
         templates: [],
         template: '',
 
+        validationProvider: $injector.get('$validation'),
+
         campsitetosend: {},
         imagestosend: [],
         datatosend: {},
+        buildings: [],
+        meadows: [],
+
+        finish_message: '',
 
         csrf_token: laravel_csrf,
 
@@ -406,5 +446,162 @@ campsite.controllers.controller('OfferCtrl', ["$scope", "$rootScope", "$location
             //console.log(response.error);
         }
         //console.log(self.state.imagestosend);
+    };
+}]);
+
+campsite.controllers.controller('SearchCtrl', ["$scope", "$rootScope", "$location", "service", "$window", "$route", "$timeout", function($scope, $rootScope, $location, service, $window, $route, $timeout){
+    var self = this;
+    var campsiteinventoryurl = "/en/campsite/offers";
+    var carsearchurl = "/en/campsite/search";
+    //var savequeryurl = "/auto/search/save";
+    //var updateemailurl = "/dealer/zoekopdrachten/update";
+
+
+    // Events
+    this.events = {
+
+        changePage: function(url){
+            self.handlers.getPagination(url);
+        }
+
+    };
+
+    // Handlers
+    this.handlers = {
+        getAllCampsites: function() {
+            self.state.campsite_offers_loading = true;
+            service.get(campsiteinventoryurl)
+                .then(function success(response) {
+                    console.log(response);
+                    self.state.campsite_offers = response.data;
+                    self.state.campsite_offers_loading = false;
+                    self.state.paginate_nexturl = response.next_page_url;
+                    self.state.paginate_previousurl = response.prev_page_url;
+
+                    self.state.number_of_campsites = response.total;
+                    self.state.number_of_all_campsites = response.total;
+                    self.state.current_page = response.current_page;
+                    self.state.number_of_pages = response.last_page;
+                }, function error(response) {
+                    console.log(response);
+                });
+        },
+
+        search: function() {
+            console.log(self.state.searchObject);
+            $timeout( function(){
+                service.get(carsearchurl, self.state.searchObject)
+                    .then(function success(response) {
+
+                        console.log(response);
+                        self.state.campsite_offers = response.data;
+                        if (response.total == 0)
+                        {
+                            self.state.noresultsfound = true;
+                        } else {
+                            self.state.noresultsfound = false;
+                        }
+                        self.state.campsite_offers_loading = false;
+                        self.state.paginate_nexturl = response.next_page_url;
+                        self.state.paginate_previousurl = response.prev_page_url;
+
+                        self.state.number_of_campsites = response.total;
+                        self.state.current_page = response.current_page;
+                        self.state.number_of_pages = response.last_page;
+                        self.state.campsite_offers_loading = false;
+                    }, function error(response) {
+                        console.log(response);
+                        self.state.searchObject.car_model = JSON.parse(self.state.searchObject.car_model);
+                    });
+            }, 10 );
+        },
+
+        resetFilters: function() {
+            self.state.searchObject = {
+                capacity_slider: {
+                    minValue: 10,
+                    maxValue: 200,
+                    options: {
+                        floor: 0,
+                        ceil: 250,
+                        step: 1,
+                        noSwitching: true
+                    }
+                },
+                price_slider: {
+                    minValue: 0,
+                    maxValue: 30,
+                    options: {
+                        floor: 0,
+                        ceil: 50,
+                        step: 1,
+                        noSwitching: true
+                    }
+                },
+                facilities: {
+                    building: false,
+                    meadow: false
+                }};
+        },
+
+        getPagination: function(url) {
+            self.state.campsite_offers_loading = true;
+            service.get(url)
+                .then(function success(response) {
+                    console.log(response);
+                    self.state.campsite_offers = response.data;
+                    self.state.campsite_offers_loading = false;
+                    self.state.paginate_nexturl = response.next_page_url;
+                    self.state.paginate_previousurl = response.prev_page_url;
+
+                    self.state.current_page = response.current_page;
+                    self.state.number_of_pages = response.last_page;
+                }, function error(response) {
+                    console.log(response);
+                });
+        }
+    };
+
+    // Listeners
+    $rootScope.$on('$locationChangeSuccess', function() {
+        self.handlers.getAllCampsites();
+    });
+
+    // Init
+    this.state = {
+        campsite_offers: [],
+        number_of_all_campsites: '',
+        campsite_offers_loading: false,
+        sortBy: 'end_date_bidding',  // set the default sort type
+        sortReverse: true, // set the default sort order
+        searchObject: {
+            capacity_slider: {
+                minValue: 10,
+                maxValue: 200,
+                options: {
+                    floor: 0,
+                    ceil: 250,
+                    step: 1,
+                    noSwitching: true
+                }
+            },
+            price_slider: {
+                minValue: 0,
+                maxValue: 30,
+                options: {
+                    floor: 0,
+                    ceil: 50,
+                    step: 1,
+                    noSwitching: true
+                }
+            }},
+        noresultsfound: false,
+        searchAdvanced: false,
+
+        paginate_nexturl: null,
+        paginate_previousurl: null,
+
+        current_page: null,
+        number_of_pages: null
     };
 }]);

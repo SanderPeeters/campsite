@@ -1,0 +1,95 @@
+section#search-campsite-section {
+
+  .panel.no-bg {
+    background-color: transparent;
+    box-shadow: none;
+  }
+
+  .whitebg {
+    background-clip:content-box;
+    background-color: white;
+  }
+
+  .results {
+
+    .result {
+
+      height: 260px;
+      border-bottom: 2px solid $brand-light-grey;
+
+      &__image {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+
+        img {
+          object-fit: cover;
+          height: 100%;
+          max-height: 260px;
+          object-position: 50%;
+        }
+      }
+
+      &__info {
+        &--address {
+          margin: 0px;
+          padding-top: 15px;
+          padding-bottom: 0px;
+          font-size: 12px;
+          color: $brand-light-grey;
+        }
+        &--name {
+          margin: 0px;
+          padding-top: 5px;
+          padding-bottom: 10px;
+          font-size: 20px;
+          color: $brand-secundary;
+        }
+      }
+    }
+  }
+
+  .search {
+    margin: 15px;
+
+    &--block {
+      padding: 15px;
+
+      &.greybg {
+        background: #d8d8d8;
+      }
+
+    }
+
+    label {
+      color: $brand-secundary;
+    }
+
+  }
+
+  @media screen and (max-width: 767px) {
+    .result {
+
+      height: auto !important;
+
+      &__image {
+
+        img {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  @media screen and (min-width: 767px) {
+    .result {
+      .wrapper {
+        padding-left: 0;
+      }
+    }
+
+    .no-right-padding {
+      padding-right: 0;
+    }
+  }
+}
