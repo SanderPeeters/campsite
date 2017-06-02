@@ -27,6 +27,15 @@ class SearchController extends Controller
                 $query->whereBetween('capacity', [json_decode($request->capacity_slider)->minValue, json_decode($request->capacity_slider)->maxValue]);
             });
         }
+        if ($request->get('price_slider')){
+            $query->whereBetween('price_per_night', [json_decode($request->price_slider)->minValue, json_decode($request->price_slider)->maxValue]);
+        }
+        if ($buildings = json_decode($request->get('facilities'))->building) {
+            $query->has('buildings');
+        }
+        if ($meadows = json_decode($request->get('facilities'))->meadow) {
+            $query->has('meadows');
+        }
 
         $campsites = $query->with('campimages')->latest()->paginate($this->paginatenumber);
 

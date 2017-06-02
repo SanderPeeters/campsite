@@ -59,7 +59,31 @@ campsite.controllers.controller('SearchCtrl', function($scope, $rootScope, $loca
         },
 
         resetFilters: function() {
-            self.state.searchObject = {};
+            self.state.searchObject = {
+                capacity_slider: {
+                    minValue: 10,
+                    maxValue: 200,
+                    options: {
+                        floor: 0,
+                        ceil: 250,
+                        step: 1,
+                        noSwitching: true
+                    }
+                },
+                price_slider: {
+                    minValue: 0,
+                    maxValue: 30,
+                    options: {
+                        floor: 0,
+                        ceil: 50,
+                        step: 1,
+                        noSwitching: true
+                    }
+                },
+                facilities: {
+                    building: false,
+                    meadow: false
+                }};
         },
 
         getPagination: function(url) {
@@ -101,6 +125,20 @@ campsite.controllers.controller('SearchCtrl', function($scope, $rootScope, $loca
                     step: 1,
                     noSwitching: true
                 }
+            },
+            price_slider: {
+                minValue: 0,
+                maxValue: 30,
+                options: {
+                    floor: 0,
+                    ceil: 50,
+                    step: 1,
+                    noSwitching: true
+                }
+            },
+            facilities: {
+                building: false,
+                meadow: false
             }},
 
         searchAdvanced: false,
