@@ -24,6 +24,8 @@ Route::get(trans('routes.offer-campsite'), 'Campsite\CampsiteController@indexOff
 
 Route::get('/campsite/offers', 'Campsite\CampsiteController@getAllCampsites');
 
+Route::get('/provinces', 'Campsite\CampsiteController@getAllProvinces');
+
 Route::get('lang/{language}', 'LanguageController@switchLang')->name('lang.switch');
 
 //    Only logged in users can access these routes else redirected to '/'

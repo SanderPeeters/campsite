@@ -493,7 +493,7 @@ campsite.controllers.controller('SearchCtrl', ["$scope", "$rootScope", "$locatio
     var self = this;
     var campsiteinventoryurl = "/" + currentlanguage + "/campsite/offers";
     var campsitesearchurl = "/" + currentlanguage + "/campsite/search";
-    //var savequeryurl = "/auto/search/save";
+    var provincesurl = "/" + currentlanguage + "/provinces";
     //var updateemailurl = "/dealer/zoekopdrachten/update";
 
 
@@ -527,12 +527,26 @@ campsite.controllers.controller('SearchCtrl', ["$scope", "$rootScope", "$locatio
                 });
         },
 
+        getAllProvinces: function () {
+            service.get(provincesurl)
+                .then(function success(response) {
+                    console.log(response);
+                    self.state.provinces = response;
+                }, function error(response) {
+                    console.log(response);
+                });
+        },
+
         search: function() {
             console.log(self.state.searchObject);
+            if (self.state.searchObject.provinces.length == 0) {
+                self.state.searchObject.provinces = self.state.provinces;
+            }
+            self.state.provinces_loading = true;
+            self.state.searchObject.provinces = JSON.stringify(self.state.searchObject.provinces);
             $timeout( function(){
                 service.get(campsitesearchurl, self.state.searchObject)
                     .then(function success(response) {
-
                         console.log(response);
                         self.state.campsite_offers = response.data;
                         if (response.total == 0)
@@ -548,10 +562,12 @@ campsite.controllers.controller('SearchCtrl', ["$scope", "$rootScope", "$locatio
                         self.state.number_of_campsites = response.total;
                         self.state.current_page = response.current_page;
                         self.state.number_of_pages = response.last_page;
+                        self.state.searchObject.provinces = JSON.parse(self.state.searchObject.provinces);
                         self.state.campsite_offers_loading = false;
+                        self.state.provinces_loading = false;
                     }, function error(response) {
                         console.log(response);
-                        self.state.searchObject.car_model = JSON.parse(self.state.searchObject.car_model);
+                        self.state.searchObject.provinces = JSON.parse(self.state.searchObject.provinces);
                     });
             }, 10 );
         },
@@ -605,6 +621,7 @@ campsite.controllers.controller('SearchCtrl', ["$scope", "$rootScope", "$locatio
     // Listeners
     $rootScope.$on('$locationChangeSuccess', function() {
         self.handlers.getAllCampsites();
+        self.handlers.getAllProvinces();
     });
 
     // Init
@@ -612,8 +629,7 @@ campsite.controllers.controller('SearchCtrl', ["$scope", "$rootScope", "$locatio
         campsite_offers: [],
         number_of_all_campsites: '',
         campsite_offers_loading: false,
-        sortBy: 'end_date_bidding',  // set the default sort type
-        sortReverse: true, // set the default sort order
+
         searchObject: {
             capacity_slider: {
                 minValue: 10,

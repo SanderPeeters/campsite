@@ -7,11 +7,11 @@
 @section('content')
     <section id="search-campsite-section" class="main vh-min-90" ng-controller="SearchCtrl as search">
         <div class="container">
-            <div class="panel marg-top-rel m-b-0 no-border-radius no-border" ng-cloak>
+            <div class="panel marg-top-rel m-b-0 no-border-radius no-border" >
                 <div class="panel-body no-padding">
                     <div class="row">
                         <div class="col-sm-7 col-xs-12">
-                            <div class="p-b-20 p-t-20 p-l-20 p-r-20">
+                            <div class="p-b-20 p-t-20 p-l-20 p-r-20" ng-cloak>
                                 <h1 class="color-primary">{{ trans('search.main-title') }}</h1>
                                 <h3 class="color-secundary">##search.state.number_of_all_campsites## Campsites available!</h3>
                                 <p>Are you an owner of an open space, campsite and/or a meadow you want to rent out to youth groups?</p>

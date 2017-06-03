@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Campsite;
 
 use App\User;
 use App\Models\Meadow;
+use App\Models\Province;
 use App\Models\Building;
 use App\Models\Campsite;
 use App\Models\Campimage;
@@ -36,6 +37,16 @@ class CampsiteController extends Controller
             $campsite->province->name = trans('provinces.'.$campsite->province->id);
         }
         return $campsites;
+    }
+
+    public function getAllProvinces()
+    {
+        $provinces = Province::orderBy('name')->get();
+        foreach ($provinces as $province)
+        {
+            $province->name = trans('provinces.'.$province->id);
+        }
+        return $provinces;
     }
 
     public function storeCampsite (Request $request)

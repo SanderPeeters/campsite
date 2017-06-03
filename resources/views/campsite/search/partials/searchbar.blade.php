@@ -8,6 +8,19 @@
 
     <div class="search--block">
         <div class="form-group">
+            <label for="provinces">Province</label>
+            <ui-select ng-if="!search.state.provinces_loading" multiple ng-model="search.state.searchObject.provinces" theme="bootstrap" class="form-control" sortable="true" close-on-select="false">
+                <ui-select-match placeholder="Choose a region">##$item.name##</ui-select-match>
+                <ui-select-choices repeat="province in search.state.provinces | filter: $item.search">
+                    <div ng-bind-html="province.name"></div>
+                </ui-select-choices>
+            </ui-select>
+            <p ng-if="search.state.provinces_loading">Loading...</p>
+        </div>
+    </div>
+
+    <div class="search--block">
+        <div class="form-group">
             <label for="capacity">Size of group</label>
             <rzslider rz-slider-model="search.state.searchObject.capacity_slider.minValue"
                       rz-slider-high="search.state.searchObject.capacity_slider.maxValue"

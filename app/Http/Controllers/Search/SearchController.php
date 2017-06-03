@@ -51,11 +51,14 @@ class SearchController extends Controller
                     foreach ($options as $option => $value){
                         if ($value) {
                             $query->where($option, $value);
-                        }                    }
+                        }
+                    }
                 });
             }
         }
-
+        if ($request->get('provinces')) {
+            $query->whereIn('province_id',array_pluck(json_decode($request->get('provinces'), true), 'id'));
+        }
 
         $campsites = $query->with('campimages')->latest()->paginate($this->paginatenumber);
 
