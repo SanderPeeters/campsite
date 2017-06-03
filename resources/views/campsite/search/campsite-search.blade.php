@@ -55,7 +55,7 @@
 
             <div class="row m-t-20 m-b-80 text-center" ng-cloak>
                 <div class="col-sm-6 col-sm-offset-3">
-                    <p class="color-white">Page ##search.state.current_page## of ##search.state.number_of_pages##</p>
+                    <p class="color-white">{{ trans('pagination.page') }} ##search.state.current_page## {{ trans('pagination.of') }} ##search.state.number_of_pages##</p>
                     <button class="btn btn-white" ng-disabled="!search.state.paginate_previousurl" ng-click="search.events.changePage(search.state.paginate_previousurl)">{{trans('pagination.previous')}}</button>
                     <button class="btn btn-white" ng-disabled="!search.state.paginate_nexturl" ng-click="search.events.changePage(search.state.paginate_nexturl)">{{trans('pagination.next')}}</button>
                 </div>

@@ -12,4 +12,6 @@ return [
     */
     'previous' => '&laquo; Vorige',
     'next'     => 'Volgende &raquo;',
+    'page'     => 'Pagina',
+    'of'       => 'van'
 ];
