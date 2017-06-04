@@ -29,7 +29,7 @@
     <script src="{{elixir('js/app.js')}}"></script>
     <script src="{{elixir('assets/js/vendor.js')}}"></script>
     <script src="{{elixir('assets/js/angular.js')}}"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBMAW5zXJPvHHAAdYeR9eBx-BcRVh8xFNA&libraries=places"
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBMAW5zXJPvHHAAdYeR9eBx-BcRVh8xFNA&libraries=places&language=nl"
             async defer></script>
 </head>
 <body>

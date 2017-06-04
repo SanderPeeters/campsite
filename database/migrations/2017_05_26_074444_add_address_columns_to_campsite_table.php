@@ -19,8 +19,8 @@ class AddAddressColumnsToCampsiteTable extends Migration
             $table->renameColumn('address', 'street');
             $table->string('city');
             $table->string('zipcode');
-            $table->string('province');
-            $table->string('state');
+            $table->integer('province_id')->unsigned();
+            $table->integer('state_id')->unsigned();
         });
     }
 

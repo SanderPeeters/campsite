@@ -12428,7 +12428,7 @@ body > .select2-container.open {
 }
 
 /* Selectize theme */
-/* Helper class to show styles when focus */
+/* Helper class to display styles when focus */
 .selectize-input.selectize-focus {
   border-color: #007FBB !important;
 }
@@ -12466,7 +12466,7 @@ body > .select2-container.open {
 }
 
 /* Bootstrap theme */
-/* Helper class to show styles when focus */
+/* Helper class to display styles when focus */
 .btn-default-focus {
   color: #333;
   background-color: #EBEBEB;
@@ -12626,7 +12626,7 @@ body > .ui-select-bootstrap.open {
   background-color: #fff;
 }
 
-/* fix hide/show angular animation */
+/* fix hide/display angular animation */
 .ui-select-match.ng-hide-add,
 .ui-select-search.ng-hide-add {
   display: none !important;

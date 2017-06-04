@@ -8,7 +8,7 @@ use App\Http\Controllers\Controller;
 
 class SearchController extends Controller
 {
-    private $paginatenumber = 25;
+    private $paginatenumber = 10;
 
     public function index ()
     {
@@ -65,6 +65,7 @@ class SearchController extends Controller
         foreach ($campsites as $campsite)
         {
             $campsite->province->name = trans('provinces.'.$campsite->province->id);
+            $campsite->state->name = trans('states.'.$campsite->state->id);
         }
 
         return $campsites;

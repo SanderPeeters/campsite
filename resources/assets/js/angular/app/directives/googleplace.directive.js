@@ -46,10 +46,26 @@ campsite.directives.directive('googleplace', function() {
                                 city = component.long_name;
                                 return true;
                             case "administrative_area_level_1": // state
-                                state = component.long_name;
-                                if (component.short_name == "Brussels" || component.short_name == "Bruxelles" || component.short_name == "Brussel")
-                                {
-                                    province = 2;
+                                switch (component.short_name) {
+                                    case "Walloon Region":
+                                    case "Waals Gewest":
+                                    case "Wallonie":
+                                        state = 3;
+                                        return true;
+                                    case "Région Flamande":
+                                    case "Flanders":
+                                    case "Vlaanderen":
+                                        state = 2;
+                                        return true;
+                                    case "Brussels Hoofdstedelijk Gewest":
+                                    case "Brussels":
+                                    case "Bruxelles":
+                                    case "Brussel":
+                                        province = 2;
+                                        state = 1;
+                                        return true;
+                                    default:
+                                        return false;
                                 }
                                 return true;
                             case "administrative_area_level_2": // province

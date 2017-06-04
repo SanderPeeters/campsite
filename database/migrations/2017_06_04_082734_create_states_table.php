@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class ChangeProvinceColumnInCampsitesTable extends Migration
+class CreateStatesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ class ChangeProvinceColumnInCampsitesTable extends Migration
      */
     public function up()
     {
-        Schema::table('campsites', function (Blueprint $table) {
-            $table->integer('province')->change();
-            $table->renameColumn('province', 'province_id');
+        Schema::create('states', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name');
+            $table->timestamps();
         });
     }
 
@@ -26,8 +27,6 @@ class ChangeProvinceColumnInCampsitesTable extends Migration
      */
     public function down()
     {
-        Schema::table('campsites', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('states');
     }
 }

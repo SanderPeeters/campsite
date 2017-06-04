@@ -167,7 +167,7 @@
                     obj[i] = p;
                 }
             }
-            // Special case for toString, which does not show up in for...in loops in IE <= 8
+            // Special case for toString, which does not display up in for...in loops in IE <= 8
             if (props.hasOwnProperty("toString")) {
                 obj.toString = props.toString;
             }

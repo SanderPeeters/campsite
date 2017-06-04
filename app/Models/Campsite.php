@@ -30,4 +30,9 @@ class Campsite extends Model
     {
         return $this->belongsTo('App\Models\Province');
     }
+
+    public function state()
+    {
+        return $this->belongsTo('App\Models\State');
+    }
 }
