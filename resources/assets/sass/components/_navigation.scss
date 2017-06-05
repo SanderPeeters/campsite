@@ -69,3 +69,29 @@
   }
 
 }
+
+.nav-tabs {
+  border-bottom: 1px solid $brand-primary;
+
+  li {
+    a {
+      border: 1px solid $brand-primary;
+      padding: 10px 30px;
+
+      &:hover {
+        background-color: transparent;
+        color: $brand-light-grey;
+        border: 1px solid $brand-light-grey;
+        border-bottom: 1px solid $brand-primary;
+      }
+    }
+
+    &.active {
+      a, a:hover, a:focus {
+        background: $brand-primary;
+        color: white;
+        border: 1px solid $brand-primary;
+      }
+    }
+  }
+}

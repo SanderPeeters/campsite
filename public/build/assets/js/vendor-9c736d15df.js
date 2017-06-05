@@ -31504,6 +31504,8 @@ angular.module('validation.directive', ['validation.provider']);
 }, this);
 $(document).ready(function(){
 
+    $('[data-toggle="tooltip"]').tooltip();
+
     // Carousel on home page settings
     $('#owl-carousel-home').owlCarousel({
         loop:true,
@@ -31536,6 +31538,15 @@ $(document).ready(function(){
         dots: true,
         addClassActive: true,
         items: 1
+    });
+
+    $(document).bind('keyup', function(e) {
+        if(e.which == 39){
+            $('.carousel').carousel('next');
+        }
+        else if(e.which == 37){
+            $('.carousel').carousel('prev');
+        }
     });
 
     // End of carousel campsite page settings

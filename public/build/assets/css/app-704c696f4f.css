@@ -7852,6 +7852,30 @@ section#search-campsite-section .search label {
   }
 }
 
+section#show-campsite-section td .table--icon {
+  min-width: 25px;
+  width: 100%;
+  max-width: 50px;
+  padding-bottom: 8px;
+}
+
+section#show-campsite-section td p {
+  margin: 0px;
+}
+
+section#show-campsite-section .smaller-font {
+  font-size: 22px;
+}
+
+section#show-campsite-section .legend {
+  margin-top: 26px;
+  margin-bottom: 15px;
+}
+
+section#show-campsite-section .legend img {
+  height: 30px;
+}
+
 .form-control {
   min-height: 40px;
   padding: 10px 15px;
@@ -8372,6 +8396,28 @@ a, a:hover, a:link, a:focus, a:active {
   background: white;
 }
 
+.nav-tabs {
+  border-bottom: 1px solid #009133;
+}
+
+.nav-tabs li a {
+  border: 1px solid #009133;
+  padding: 10px 30px;
+}
+
+.nav-tabs li a:hover {
+  background-color: transparent;
+  color: #9b9da0;
+  border: 1px solid #9b9da0;
+  border-bottom: 1px solid #009133;
+}
+
+.nav-tabs li.active a, .nav-tabs li.active a:hover, .nav-tabs li.active a:focus {
+  background: #009133;
+  color: white;
+  border: 1px solid #009133;
+}
+
 footer {
   color: #9b9da0;
 }
@@ -8426,23 +8472,23 @@ body {
   font-family: "Open Sans", sans-serif;
 }
 
-h1.font--bold, h2.font--bold, h3.font--bold, h4.font--bold, p.font--bold {
+h1.font--bold, h2.font--bold, h3.font--bold, h4.font--bold, p.font--bold, i.font--bold {
   font-weight: 600;
 }
 
-h1.color-white, h2.color-white, h3.color-white, h4.color-white, p.color-white {
+h1.color-white, h2.color-white, h3.color-white, h4.color-white, p.color-white, i.color-white {
   color: white;
 }
 
-h1.color-primary, h2.color-primary, h3.color-primary, h4.color-primary, p.color-primary {
+h1.color-primary, h2.color-primary, h3.color-primary, h4.color-primary, p.color-primary, i.color-primary {
   color: #009133;
 }
 
-h1.color-secundary, h2.color-secundary, h3.color-secundary, h4.color-secundary, p.color-secundary {
+h1.color-secundary, h2.color-secundary, h3.color-secundary, h4.color-secundary, p.color-secundary, i.color-secundary {
   color: #134352;
 }
 
-h1.color-light-grey, h2.color-light-grey, h3.color-light-grey, h4.color-light-grey, p.color-light-grey {
+h1.color-light-grey, h2.color-light-grey, h3.color-light-grey, h4.color-light-grey, p.color-light-grey, i.color-light-grey {
   color: #9b9da0;
 }
 
