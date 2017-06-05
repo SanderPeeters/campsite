@@ -25,4 +25,15 @@ $(document).ready(function(){
     });
     // End of carousel home page settings
 
+    // Carousel on campsite page settings
+    $('#owl-carousel-campsite').owlCarousel({
+        loop:true,
+        margin:40,
+        dots: true,
+        addClassActive: true,
+        items: 1
+    });
+
+    // End of carousel campsite page settings
+
 });

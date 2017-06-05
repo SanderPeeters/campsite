@@ -107,8 +107,8 @@ class CampsiteController extends Controller
         $campsite->zipcode = $campsitedata['zipcode'];
         $campsite->province_id = $campsitedata['province'];
         $campsite->state_id = $campsitedata['state'];
-        $campsite->latitude = number_format($campsitedata['latitude'], 8);
-        $campsite->longitude = number_format($campsitedata['longitude'], 8);
+        $campsite->latitude = $campsitedata['latitude'];
+        $campsite->longitude = $campsitedata['longitude'];
         $campsite->description = $campsitedata['description'];
         $campsite->price_per_night = $campsitedata['price'];
         $campsite->website = $campsitedata['website'];

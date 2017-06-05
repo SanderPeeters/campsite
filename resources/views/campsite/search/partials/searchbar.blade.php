@@ -8,6 +8,19 @@
 
     <div class="search--block">
         <div class="form-group">
+            <label for="states">{{ trans('search.labels.states') }}</label>
+            <ui-select ng-if="!search.state.states_loading" multiple ng-model="search.state.searchObject.states" theme="bootstrap" class="form-control" sortable="true" close-on-select="false">
+                <ui-select-match placeholder="{{ trans('search.placeholders.states') }}">##$item.name##</ui-select-match>
+                <ui-select-choices repeat="state in search.state.states | filter: $item.search">
+                    <div ng-bind-html="state.name"></div>
+                </ui-select-choices>
+            </ui-select>
+            <p ng-if="search.state.provinces_loading">{{ trans('search.loading') }}</p>
+        </div>
+    </div>
+
+    <div class="search--block">
+        <div class="form-group">
             <label for="provinces">{{ trans('search.labels.provinces') }}</label>
             <ui-select ng-if="!search.state.provinces_loading" multiple ng-model="search.state.searchObject.provinces" theme="bootstrap" class="form-control" sortable="true" close-on-select="false">
                 <ui-select-match placeholder="{{ trans('search.placeholders.provinces') }}">##$item.name##</ui-select-match>

@@ -7,7 +7,7 @@
 @section('content')
     <section id="search-campsite-section" class="main vh-min-90" ng-controller="SearchCtrl as search">
         <div class="container">
-            <div class="panel marg-top-rel m-b-0 no-border-radius no-border" >
+            <div class="panel m-t-120 m-b-0 no-border-radius no-border" >
                 <div class="panel-body no-padding">
                     <div class="row">
                         <div class="col-sm-7 col-xs-12">

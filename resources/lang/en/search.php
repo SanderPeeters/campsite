@@ -17,6 +17,7 @@ return [
     'labels'  => [
         'campsite-name'     => 'Campsite Name',
         'provinces'         => 'Provinces',
+        'states'            => 'States',
         'capacity'          => 'Size of group',
         'pricepernight'     => 'Price per night',
         'facilities'        => 'Facilities',
@@ -36,6 +37,7 @@ return [
     'placeholders'  => [
         'campsite-name'     => 'Search on name',
         'provinces'         => 'Search on regions',
+        'states'            => 'Search on state'
     ],
     'buttons'   => [
         'search'    =>  'Search',

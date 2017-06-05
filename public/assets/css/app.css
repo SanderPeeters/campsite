@@ -8515,6 +8515,106 @@ input.ng-valid.ng-dirty, select.ng-valid.ng-dirty, textarea.ng-valid.ng-dirty {
   padding: 25px;
 }
 
+#owl-carousel-campsite .owl-item {
+  height: auto;
+  max-height: 300px;
+}
+
+#owl-carousel-campsite .owl-item img {
+  -o-object-fit: cover;
+  object-fit: cover;
+  height: 100%;
+}
+
+#owl-modal .owl-item {
+  opacity: 1;
+}
+
+#owl-modal .item img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/*****************************************************************
+ * LIGHTBOX
+ *****************************************************************/
+.modal-open .modal {
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+.modal-header {
+  min-height: 0;
+  padding: 0;
+  border-bottom: none;
+}
+
+.modal-content {
+  position: relative;
+  background-color: transparent;
+  background-clip: padding-box;
+  border: none;
+  border: none;
+  border-radius: 0;
+  outline: 0;
+  box-shadow: 0;
+}
+
+.modal-body {
+  position: relative;
+  max-height: 90vh;
+  padding: 40px;
+  overflow: hidden;
+}
+
+#gallery .item {
+  opacity: 1;
+}
+
+#gallery .item img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+#myModal .close {
+  font-size: 40px;
+  /*line-height: 30px;*/
+  color: #fff;
+  filter: alpha(opacity=50);
+  opacity: 0.5;
+  width: 30px;
+  font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;
+  position: absolute;
+  right: 34px;
+  top: -5px;
+  /*margin-top: 0;*/
+  z-index: 9999;
+}
+
+#myModal .close:hover {
+  filter: alpha(opacity=80);
+  opacity: 0.8;
+}
+
+.carousel-control span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+@media only screen and (min-width: 768px) {
+  .modal-content {
+    box-shadow: none;
+  }
+  .modal-dialog {
+    width: 96%;
+    margin: 40px auto 0;
+  }
+}
+
 /**
  * Owl Carousel v2.2.1
  * Copyright 2013-2017 David Deutsch

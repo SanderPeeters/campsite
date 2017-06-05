@@ -22,11 +22,11 @@ class SearchController extends Controller
         if ($request->get('campsite_name')){
             $query->where('campsite_name', 'like', '%'.$request->get('campsite_name').'%');
         }
-        if ($request->get('capacity_slider')){
+        /*if ($request->get('capacity_slider')){
             $query->whereHas('buildings', function ($query) use ($request) {
                 $query->whereBetween('capacity', [json_decode($request->capacity_slider)->minValue, json_decode($request->capacity_slider)->maxValue]);
             });
-        }
+        }*/
         if ($request->get('price_slider')){
             $query->whereBetween('price_per_night', [json_decode($request->price_slider)->minValue, json_decode($request->price_slider)->maxValue]);
         }
@@ -58,6 +58,9 @@ class SearchController extends Controller
         }
         if ($request->get('provinces')) {
             $query->whereIn('province_id',array_pluck(json_decode($request->get('provinces'), true), 'id'));
+        }
+        if ($request->get('states')) {
+            $query->whereIn('state_id',array_pluck(json_decode($request->get('states'), true), 'id'));
         }
 
         $campsites = $query->with('campimages')->latest()->paginate($this->paginatenumber);
