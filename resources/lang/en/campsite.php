@@ -18,6 +18,7 @@ return [
     'supermarkets'  =>  'Stores',
     'parks'         =>  'Parks',
 
+    'facilities'    =>  'Facilities',
     'location'      =>  'Location',
     'reviews'       =>  'Reviews',
     'calendar'      =>  'Calendar',

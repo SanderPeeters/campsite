@@ -38,8 +38,8 @@
                                 </div>
                                 <div class="col-xs-6">
                                     <div class="form-group">
-                                        <a href="{{ route('search-campsite') }}" target="_self">
-                                            <button class="btn btn-secundary btn-block">
+                                        <a href="{{ route('reservation.showform', ['id' => $campsite->id])}}" target="_self">
+                                            <button class="btn btn-secundary btn-block" type="button">
                                                 {{ trans('campsite.buttons.reserve') }}
                                             </button>
                                         </a>
@@ -63,208 +63,26 @@
                             </div>
                         </div>
                     </div>
-                    @if($campsite->buildings)
-                        <h2 class="m-b-20">Buildings <span class="smaller-font">({{ $campsite->buildings->count() }})</span></h2>
-                        <div class="row">
-                            <div class="col-sm-12">
-                                @foreach($campsite->buildings as $building)
-                                    <div class="table-responsive">
-                                        <table class="table table-concensed table-bordered text-center">
-                                            <tbody>
-                                            <tr>
-                                                <td>
-                                                    <p data-toggle="tooltip" title="{{ trans('tooltips.capacity') }}">
-                                                        <img src="/assets/img/icons/icon-users-group.svg" class="table--icon" alt="Icon representing the maximum capacity of a group">
-                                                    </p>
-                                                    <p>{{ $building->capacity }}</p>
-                                                </td>
-                                                <td>
-                                                    <p data-toggle="tooltip" title="{{ trans('tooltips.beds') }}">
-                                                        <img src="/assets/img/icons/icon-bed.svg" class="table--icon" alt="Icon representing the amount of beds available">
-                                                    </p>
-                                                    <p>{{ $building->beds }}</p>
-                                                </td>
-                                                <td>
-                                                    <p data-toggle="tooltip" title="{{ trans('tooltips.showers') }}">
-                                                        <img src="/assets/img/icons/icon-shower.svg" class="table--icon" alt="Icon representing the amount of showers available">
-                                                    </p>
-                                                    <p>{{ $building->showers }}</p>
-                                                </td>
-                                                <td>
-                                                    <p data-toggle="tooltip" title="{{ trans('tooltips.toilets') }}">
-                                                        <img src="/assets/img/icons/icon-toilet.svg" class="table--icon" alt="Icon representing the amount of toilets available">
-                                                    </p>
-                                                    {{ $building->toilets }}
-                                                </td>
-                                                <td>
-                                                    <p data-toggle="tooltip" title="{{ trans('tooltips.electricity') }}">
-                                                        <img src="/assets/img/icons/icon-plug.svg" class="table--icon" alt="Icon representing the availability of electricity">
-                                                    </p>
-                                                    <p>
-                                                        {{ $building->has_electricity ? 'Yes' : 'No' }}
-                                                    </p>
-                                                </td>
-                                                <td>
-                                                    <p data-toggle="tooltip" title="{{ trans('tooltips.water') }}">
-                                                        <img src="/assets/img/icons/icon-tap.svg" class="table--icon" alt="Icon representing the availability of water">
-                                                    </p>
-                                                    <p>
-                                                        {{ $building->has_water ? 'Yes' : 'No' }}
-                                                    </p>
-                                                </td>
-                                                <td>
-                                                    <p data-toggle="tooltip" title="{{ trans('tooltips.kitchen') }}">
-                                                        <img src="/assets/img/icons/icon-pot.svg" class="table--icon" alt="Icon representing the availability of a kitchen">
-                                                    </p>
-                                                    <p>
-                                                        {{ $building->has_kitchen ? 'Yes' : 'No' }}
-                                                    </p>
-                                                </td>
-                                                <td>
-                                                    <p data-toggle="tooltip" title="{{ trans('tooltips.wifi') }}">
-                                                        <img src="/assets/img/icons/icon-wifi.svg" class="table--icon" alt="Icon representing the availability of wifi">
-                                                    </p>
-                                                    <p>
-                                                        {{ $building->has_wifi  ? 'Yes' : 'No' }}
-                                                    </p>
-                                                </td>
-                                            </tr>
-                                            @if ($building->extra_info)
-                                                <tr>
-                                                    <td colspan="8">
-                                                        <p class="text-left p-b-5 p-t-5 p-l-5 p-r-5">
-                                                            {{ $building->extra_info }}
-                                                        </p>
-                                                    </td>
-                                                </tr>
-                                            @endif
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                @endforeach
-                            </div>
-                        </div>
-                    @endif
-
-                    @if($campsite->meadows)
-                        <h2 class="m-b-20">Meadows <span class="smaller-font">({{ $campsite->meadows->count() }})</span></h2>
-                        @foreach($campsite->meadows as $meadow)
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <div class="table-responsive">
-                                        <table class="table table-concensed table-bordered text-center">
-                                            <tbody>
-                                            <tr>
-                                                <td>
-                                                    <p data-toggle="tooltip" title="{{ trans('tooltips.capacity') }}">
-                                                        <img src="/assets/img/icons/icon-users-group.svg" class="table--icon" alt="Icon representing the maximum capacity of a group">
-                                                    </p>
-                                                    <p>{{ $meadow->capacity }}</p>
-                                                </td>
-                                                <td>
-                                                    <p data-toggle="tooltip" title="{{ trans('tooltips.sqmeters') }}">
-                                                        <img src="/assets/img/icons/icon-size-green.svg" class="table--icon" alt="Icon representing the size of the meadow">
-                                                    </p>
-                                                    <p>{{ $meadow->sq_meters }} m<sup>2</sup></p>
-                                                </td>
-                                                <td>
-                                                    <p data-toggle="tooltip" title="{{ trans('tooltips.electricity') }}">
-                                                        <img src="/assets/img/icons/icon-plug.svg" class="table--icon" alt="Icon representing the availability of electricity">
-                                                    </p>
-                                                    <p>
-                                                        {{ $meadow->has_electricity ? 'Yes' : 'No' }}
-                                                    </p>
-                                                </td>
-                                                <td>
-                                                    <p data-toggle="tooltip" title="{{ trans('tooltips.water') }}">
-                                                        <img src="/assets/img/icons/icon-tap.svg" class="table--icon" alt="Icon representing the availability of water">
-                                                    </p>
-                                                    <p>
-                                                        {{ $meadow->has_water ? 'Yes' : 'No' }}
-                                                    </p>
-                                                </td>
-                                                <td>
-                                                    <p data-toggle="tooltip" title="{{ trans('tooltips.tents') }}">
-                                                        <img src="/assets/img/icons/icon-tent-green.svg" class="table--icon" alt="Icon representing if tents are allowed">
-                                                    </p>
-                                                    <p>
-                                                        {{ $meadow->tents_allowed ? 'Yes' : 'No' }}
-                                                    </p>
-                                                </td>
-                                                <td>
-                                                    <p data-toggle="tooltip" title="{{ trans('tooltips.campfire') }}">
-                                                        <img src="/assets/img/icons/icon-bonfire-green.svg" class="table--icon" alt="Icon representing if campfires are allowed">
-                                                    </p>
-                                                    <p>
-                                                        {{ $meadow->campfire_allowed ? 'Yes' : 'No' }}
-                                                    </p>
-                                                </td>
-                                            </tr>
-                                            @if ($meadow->extra_info)
-                                                <tr>
-                                                    <td colspan="8">
-                                                        <p class="text-left p-b-5 p-t-5 p-l-5 p-r-5">
-                                                            <i class="fa fa-info-circle color-primary" aria-hidden="true"></i>
-                                                            {{ $meadow->extra_info }}
-                                                        </p>
-                                                    </td>
-                                                </tr>
-                                            @endif
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach
-                    @endif
 
                     <ul class="nav nav-tabs m-t-20">
-                        <li class="active"><a data-toggle="tab" href="#location"> {{ trans('campsite.location') }} </a></li>
-                        <li><a data-toggle="tab" href="#reviews">{{ trans('campsite.reviews') }} </a></li>
-                        <li><a data-toggle="tab" href="#reservations">{{ trans('campsite.calendar') }}</a></li>
+                        <li class="active"><a data-toggle="tab" href="#location" target="_self"> {{ trans('campsite.location') }} </a></li>
+                        <li><a data-toggle="tab" href="#facilities" target="_self"> {{ trans('campsite.facilities') }} </a></li>
+                        <li><a data-toggle="tab" href="#reviews" target="_self">{{ trans('campsite.reviews') }} </a></li>
+                        <li><a data-toggle="tab" href="#reservations" target="_self">{{ trans('campsite.calendar') }}</a></li>
                     </ul>
 
                     <div class="tab-content">
 
                         <div id="location" class="tab-pane fade in active">
-                            <div class="row legend">
-                                <div class="col-sm-3 col-xs-6">
-                                    <p>
-                                        <img src="/assets/img/icons/map-marker-green.svg" alt="">
-                                        {{ $campsite->campsite_name }}
-                                    </p>
-                                </div>
-                                <div class="col-sm-3 col-xs-6">
-                                    <p>
-                                        <img src="/assets/img/icons/map-marker-grey.svg" alt="">
-                                        {{ trans( 'campsite.supermarkets' ) }}
-                                    </p>
-                                </div>
-                                <div class="col-sm-3 col-xs-6">
-                                    <p>
-                                        <img src="/assets/img/icons/map-marker-blue.svg" alt="">
-                                        {{ trans( 'campsite.parks' ) }}
-                                    </p>
-                                </div>
-                                <div class="col-sm-3 col-xs-6">
-                                    <p>
-                                        <img src="/assets/img/icons/map-marker-red.svg" alt="">
-                                        {{ trans( 'campsite.doctors' ) }}
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <div id="map" style="width:100%; height: 400px;">
+                            @include('campsite.display.partials.tab-map')
+                        </div>
 
-                                    </div>
-                                </div>
-                            </div>
+                        <div id="facilities" class="tab-pane fade in">
+                            @include('campsite.display.partials.tab-facilities')
                         </div>
 
                         <div id="reviews" class="tab-pane fade">
-                            <h3>Reviews</h3>
-                            <p>Some content in menu 1.</p>
+                            @include('campsite.display.partials.tab-reviews')
                         </div>
 
                         <div id="reservations" class="tab-pane fade">
@@ -278,32 +96,33 @@
         </div>
     </section>
 
-
     <!-- modalGallery -->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button></div>
-                <div class="modal-body">
+    <div class="dark-modal">
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button></div>
+                    <div class="modal-body">
 
-                    <div id="gallery" class="carousel slide" data-interval="false">
-                        <div class="carousel-inner">
-                            @foreach($campsite->campimages as $value => $image)
-                                @if($loop->first)
-                                    <div class="item active">
-                                        <img src="/img/campsites/{{ $image->filename }}" alt="item{{$value}}">
-                                    </div>
-                                @else
-                                    <div class="item">
-                                        <img src="/img/campsites/{{ $image->filename }}" alt="item{{$value}}">
-                                    </div>
-                                @endif
-                            @endforeach
+                        <div id="gallery" class="carousel slide" data-interval="false">
+                            <div class="carousel-inner">
+                                @foreach($campsite->campimages as $value => $image)
+                                    @if($loop->first)
+                                        <div class="item active">
+                                            <img src="/img/campsites/{{ $image->filename }}" alt="item{{$value}}">
+                                        </div>
+                                    @else
+                                        <div class="item">
+                                            <img src="/img/campsites/{{ $image->filename }}" alt="item{{$value}}">
+                                        </div>
+                                    @endif
+                                @endforeach
+                            </div>
+                            <a class="left carousel-control" href="#gallery" role="button" data-slide="prev"><span class="fa fa-arrow-left"></span></a>
+                            <a class="right carousel-control" href="#gallery" role="button" data-slide="next"><span class="fa fa-arrow-right"></span></a>
                         </div>
-                        <a class="left carousel-control" href="#gallery" role="button" data-slide="prev"><span class="fa fa-arrow-left"></span></a>
-                        <a class="right carousel-control" href="#gallery" role="button" data-slide="next"><span class="fa fa-arrow-right"></span></a>
-                    </div>
 
+                    </div>
                 </div>
             </div>
         </div>
@@ -313,12 +132,6 @@
 @endsection
 
 @section('scripts')
-    <script>
-        $('#GListModalGallery').on('hidden.bs.modal', function (e) {
-            console.log('test');
-            $('.carousel').carousel(0);
-        });
-    </script>
     <script>
         var map;
         var infowindow;
@@ -503,6 +316,6 @@
                 infowindow.open(map, this);
             });
         }
+        initMap();
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBMAW5zXJPvHHAAdYeR9eBx-BcRVh8xFNA&libraries=places&language=nl&callback=initMap"></script>
 @endsection

@@ -38,4 +38,7 @@ Route::group(['middleware' => 'auth'], function()
     Route::post('/campsite-offer/store', 'Campsite\CampsiteController@storeCampsite');
     Route::post('/campsite-offer/images/store', 'Campsite\ImageController@saveImage');
 
+    Route::get(trans('routes.make-reservation', ['id', 'slug?']), 'Reservation\ReservationController@showReservationForm')->name('reservation.showform');
+    Route::post('/make-reservation', 'Reservation\ReservationController@makeReservation')->name('reservation.store');
+
 });

@@ -4,7 +4,7 @@
         <div class="col-sm-4">
             <datepicker date-format="dd-MM-yyyy" selector="form-control">
                 <div class="input-group">
-                    <input id="startdate" class="form-control" placeholder="Choose date of arrival" ng-model="reservation.state.startdate" ng-change="reservation.events.nextDate()"/>
+                    <input id="startdate" class="form-control" placeholder="Choose date of arrival" ng-model="reservation.state.startdate" ng-change="reservation.events.nextDate('enddate')"/>
                     <span class="input-group-addon" style="cursor: pointer">
                         <i class="fa fa-lg fa-calendar"></i>
                     </span>

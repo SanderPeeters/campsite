@@ -30,4 +30,8 @@ class User extends Authenticatable
     public function campsites () {
         return $this->hasMany('App\Models\Campsite');
     }
+
+    public function reservations () {
+        return $this->hasMany('App\Models\Reservation');
+    }
 }
