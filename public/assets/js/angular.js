@@ -16,7 +16,8 @@ var dependencies = [
     'ui.select',
     'textAngularSetup',
     'textAngular',
-    'rzModule'
+    'rzModule',
+    '720kb.datepicker'
 ];
 
 var campsite = {
@@ -505,6 +506,36 @@ campsite.controllers.controller('OfferCtrl', ["$scope", "$rootScope", "$location
     };
 }]);
 
+campsite.controllers.controller('ReservationCtrl', ["$scope", "$rootScope", "$location", "service", "$window", "toastr", "$injector", function($scope, $rootScope, $location, service, $window, toastr, $injector){
+    var self = this;
+
+    // Events
+    this.events = {
+        nextDate: function() {
+            angular.element( document.querySelector( '#enddate' ) ).focus();
+        }
+    };
+
+    // Handlers
+    this.handlers = {
+
+    };
+
+    // Listeners
+    $rootScope.$on('$locationChangeSuccess', function() {
+
+    });
+
+    // Init
+    this.state = {
+        startdate: '',
+        enddate: '',
+        today: new Date(),
+    };
+
+
+}]);
+
 campsite.controllers.controller('SearchCtrl', ["$scope", "$rootScope", "$location", "service", "$window", "$route", "$timeout", function($scope, $rootScope, $location, service, $window, $route, $timeout){
     var self = this;
     var campsiteinventoryurl = "/" + currentlanguage + "/campsite/offers";
@@ -573,6 +604,7 @@ campsite.controllers.controller('SearchCtrl', ["$scope", "$rootScope", "$locatio
                 self.state.searchObject.states = self.state.states;
             }
             self.state.provinces_loading = true;
+            self.state.states_loading = true;
             self.state.searchObject.provinces = JSON.stringify(self.state.searchObject.provinces);
             self.state.searchObject.states = JSON.stringify(self.state.searchObject.states);
             $timeout( function(){
@@ -597,6 +629,7 @@ campsite.controllers.controller('SearchCtrl', ["$scope", "$rootScope", "$locatio
                         self.state.searchObject.states = JSON.parse(self.state.searchObject.states);
                         self.state.campsite_offers_loading = false;
                         self.state.provinces_loading = false;
+                        self.state.states_loading = false;
                     }, function error(response) {
                         console.log(response);
                         self.state.searchObject.provinces = JSON.parse(self.state.searchObject.provinces);

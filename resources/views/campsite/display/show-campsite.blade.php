@@ -221,6 +221,7 @@
                     <ul class="nav nav-tabs m-t-20">
                         <li class="active"><a data-toggle="tab" href="#location"> {{ trans('campsite.location') }} </a></li>
                         <li><a data-toggle="tab" href="#reviews">{{ trans('campsite.reviews') }} </a></li>
+                        <li><a data-toggle="tab" href="#reservations">{{ trans('campsite.calendar') }}</a></li>
                     </ul>
 
                     <div class="tab-content">
@@ -264,6 +265,10 @@
                         <div id="reviews" class="tab-pane fade">
                             <h3>Reviews</h3>
                             <p>Some content in menu 1.</p>
+                        </div>
+
+                        <div id="reservations" class="tab-pane fade">
+                            @include('campsite.display.partials.tab-reservation')
                         </div>
 
                     </div>

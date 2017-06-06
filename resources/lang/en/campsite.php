@@ -20,6 +20,7 @@ return [
 
     'location'      =>  'Location',
     'reviews'       =>  'Reviews',
+    'calendar'      =>  'Calendar',
 
     'visitwebsite'  =>  'Visit website',
 

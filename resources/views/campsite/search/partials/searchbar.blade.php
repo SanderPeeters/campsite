@@ -15,7 +15,7 @@
                     <div ng-bind-html="state.name"></div>
                 </ui-select-choices>
             </ui-select>
-            <p ng-if="search.state.provinces_loading">{{ trans('search.loading') }}</p>
+            <p ng-if="search.state.states_loading">{{ trans('search.loading') }}</p>
         </div>
     </div>
 

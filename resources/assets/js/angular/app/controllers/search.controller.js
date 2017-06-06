@@ -66,6 +66,7 @@ campsite.controllers.controller('SearchCtrl', function($scope, $rootScope, $loca
                 self.state.searchObject.states = self.state.states;
             }
             self.state.provinces_loading = true;
+            self.state.states_loading = true;
             self.state.searchObject.provinces = JSON.stringify(self.state.searchObject.provinces);
             self.state.searchObject.states = JSON.stringify(self.state.searchObject.states);
             $timeout( function(){
@@ -90,6 +91,7 @@ campsite.controllers.controller('SearchCtrl', function($scope, $rootScope, $loca
                         self.state.searchObject.states = JSON.parse(self.state.searchObject.states);
                         self.state.campsite_offers_loading = false;
                         self.state.provinces_loading = false;
+                        self.state.states_loading = false;
                     }, function error(response) {
                         console.log(response);
                         self.state.searchObject.provinces = JSON.parse(self.state.searchObject.provinces);

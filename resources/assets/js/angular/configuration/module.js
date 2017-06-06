@@ -16,7 +16,8 @@ var dependencies = [
     'ui.select',
     'textAngularSetup',
     'textAngular',
-    'rzModule'
+    'rzModule',
+    '720kb.datepicker'
 ];
 
 var campsite = {
