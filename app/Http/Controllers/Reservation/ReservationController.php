@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers\Reservation;
 
+use App\User;
 use Carbon\Carbon;
 use App\Models\Campsite;
 use App\Models\Reservation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
+use App\Notifications\ReservationRequest;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Notification;
 
 class ReservationController extends Controller
 {
@@ -33,6 +36,7 @@ class ReservationController extends Controller
         $reservationvalidator = Validator::make($reservationdata, [
             'start_date' => 'required|date',
             'end_date' => 'required|date|after:start_date',
+            'movement' => 'required',
             'capacity' => 'required|integer'
         ]);
 
@@ -52,6 +56,7 @@ class ReservationController extends Controller
         $reservation->start_date = Carbon::parse($reservationdata['start_date']);
         $reservation->end_date = Carbon::parse($reservationdata['end_date']);
         $reservation->capacity = $reservationdata['capacity'];
+        $reservation->movement_id = $reservationdata['movement'];
         if(isset($reservationdata['extra_info'])){
             $reservation->extra_info = $reservationdata['extra_info'];
         }
@@ -61,6 +66,12 @@ class ReservationController extends Controller
             'status' => 'Succes',
             'message' => 'Reservation successfully made!'
         );
+
+        $admin = New User();
+        $admin->email = config('app.adminmainemail');
+
+        Notification::send($admin, new ReservationRequest($reservation));
+
         return response()->json($returnData, 200);
     }
 }

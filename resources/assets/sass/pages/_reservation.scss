@@ -1,0 +1,25 @@
+section#reservation-form {
+  select {
+    min-height: 40px;
+
+    &.ng-empty {
+      color: $brand-light-grey;
+    }
+  }
+  @media screen and (max-width: 992px) {
+    h1 {
+      font-size: 25px;
+    }
+    .hidden-mobile {
+      display: none;
+    }
+    .show-mobile {
+      display: block;
+    }
+  }
+  @media screen and (min-width: 992px) {
+    .show-mobile {
+      display: none;
+    }
+  }
+}

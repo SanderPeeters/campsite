@@ -7852,6 +7852,32 @@ section#search-campsite-section .search label {
   }
 }
 
+section#reservation-form select {
+  min-height: 40px;
+}
+
+section#reservation-form select.ng-empty {
+  color: #9b9da0;
+}
+
+@media screen and (max-width: 992px) {
+  section#reservation-form h1 {
+    font-size: 25px;
+  }
+  section#reservation-form .hidden-mobile {
+    display: none;
+  }
+  section#reservation-form .show-mobile {
+    display: block;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  section#reservation-form .show-mobile {
+    display: none;
+  }
+}
+
 section#show-campsite-section td .table--icon {
   min-width: 25px;
   width: 100%;

@@ -27,6 +27,7 @@ Route::get(trans('routes.campsite', ['id', 'slug?']), 'Campsite\CampsiteControll
 
 Route::get('/provinces', 'Campsite\CampsiteController@getAllProvinces');
 Route::get('/states', 'Campsite\CampsiteController@getAllStates');
+Route::get('/movements', 'Movement\MovementController@getAllMovements');
 
 Route::get('lang/{language}', 'LanguageController@switchLang')->name('lang.switch');
 

@@ -35,4 +35,8 @@ class Campsite extends Model
     {
         return $this->belongsTo('App\Models\State');
     }
+
+    public function reservations() {
+        return $this->hasMany('App\Models\Reservation');
+    }
 }

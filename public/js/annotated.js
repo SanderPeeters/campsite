@@ -509,6 +509,7 @@ campsite.controllers.controller('OfferCtrl', ["$scope", "$rootScope", "$location
 campsite.controllers.controller('ReservationCtrl', ["$scope", "$rootScope", "$location", "service", "$window", "toastr", "$injector", function($scope, $rootScope, $location, service, $window, toastr, $injector){
     var self = this;
     var makereservationurl = '/en/make-reservation';
+    var movementsurl = '/en/movements';
 
     // Events
     this.events = {
@@ -537,7 +538,11 @@ campsite.controllers.controller('ReservationCtrl', ["$scope", "$rootScope", "$lo
             service.post(makereservationurl, self.state.datatosend).then (
                 function successCallback(response) {
                     console.log(response);
+                    self.state.datatosend = {};
+                    self.state.reservation = {};
                     toastr.success('Success', 'Your reservation request was sent!');
+
+                    // TO DO: location path to overview reservation + backend sending mails
 
                 }, function errorCallback(response) {
                     console.log(response);
@@ -549,12 +554,22 @@ campsite.controllers.controller('ReservationCtrl', ["$scope", "$rootScope", "$lo
             var from = value.split("-");
             var date = new Date(from[2], from[1] - 1, from[0]);
             return date;
+        },
+
+        getAllMovements: function() {
+            service.get(movementsurl).then (
+                function successCallback(response) {
+                    console.log(response);
+                    self.state.movements = response;
+                }, function errorCallback (response) {
+                    console.log(response);
+                });
         }
     };
 
     // Listeners
     $rootScope.$on('$locationChangeSuccess', function() {
-
+        self.handlers.getAllMovements();
     });
 
     // Init

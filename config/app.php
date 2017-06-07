@@ -16,6 +16,18 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Main Admin Email
+    |--------------------------------------------------------------------------
+    |
+    | This is the email adres that is used to send all emails that are directed
+    | to the admins of Campsite.
+    | You can acces it anywhere in the app with config('app.adminmainemail').
+    */
+
+    'adminmainemail' => env('MAIN_ADMIN_EMAIL', 'peeters94@hotmail.com'),
+
+    /*
+    |--------------------------------------------------------------------------
     | Application Environment
     |--------------------------------------------------------------------------
     |

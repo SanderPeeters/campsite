@@ -17,6 +17,7 @@ class CreateReservationsTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->integer('campsite_id')->unsigned();
+            $table->integer('movement_id')->unsigned();
             $table->boolean('pending_request')->default(1);
             $table->boolean('accepted_request')->default(0);
             $table->date('start_date');
