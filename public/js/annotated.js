@@ -16,7 +16,8 @@ var dependencies = [
     'ui.select',
     'textAngularSetup',
     'textAngular',
-    'rzModule'
+    'rzModule',
+    '720kb.datepicker'
 ];
 
 var campsite = {
@@ -124,10 +125,66 @@ campsite.directives.directive('googleplace', function() {
                                 city = component.long_name;
                                 return true;
                             case "administrative_area_level_1": // state
-                                state = component.long_name;
+                                switch (component.short_name) {
+                                    case "Walloon Region":
+                                    case "Waals Gewest":
+                                    case "Wallonie":
+                                        state = 3;
+                                        return true;
+                                    case "Région Flamande":
+                                    case "Flanders":
+                                    case "Vlaanderen":
+                                        state = 2;
+                                        return true;
+                                    case "Brussels Hoofdstedelijk Gewest":
+                                    case "Brussels":
+                                    case "Bruxelles":
+                                    case "Brussel":
+                                        province = 2;
+                                        state = 1;
+                                        return true;
+                                    default:
+                                        return false;
+                                }
                                 return true;
                             case "administrative_area_level_2": // province
-                                province = component.long_name;
+                                switch (component.short_name) {
+                                    case "AN":
+                                        province = 1;
+                                        return true;
+                                    case "BX":
+                                        province = 2;
+                                        return true;
+                                    case "HT":
+                                        province = 3;
+                                        return true;
+                                    case "LI":
+                                        province = 4;
+                                        return true;
+                                    case "LG":
+                                        province = 5;
+                                        return true;
+                                    case "LX":
+                                        province = 6;
+                                        return true;
+                                    case "NA":
+                                        province = 7;
+                                        return true;
+                                    case "OV":
+                                        province = 8;
+                                        return true;
+                                    case "VB":
+                                        province = 9;
+                                        return true;
+                                    case "BW":
+                                        province = 10;
+                                        return true;
+                                    case "WV":
+                                        province = 11;
+                                        return true;
+                                    default:
+                                        return false;
+                                }
                                 return true;
                             default:
                                 return false;
@@ -449,11 +506,61 @@ campsite.controllers.controller('OfferCtrl', ["$scope", "$rootScope", "$location
     };
 }]);
 
+campsite.controllers.controller('ReservationCtrl', ["$scope", "$rootScope", "$location", "service", "$window", "toastr", "$injector", function($scope, $rootScope, $location, service, $window, toastr, $injector){
+    var self = this;
+    var movementsurl = '/en/movements';
+
+
+    // Events
+    this.events = {
+        nextDate: function(id) {
+            angular.element( document.querySelector( '#' + id ) ).focus();
+        }
+    };
+
+    // Handlers
+    this.handlers = {
+
+        getAllMovements: function() {
+            service.get(movementsurl).then (
+                function successCallback(response) {
+                    console.log(response);
+                    self.state.movements = response;
+                }, function errorCallback (response) {
+                    console.log(response);
+                });
+        }
+    };
+
+    // Listeners
+    $rootScope.$on('$locationChangeSuccess', function() {
+        self.handlers.getAllMovements();
+    });
+
+    // Init
+    this.state = {
+        startdate: '',
+        enddate: '',
+        today: new Date(),
+
+        formerrors: {
+            startdate: false,
+            enddate: false
+        },
+
+        reservation: {},
+        datatosend: {}
+    };
+
+
+}]);
+
 campsite.controllers.controller('SearchCtrl', ["$scope", "$rootScope", "$location", "service", "$window", "$route", "$timeout", function($scope, $rootScope, $location, service, $window, $route, $timeout){
     var self = this;
-    var campsiteinventoryurl = "/en/campsite/offers";
-    var carsearchurl = "/en/campsite/search";
-    //var savequeryurl = "/auto/search/save";
+    var campsiteinventoryurl = "/" + currentlanguage + "/campsite/offers";
+    var campsitesearchurl = "/" + currentlanguage + "/campsite/search";
+    var provincesurl = "/" + currentlanguage + "/provinces";
+    var statesurl = "/" + currentlanguage + "/states";
     //var updateemailurl = "/dealer/zoekopdrachten/update";
 
 
@@ -487,12 +594,41 @@ campsite.controllers.controller('SearchCtrl', ["$scope", "$rootScope", "$locatio
                 });
         },
 
+        getAllProvinces: function () {
+            service.get(provincesurl)
+                .then(function success(response) {
+                    console.log(response);
+                    self.state.provinces = response;
+                }, function error(response) {
+                    console.log(response);
+                });
+        },
+
+        getAllStates: function () {
+            service.get(statesurl)
+                .then(function success(response) {
+                    console.log(response);
+                    self.state.states = response;
+                }, function error(response) {
+                    console.log(response);
+                });
+        },
+
         search: function() {
             console.log(self.state.searchObject);
+            if (self.state.searchObject.provinces.length == 0) {
+                self.state.searchObject.provinces = self.state.provinces;
+            }
+            if (self.state.searchObject.states.length == 0) {
+                self.state.searchObject.states = self.state.states;
+            }
+            self.state.provinces_loading = true;
+            self.state.states_loading = true;
+            self.state.searchObject.provinces = JSON.stringify(self.state.searchObject.provinces);
+            self.state.searchObject.states = JSON.stringify(self.state.searchObject.states);
             $timeout( function(){
-                service.get(carsearchurl, self.state.searchObject)
+                service.get(campsitesearchurl, self.state.searchObject)
                     .then(function success(response) {
-
                         console.log(response);
                         self.state.campsite_offers = response.data;
                         if (response.total == 0)
@@ -508,10 +644,14 @@ campsite.controllers.controller('SearchCtrl', ["$scope", "$rootScope", "$locatio
                         self.state.number_of_campsites = response.total;
                         self.state.current_page = response.current_page;
                         self.state.number_of_pages = response.last_page;
+                        self.state.searchObject.provinces = JSON.parse(self.state.searchObject.provinces);
+                        self.state.searchObject.states = JSON.parse(self.state.searchObject.states);
                         self.state.campsite_offers_loading = false;
+                        self.state.provinces_loading = false;
+                        self.state.states_loading = false;
                     }, function error(response) {
                         console.log(response);
-                        self.state.searchObject.car_model = JSON.parse(self.state.searchObject.car_model);
+                        self.state.searchObject.provinces = JSON.parse(self.state.searchObject.provinces);
                     });
             }, 10 );
         },
@@ -565,6 +705,8 @@ campsite.controllers.controller('SearchCtrl', ["$scope", "$rootScope", "$locatio
     // Listeners
     $rootScope.$on('$locationChangeSuccess', function() {
         self.handlers.getAllCampsites();
+        self.handlers.getAllProvinces();
+        self.handlers.getAllStates();
     });
 
     // Init
@@ -572,8 +714,7 @@ campsite.controllers.controller('SearchCtrl', ["$scope", "$rootScope", "$locatio
         campsite_offers: [],
         number_of_all_campsites: '',
         campsite_offers_loading: false,
-        sortBy: 'end_date_bidding',  // set the default sort type
-        sortReverse: true, // set the default sort order
+
         searchObject: {
             capacity_slider: {
                 minValue: 10,
@@ -595,6 +736,9 @@ campsite.controllers.controller('SearchCtrl', ["$scope", "$rootScope", "$locatio
                     noSwitching: true
                 }
             }},
+
+        language: currentlanguage,
+
         noresultsfound: false,
         searchAdvanced: false,
 

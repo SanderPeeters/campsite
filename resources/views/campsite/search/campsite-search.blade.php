@@ -7,11 +7,11 @@
 @section('content')
     <section id="search-campsite-section" class="main vh-min-90" ng-controller="SearchCtrl as search">
         <div class="container">
-            <div class="panel marg-top-rel m-b-0 no-border-radius no-border" ng-cloak>
+            <div class="panel m-t-120 m-b-0 no-border-radius no-border" >
                 <div class="panel-body no-padding">
                     <div class="row">
                         <div class="col-sm-7 col-xs-12">
-                            <div class="p-b-20 p-t-20 p-l-20 p-r-20">
+                            <div class="p-b-20 p-t-20 p-l-20 p-r-20" ng-cloak>
                                 <h1 class="color-primary">{{ trans('search.main-title') }}</h1>
                                 <h3 class="color-secundary">##search.state.number_of_all_campsites## Campsites available!</h3>
                                 <p>Are you an owner of an open space, campsite and/or a meadow you want to rent out to youth groups?</p>
@@ -55,7 +55,7 @@
 
             <div class="row m-t-20 m-b-80 text-center" ng-cloak>
                 <div class="col-sm-6 col-sm-offset-3">
-                    <p class="color-white">Page ##search.state.current_page## of ##search.state.number_of_pages##</p>
+                    <p class="color-white">{{ trans('pagination.page') }} ##search.state.current_page## {{ trans('pagination.of') }} ##search.state.number_of_pages##</p>
                     <button class="btn btn-white" ng-disabled="!search.state.paginate_previousurl" ng-click="search.events.changePage(search.state.paginate_previousurl)">{{trans('pagination.previous')}}</button>
                     <button class="btn btn-white" ng-disabled="!search.state.paginate_nexturl" ng-click="search.events.changePage(search.state.paginate_nexturl)">{{trans('pagination.next')}}</button>
                 </div>

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Campsite;
 
 use App\User;
+use App\Models\State;
 use App\Models\Meadow;
+use App\Models\Province;
 use App\Models\Building;
 use App\Models\Campsite;
 use App\Models\Campimage;
@@ -24,14 +26,65 @@ class CampsiteController extends Controller
 
     public function indexOfferCampsite()
     {
-        $campsites = $this->getAllCampsites();
-        return view('campsite.offer.campsite-offer')->with('campsites', $campsites);
+        if (Auth::user())
+        {
+            if(Auth::user()->campsite)
+            {
+                return view('campsite.offer.my-campsite')->with('campsite', Auth::user()->campsite);
+
+            } else {
+                $campsites = $this->getAllCampsites();
+                return view('campsite.offer.campsite-offer')->with('campsites', $campsites);
+            }
+        } else {
+            $campsites = $this->getAllCampsites();
+            return view('campsite.offer.campsite-offer')->with('campsites', $campsites);
+        }
     }
 
     public function getAllCampsites()
     {
-        $campsites = Campsite::with('campimages')->latest()->paginate($this->paginatenumber);
+        $campsites = Campsite::with('campimages')->with('province')->with('state')->latest()->paginate($this->paginatenumber);
+        foreach ($campsites as $campsite)
+        {
+            $campsite->province->name = trans('provinces.'.$campsite->province->id);
+            $campsite->state->name = trans('states.'.$campsite->state->id);
+        }
         return $campsites;
+    }
+
+    public function getAllProvinces()
+    {
+        $provinces = Province::orderBy('name')->get();
+        foreach ($provinces as $province)
+        {
+            $province->name = trans('provinces.'.$province->id);
+        }
+        return $provinces;
+    }
+
+    public function getAllStates()
+    {
+        $states = State::orderBy('name')->get();
+        foreach ($states as $state)
+        {
+            $state->name = trans('states.'.$state->id);
+        }
+        return $states;
+    }
+
+    public function showCampsite($id, $slug=null)
+    {
+        try {
+            $campsite = Campsite::with('campimages')->findOrFail($id);
+
+        } catch(ModelNotFoundException $e) {
+            return redirect( route('search-campsite') );
+        }
+        if ($slug !== str_slug($campsite->campsite_name)){
+            return redirect(action('Campsite\CampsiteController@showCampsite', ['id' => $campsite->id, 'slug' => str_slug($campsite->campsite_name)]), 301);
+        }
+        return view('campsite.display.show-campsite')->with('campsite', $campsite);
     }
 
     public function storeCampsite (Request $request)
@@ -64,10 +117,10 @@ class CampsiteController extends Controller
         $campsite->street = $campsitedata['street'].' '.$campsitedata['street_number'];
         $campsite->city = $campsitedata['city'];
         $campsite->zipcode = $campsitedata['zipcode'];
-        $campsite->province = $campsitedata['province'];
-        $campsite->state = $campsitedata['state'];
-        $campsite->latitude = number_format($campsitedata['latitude'], 8);
-        $campsite->longitude = number_format($campsitedata['longitude'], 8);
+        $campsite->province_id = $campsitedata['province'];
+        $campsite->state_id = $campsitedata['state'];
+        $campsite->latitude = $campsitedata['latitude'];
+        $campsite->longitude = $campsitedata['longitude'];
         $campsite->description = $campsitedata['description'];
         $campsite->price_per_night = $campsitedata['price'];
         $campsite->website = $campsitedata['website'];

@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'movement_id', 'email', 'password',
     ];
 
     /**
@@ -27,7 +27,16 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function campsites () {
-        return $this->hasMany('App\Models\Campsite');
+    public function campsite () {
+        return $this->hasOne('App\Models\Campsite');
+    }
+
+    public function reservations () {
+        return $this->hasMany('App\Models\Reservation');
+    }
+
+    public function movement()
+    {
+        return $this->belongsTo('App\Models\Movement');
     }
 }

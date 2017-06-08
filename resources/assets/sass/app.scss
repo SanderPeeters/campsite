@@ -13,6 +13,8 @@
 @import "pages/auth";
 @import "pages/offer";
 @import "pages/search";
+@import "pages/reservation";
+@import "pages/campsite-profile";
 
 // Components
 @import "components/animations";
@@ -28,6 +30,7 @@
 @import "components/icons";
 @import "components/validation";
 @import "components/panels";
+@import "components/caroussel";
 
 // Plugins
 @import "plugins/owlcarousel";
@@ -35,3 +38,6 @@
 @import "plugins/fontawesome";
 @import "plugins/textangular";
 @import "plugins/slider";
+@import "plugins/angular-select";
+@import "plugins/datepicker";
+@import "plugins/toastr";

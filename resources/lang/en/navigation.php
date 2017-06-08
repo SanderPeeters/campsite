@@ -11,9 +11,10 @@ return [
     'campsite-search' => 'Search a Campsite',
     'campsite-offer' => [
         'no-campsites'      => 'Offer a Campsite',
-        'has-campsites'      => 'My Campsites'
+        'has-campsites'     => 'My Campsite'
     ],
     'login'           => 'Login',
-    'register'        => 'Register'
+    'register'        => 'Register',
+    'reservations'    => 'Reservations'
 
 ];

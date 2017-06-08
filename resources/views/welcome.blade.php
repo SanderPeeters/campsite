@@ -19,27 +19,19 @@
                         </div>
                     </div>
                     <div class="row bg--transparent">
-                        <div class="col-sm-12 p-t-15">
-                            <input type="text" class="form-control" placeholder="Country / Region / Place / Campsite ">
-                        </div>
-                        <div class="col-sm-4 p-t-10">
-                            <input type="text" class="form-control" placeholder="# Persons">
-                        </div>
-                        <div class="col-sm-4 p-t-10">
-                            <input type="text" class="form-control" placeholder="From dd/mm/yy">
-                        </div>
-                        <div class="col-sm-4 p-t-10 p-b-10">
-                            <input type="text" class="form-control" placeholder="Until dd/mm/yy">
-                        </div>
-                        <div class="col-sm-12 p-b-15">
-                            <button type="submit" class="btn btn-block btn-main">
-                                Search
-                            </button>
+                        <div class="col-sm-12">
+                            <div class="form-group m-t-15">
+                                <a href="{{ route('search-campsite') }}" target="_self">
+                                    <button type="submit" class="btn btn-block btn-main">
+                                        Start looking for a Campsite!
+                                    </button>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </form>
                 <div class="row m-t-60">
-                    <div class="col-xs-6 col-xs-offset-3 col-sm-4 col-sm-offset-4">
+                    <div class="col-xs-6 col-xs-offset-3">
                         <a href="" target="_self">
                             <button type="button" class="btn btn-transparent btn-block">
                                 How it works?
@@ -65,7 +57,7 @@
                         @foreach($campsites as $campsite)
                             <div class="item card">
                                 <div class="card--img">
-                                    <a href="http://placehold.it" target="_self">
+                                    <a href="{{  route('campsite.display', [ 'id' => $campsite->id ]) }}" target="_self">
                                         @if (count($campsite->campimages))
                                             <img src="/img/campsites/{{$campsite->campimages[0]->filename}}">
                                         @else
@@ -74,8 +66,8 @@
                                     </a>
                                 </div>
                                 <div class="card--info">
-                                    <p>{{$campsite->province}} - {{$campsite->city}}</p>
-                                    <a href="http://placehold.it" target="_self">
+                                    <p>{{ $campsite->state->name }} - {{$campsite->province->name }} - {{$campsite->city}}</p>
+                                    <a href="{{  route('campsite.display', [ 'id' => $campsite->id ]) }}" target="_self">
                                         <h3>{{$campsite->campsite_name}}</h3>
                                     </a>
                                 </div>

@@ -2918,7 +2918,7 @@ textAngular.directive("textAngular", [
                                 scope['reApplyOnSelectorHandlerstaTextElement' + _serial]();
                             }
                             // refocus on the shown display element, this fixes a display bug when using :focus styles to outline the box.
-                            // You still have focus on the text/html input it just doesn't show up
+                            // You still have focus on the text/html input it just doesn't display up
                             scope.displayElements.text[0].focus();
                         }
                     },
@@ -3063,7 +3063,7 @@ textAngular.directive("textAngular", [
                     }
                 };
 
-                // define the popover show and hide functions
+                // define the popover display and hide functions
                 scope.showPopover = function(_el){
                     scope.getScrollTop(scope.displayElements.scrollWindow[0], true);
                     scope.displayElements.popover.css('display', 'block');
@@ -3127,7 +3127,7 @@ textAngular.directive("textAngular", [
                     scope.displayElements.text[0].focus();
                 });
 
-                // define the show and hide events
+                // define the display and hide events
                 scope.reflowResizeOverlay = function(_el){
                     _el = angular.element(_el)[0];
                     scope.displayElements.resize.overlay.css({

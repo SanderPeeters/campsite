@@ -23,6 +23,11 @@ Route::get('/campsite/search', 'Search\SearchController@searchCampsites');
 Route::get(trans('routes.offer-campsite'), 'Campsite\CampsiteController@indexOfferCampsite')->name('offer-campsite');
 
 Route::get('/campsite/offers', 'Campsite\CampsiteController@getAllCampsites');
+Route::get(trans('routes.campsite', ['id', 'slug?']), 'Campsite\CampsiteController@showCampsite')->name('campsite.display');
+
+Route::get('/provinces', 'Campsite\CampsiteController@getAllProvinces');
+Route::get('/states', 'Campsite\CampsiteController@getAllStates');
+Route::get('/movements', 'Movement\MovementController@getAllMovements');
 
 Route::get('lang/{language}', 'LanguageController@switchLang')->name('lang.switch');
 
@@ -30,8 +35,12 @@ Route::get('lang/{language}', 'LanguageController@switchLang')->name('lang.switc
 Route::group(['middleware' => 'auth'], function()
 {
 
-    Route::get(trans('routes.offer-campsite-new'), function() { return view('campsite.offer.campsite-offer-new'); })->name('offer-campsite.new');
     Route::post('/campsite-offer/store', 'Campsite\CampsiteController@storeCampsite');
     Route::post('/campsite-offer/images/store', 'Campsite\ImageController@saveImage');
+
+    Route::get(trans('routes.make-reservation', ['id', 'slug?']), 'Reservation\ReservationController@showReservationForm')->name('reservation.showform');
+    Route::post('/make-reservation', 'Reservation\ReservationController@makeReservation')->name('reservation.store');
+    Route::get(trans('routes.delete-reservation', ['id']), 'Reservation\ReservationController@deleteReservation')->name('reservation.delete');
+    Route::get(trans('routes.accept-reservation', ['id']), 'Reservation\ReservationController@acceptReservation')->name('reservation.accept');
 
 });

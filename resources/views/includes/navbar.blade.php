@@ -22,7 +22,7 @@
       <ul class="nav navbar-nav navbar-right">
         <!-- Authentication Links -->
         <li class="{{ Route::is('search-campsite') ? 'active' : '' }}"><a href="{{ route('search-campsite') }}" target="_self">{{trans('navigation.campsite-search')}}</a></li>
-        <li class="{{ Route::is('offer-campsite*') ? 'active' : '' }}"><a href="{{ route('offer-campsite') }}" target="_self">{{ ( Auth::check() && count(Auth::user()->campsites) > 0 ? trans('navigation.campsite-offer.has-campsites') : trans('navigation.campsite-offer.no-campsites')) }}</a></li>
+        <li class="{{ Route::is('offer-campsite') ? 'active' : '' }}"><a href="{{ route('offer-campsite') }}" target="_self">{{ ( Auth::check() && Auth::user()->campsite ) ? trans('navigation.campsite-offer.has-campsites') : trans('navigation.campsite-offer.no-campsites') }}</a></li>
         @if (Auth::guest())
           <li><a href="{{ route('login') }}" target="_self">{{ trans('navigation.login') }}</a></li>
           <li class=""><a href="{{ route('register') }}" target="_self">{{ trans('navigation.register') }}</a></li>
