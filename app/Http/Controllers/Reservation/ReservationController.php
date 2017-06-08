@@ -31,47 +31,40 @@ class ReservationController extends Controller
 
     public function makeReservation(Request $request)
     {
-        $reservationdata = $request->get('reservation');
-
-        $reservationvalidator = Validator::make($reservationdata, [
-            'start_date' => 'required|date',
-            'end_date' => 'required|date|after:start_date',
-            'movement' => 'required',
-            'capacity' => 'required|integer'
-        ]);
-
-        //If validator fails return object with all rules it failed on.
-        if ($reservationvalidator->fails()) {
-            $returnData = array(
-                'status' => 'error',
-                'message' => 'Validation errors!',
-                'errors' => $reservationvalidator->errors()
-            );
-            return response()->json($returnData, 500);
+        if ($request->start_date)
+        {
+            $request->start_date = Carbon::parse($request->start_date);
         }
+        if ($request->end_date)
+        {
+            $request->end_date = Carbon::parse($request->end_date);
+        }
+
+        $this->validate($request, [
+            'start_date'    =>  'required|date',
+            'end_date'      =>  'required|date|after:start_date',
+            'movement'      =>  'required',
+            'capacity'      =>  'required|integer'
+        ]);
 
         $reservation = new Reservation();
         $reservation->user_id = Auth::user()->id;
-        $reservation->campsite_id = $reservationdata['campsite_id'];
-        $reservation->start_date = Carbon::parse($reservationdata['start_date']);
-        $reservation->end_date = Carbon::parse($reservationdata['end_date']);
-        $reservation->capacity = $reservationdata['capacity'];
-        $reservation->movement_id = $reservationdata['movement'];
-        if(isset($reservationdata['extra_info'])){
-            $reservation->extra_info = $reservationdata['extra_info'];
+        $reservation->campsite_id = $request->get('campsite_id');
+        $reservation->start_date = $request->start_date;
+        $reservation->end_date = $request->end_date;
+        $reservation->capacity = $request->get('capacity');
+        $reservation->movement_id = $request->get('movement');
+        if($request->get('extrainfo'))
+        {
+            $reservation->extra_info = $request->get('extrainfo');
         }
         $reservation->save();
 
-        $returnData = array(
-            'status' => 'Succes',
-            'message' => 'Reservation successfully made!'
-        );
+        $campsiteuser = new User();
+        $campsiteuser->email = $reservation->campsite->user->email;
 
-        $admin = New User();
-        $admin->email = config('app.adminmainemail');
+        Notification::send($campsiteuser, new ReservationRequest($reservation));
 
-        Notification::send($admin, new ReservationRequest($reservation));
-
-        return response()->json($returnData, 200);
+        return redirect()->back()->with('success_message', trans('reservation.success'));
     }
 }

@@ -1,3 +1,4 @@
+/*
 input.ng-invalid.ng-dirty, select.ng-invalid.ng-dirty, textarea.ng-invalid.ng-dirty {
   border: solid $brand-danger 1px;
 }
@@ -9,3 +10,7 @@ input.ng-valid.ng-dirty, select.ng-valid.ng-dirty, textarea.ng-valid.ng-dirty {
 .validation-invalid{
   color: $brand-danger;
 }
+
+.haserror {
+  border-color: $brand-danger;
+}*/

@@ -46,7 +46,8 @@ class ReservationRequest extends Notification
             ->greeting('Hello!')
             ->line(trans('notifications.reservationrequest.newrequest').$this->reservation->campsite->campsite_name)
             ->line(trans('notifications.reservationrequest.fromdate').$this->reservation->start_date->format('d/m/y').trans('notifications.reservationrequest.todate').$this->reservation->end_date->format('d/m/y'))
-            ->line( trans('notifications.reservationrequest'));
+            ->line(trans('notifications.reservationrequest.group') . trans('movements.'.$this->reservation->movement_id) . trans('notifications.reservationrequest.capacity') . $this->reservation->capacity)
+            ->line(trans('notifications.reservationrequest.message') . $this->reservation->extra_info);
     }
 
     /**

@@ -8575,18 +8575,22 @@ hr.w-50 {
   width: 100%;
 }
 
+/*
 input.ng-invalid.ng-dirty, select.ng-invalid.ng-dirty, textarea.ng-invalid.ng-dirty {
-  border: solid #bf5329 1px;
+  border: solid $brand-danger 1px;
 }
 
 input.ng-valid.ng-dirty, select.ng-valid.ng-dirty, textarea.ng-valid.ng-dirty {
-  border: solid #2ab27b 1px;
+  border: solid $brand-success 1px;
 }
 
-.validation-invalid {
-  color: #bf5329;
+.validation-invalid{
+  color: $brand-danger;
 }
 
+.haserror {
+  border-color: $brand-danger;
+}*/
 .panel.marg-top-rel {
   margin-top: 28%;
 }
