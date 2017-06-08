@@ -3,10 +3,15 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Reservation extends Model
 {
+    use SoftDeletes;
+
     protected $fillable = ['start_date', 'end_date', 'extra_info', 'capacity', 'campsite_id', 'movement_id'];
+
+    protected $dates = ['deleted_at'];
 
     public function user()
     {

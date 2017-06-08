@@ -4,7 +4,7 @@
         <div class="col-sm-12">
             @foreach($campsite->buildings as $building)
                 <div class="table-responsive">
-                    <table class="table table-concensed table-bordered text-center">
+                    <table class="table table-condensed table-bordered text-center">
                         <tbody>
                         <tr>
                             <td>

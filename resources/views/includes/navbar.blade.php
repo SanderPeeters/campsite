@@ -27,7 +27,6 @@
           <li><a href="{{ route('login') }}" target="_self">{{ trans('navigation.login') }}</a></li>
           <li class=""><a href="{{ route('register') }}" target="_self">{{ trans('navigation.register') }}</a></li>
         @else
-          <li><a href="">{{ trans('navigation.reservations') }}</a></li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
               {{ Auth::user()->name }} <span class="caret"></span>

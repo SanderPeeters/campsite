@@ -24,6 +24,7 @@ class CreateReservationsTable extends Migration
             $table->date('end_date');
             $table->integer('capacity');
             $table->text('extra_info')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

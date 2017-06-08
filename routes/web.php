@@ -40,5 +40,7 @@ Route::group(['middleware' => 'auth'], function()
 
     Route::get(trans('routes.make-reservation', ['id', 'slug?']), 'Reservation\ReservationController@showReservationForm')->name('reservation.showform');
     Route::post('/make-reservation', 'Reservation\ReservationController@makeReservation')->name('reservation.store');
+    Route::get(trans('routes.delete-reservation', ['id']), 'Reservation\ReservationController@deleteReservation')->name('reservation.delete');
+    Route::get(trans('routes.accept-reservation', ['id']), 'Reservation\ReservationController@acceptReservation')->name('reservation.accept');
 
 });

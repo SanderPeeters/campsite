@@ -9,6 +9,7 @@ use App\Models\Reservation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
+use App\Notifications\ReservationAcceptedToMvmt;
 use App\Notifications\ReservationRequest;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Notification;
@@ -66,5 +67,25 @@ class ReservationController extends Controller
         Notification::send($campsiteuser, new ReservationRequest($reservation));
 
         return redirect()->back()->with('success_message', trans('reservation.success'));
+    }
+
+    public function acceptReservation($id)
+    {
+        $reservation = Reservation::findOrFail($id);
+        $reservation->pending_request = false;
+        $reservation->accepted_request = true;
+        $reservation->save();
+
+        $renter = new User();
+        $renter->email = $reservation->user->email;
+        Notification::send($renter, new ReservationAcceptedToMvmt($reservation));
+        return redirect()->back();
+    }
+
+    public function deleteReservation($id)
+    {
+        $reservation = Reservation::findOrFail($id);
+        $reservation->delete();
+        return redirect()->back();
     }
 }
