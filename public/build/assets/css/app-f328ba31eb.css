@@ -7878,17 +7878,6 @@ section#reservation-form select.ng-empty {
   }
 }
 
-section#show-campsite-section td .table--icon {
-  min-width: 25px;
-  width: 100%;
-  max-width: 50px;
-  padding-bottom: 8px;
-}
-
-section#show-campsite-section td p {
-  margin: 0px;
-}
-
 section#show-campsite-section .smaller-font {
   font-size: 22px;
 }
@@ -8573,6 +8562,17 @@ hr.w-50 {
 
 .icon-social img {
   width: 100%;
+}
+
+td .table--icon {
+  min-width: 25px;
+  width: 100%;
+  max-width: 50px;
+  padding-bottom: 8px;
+}
+
+td p {
+  margin: 0px;
 }
 
 /*

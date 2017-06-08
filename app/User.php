@@ -27,8 +27,8 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function campsites () {
-        return $this->hasMany('App\Models\Campsite');
+    public function campsite () {
+        return $this->hasOne('App\Models\Campsite');
     }
 
     public function reservations () {

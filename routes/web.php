@@ -35,7 +35,6 @@ Route::get('lang/{language}', 'LanguageController@switchLang')->name('lang.switc
 Route::group(['middleware' => 'auth'], function()
 {
 
-    Route::get(trans('routes.offer-campsite-new'), function() { return view('campsite.offer.campsite-offer-new'); })->name('offer-campsite.new');
     Route::post('/campsite-offer/store', 'Campsite\CampsiteController@storeCampsite');
     Route::post('/campsite-offer/images/store', 'Campsite\ImageController@saveImage');
 

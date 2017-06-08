@@ -6,3 +6,15 @@
     width: 100%;
   }
 }
+
+td {
+  .table--icon {
+    min-width: 25px;
+    width: 100%;
+    max-width: 50px;
+    padding-bottom: 8px;
+  }
+  p {
+    margin: 0px;
+  }
+}

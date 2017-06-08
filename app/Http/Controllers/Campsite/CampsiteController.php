@@ -26,8 +26,13 @@ class CampsiteController extends Controller
 
     public function indexOfferCampsite()
     {
-        $campsites = $this->getAllCampsites();
-        return view('campsite.offer.campsite-offer')->with('campsites', $campsites);
+        if (Auth::user()->campsite)
+        {
+            return view('campsite.offer.my-campsite')->with('campsite', Auth::user()->campsite);
+        } else {
+            $campsites = $this->getAllCampsites();
+            return view('campsite.offer.campsite-offer')->with('campsites', $campsites);
+        }
     }
 
     public function getAllCampsites()
