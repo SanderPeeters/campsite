@@ -16,6 +16,7 @@ return [
     'offer-campsite' => 'offer-campsite',
     'offer-campsite-new' => 'offer-campsite/new',
     'search-campsite' => 'search-campsite',
+    'search-campsite-with-province' => 'search-campsite/{id}',
     'campsite'  => 'campsite/{id}/{slug?}',
     'make-reservation' => 'make-reservation/campsite/{id}/{slug?}',
     'delete-reservation' => 'delete-reservation/{id}',

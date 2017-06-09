@@ -8,7 +8,7 @@
     <!-- Section intro with searchfield -->
     <section id="home-intro" class="main vh-min-80">
         <div class="container">
-            <div class="section--centered">
+            <div class="section--centered" ng-controller="SearchCtrl as map">
                 <div class="row">
                     <div class="col-sm-2 col-sm-offset-5 col-xs-6 col-xs-offset-3">
                         <div class="image--home">
@@ -17,11 +17,19 @@
                     </div>
                 </div>
                 {{--<h3 >Find the perfect campsite</h3>--}}
-                <div class="row m-t-20">
+                {{--<div class="row m-t-20">
                     <div class="col-sm-6 col-sm-offset-3">
                         <a href="{{route('search-campsite')}}" target="_self">
                             <img src="assets/img/bg/Belgium.svg" alt="" style="width: 100%;">
                         </a>
+                    </div>
+                </div>--}}
+                <div class="row m-t-20">
+                    <div class="col-sm-6 col-sm-offset-3">
+                        {{--<object id="belgiummap" type="image/svg+xml" data="assets/img/bg/Belgium.svg">
+                            Your browser does not support SVG
+                        </object>--}}
+                        {!! file_get_contents('assets/img/bg/Belgium.svg') !!}
                     </div>
                 </div>
                 <div class="row m-t-60 m-b-30">

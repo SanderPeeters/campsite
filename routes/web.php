@@ -19,6 +19,7 @@ Route::get(trans('routes.home'), ['as' => 'home', 'uses' => 'HomeController@inde
 
 Route::get(trans('routes.search-campsite'), 'Search\SearchController@index')->name('search-campsite');
 Route::get('/campsite/search', 'Search\SearchController@searchCampsites');
+Route::get(trans('routes.search-campsite-with-province', ['id']), 'Search\SearchController@searchOnProvince')->name('search-campsite.withprovince');
 
 Route::get(trans('routes.offer-campsite'), 'Campsite\CampsiteController@indexOfferCampsite')->name('offer-campsite');
 

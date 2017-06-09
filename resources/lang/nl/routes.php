@@ -14,5 +14,5 @@ return [
     'home' => 'home',
     'offer-campsite' => 'campsite-aanbieden',
     'offer-campsite-new' => 'campsite-aanbieden/nieuw',
-    'search-campsite' => 'campsite-zoeken'
+    'search-campsite' => 'campsite-zoeken',
 ];

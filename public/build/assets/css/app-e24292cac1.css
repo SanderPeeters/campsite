@@ -7700,7 +7700,14 @@ section#top-campsites-section .card {
   background: white;
 }
 
+section#top-campsites-section .card--img {
+  height: 250px;
+}
+
 section#top-campsites-section .card--img img {
+  -o-object-fit: cover;
+  object-fit: cover;
+  height: 100%;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
 }

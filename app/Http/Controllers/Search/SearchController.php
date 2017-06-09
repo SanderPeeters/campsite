@@ -15,6 +15,19 @@ class SearchController extends Controller
         return view('campsite.search.campsite-search');
     }
 
+    public function searchOnProvince(Request $request, $id)
+    {
+        $query = Campsite::select();
+        $query->where('province_id',$id);
+        $campsites = $query->with('campimages')->latest()->paginate($this->paginatenumber);
+        foreach ($campsites as $campsite)
+        {
+            $campsite->province->name = trans('provinces.'.$campsite->province->id);
+            $campsite->state->name = trans('states.'.$campsite->state->id);
+        }
+        return $campsites;
+    }
+
     public function searchCampsites(Request $request)
     {
         $query = Campsite::select();
