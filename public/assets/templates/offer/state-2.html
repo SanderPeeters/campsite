@@ -1,124 +1,156 @@
 <form name="campsitefacilitiesinformation">
-    <h2>Facility information</h2>
+    <div class="row m-b-20">
+        <div class="col-sm-7">
+            <h2 class="color-secundary">Facility information</h2>
+        </div>
+        <div class="col-sm-5">
+            <div class="row m-t-20">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <button type="button" class="btn btn-block btn-secundary-opposite p-l-10 p-r-10" ng-click="offer.events.addNewBuilding()"><i class="fa fa-plus" aria-hidden="true"></i> Add Building</button>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <button type="button" class="btn btn-block btn-secundary-opposite" ng-click="offer.events.addNewMeadow()"><i class="fa fa-plus" aria-hidden="true"></i> Add Meadow</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <p ng-hide="offer.state.buildings.length != 0 || offer.state.meadows.length != 0" class="m-b-20">
+        No fields or meadows added yet!
+    </p>
 
     <!-- Fieldset for adding building -->
     <fieldset  ng-repeat="building in offer.state.buildings">
-        <h2>Building n° ##building.index##</h2>
+        <h3>Building n° ##building.index##</h3>
         <div class="row">
             <div class="col-sm-3">
                 <div class="form-group">
                     <label for="building_capacity"><strong>Capacity</strong></label>
-                    <input ng-model="building.capacity" class="form-control" id="building_capacity" type="number" name="building_capacity">
+                    <input ng-model="building.capacity" class="form-control" id="building_capacity" type="number" name="building_capacity" min="0" placeholder="0">
                 </div>
             </div>
             <div class="col-sm-3">
                 <div class="form-group">
                     <label for="building_beds"><strong>Beds</strong></label>
-                    <input ng-model="building.beds" class="form-control" id="building_beds" type="number" name="building_beds">
+                    <input ng-model="building.beds" class="form-control" id="building_beds" type="number" name="building_beds" min="0" placeholder="0">
                 </div>
             </div>
             <div class="col-sm-3">
                 <div class="form-group">
                     <label for="building_showers"><strong>Showers</strong></label>
-                    <input ng-model="building.showers" class="form-control" id="building_showers" type="number" name="building_showers">
+                    <input ng-model="building.showers" class="form-control" id="building_showers" type="number" name="building_showers" min="0" placeholder="0">
                 </div>
             </div>
             <div class="col-sm-3">
                 <div class="form-group">
-                    <label for="building_toilets"><strong>Toilets</strong></label>
-                    <input ng-model="building.toilets" class="form-control" id="building_toilets" type="number" name="building_toilets">
+                    <label for="building_toilets_##building.index##"><strong>Toilets</strong></label>
+                    <input ng-model="building.toilets" class="form-control" id="building_toilets_##building.index##" type="number" name="building_toilets_##building.index##" min="0" placeholder="0">
                 </div>
             </div>
         </div>
+        <label class="color-secundary m-b-20">Indicate your building facilities</label>
         <div class="row icons">
-            <div class="col-sm-3">
+            <div class="col-sm-2 col-xs-4">
                 <div class="form-group">
-                    <label for="building_haswater" class="pointer">
-                        <img src="/assets/img/icons/icon-water.png" alt="" ng-class="{notchecked: building.haswater}" ng-click="offer.handlers.changeClass($event)">
-                        <input ng-model="building.haswater" id="building_haswater" value="1" type="checkbox" class="hidden" autocomplete="off" name="building_haswater">
+                    <label for="building_haswater_##building.index##" class="pointer">
+                        <img src="/assets/img/icons/icon-water.png" alt="" class="notchecked" ng-class="{checked: building.haswater}" ng-click="offer.handlers.changeClass($event)" tooltips tooltip-template="Does your building have flowing water?">
+                        <input ng-model="building.haswater" id="building_haswater_##building.index##" value="1" type="checkbox" class="hidden" autocomplete="off" name="building_haswater_##building.index##">
                     </label>
                 </div>
             </div>
-            <div class="col-sm-3">
+            <div class="col-sm-2  col-xs-4">
                 <div class="form-group">
-                    <label for="building_haselectricity" class="pointer">
-                        <img src="/assets/img/icons/icon-electricity.png" alt="..." ng-class="{notchecked: building.haselectricity}" ng-click="offer.handlers.changeClass($event)">
-                        <input ng-model="building.haselectricity" id="building_haselectricity" value="1" type="checkbox" class="hidden" autocomplete="off" name="building_haselectricity">
+                    <label for="building_haselectricity_##building.index##" class="pointer">
+                        <img src="/assets/img/icons/icon-electricity.png" alt="..." class="notchecked" ng-class="{checked: building.haselectricity}" ng-click="offer.handlers.changeClass($event)" tooltips tooltip-template="Does your building have electricity plugs?">
+                        <input ng-model="building.haselectricity" id="building_haselectricity_##building.index##" value="1" type="checkbox" class="hidden" autocomplete="off" name="building_haselectricity_##building.index##">
                     </label>
                 </div>
             </div>
-            <div class="col-sm-3">
+            <div class="col-sm-2  col-xs-4">
                 <div class="form-group">
-                    <label for="building_haswifi" class="pointer">
-                        <img src="/assets/img/icons/icon-wifi.png" alt="..." ng-class="{notchecked: building.haswifi}" ng-click="offer.handlers.changeClass($event)">
-                        <input ng-model="building.haswifi" id="building_haswifi" value="1" type="checkbox" class="hidden" autocomplete="off" name="building_haswifi">
+                    <label for="building_haswifi_##building.index##" class="pointer">
+                        <img src="/assets/img/icons/icon-wifi.png" alt="..." class="notchecked" ng-class="{checked: building.haswifi}" ng-click="offer.handlers.changeClass($event)" tooltips tooltip-template="Does your building have wifi?">
+                        <input ng-model="building.haswifi" id="building_haswifi_##building.index##" value="1" type="checkbox" class="hidden" autocomplete="off" name="building_haswifi_##building.index##">
                     </label>
                 </div>
             </div>
-            <div class="col-sm-3">
+            <div class="col-sm-2  col-xs-4">
                 <div class="form-group">
-                    <label for="building_haskitchen" class="pointer">
-                        <img src="/assets/img/icons/icon-kitchen.png" alt="..." ng-class="{notchecked: building.haskitchen}" ng-click="offer.handlers.changeClass($event)">
-                        <input ng-model="building.haskitchen" id="building_haskitchen" value="1" type="checkbox" class="hidden" autocomplete="off" name="building_haskitchen">
+                    <label for="building_haskitchen_##building.index##" class="pointer">
+                        <img src="/assets/img/icons/icon-kitchen.png" alt="..." class="notchecked" ng-class="{checked: building.haskitchen}" ng-click="offer.handlers.changeClass($event)" tooltips tooltip-template="Does your building have a kitchen?">
+                        <input ng-model="building.haskitchen" id="building_haskitchen_##building.index##" value="1" type="checkbox" class="hidden" autocomplete="off" name="building_haskitchen_##building.index##">
+                    </label>
+                </div>
+            </div>
+            <div class="col-sm-2  col-xs-4">
+                <div class="form-group">
+                    <label for="building_wheelchairaccessible_##building.index##" class="pointer">
+                        <img src="/assets/img/icons/icon-disabled.png" alt="..." class="notchecked" ng-class="{checked: building.wheelchairaccessible}" ng-click="offer.handlers.changeClass($event)" tooltips tooltip-template="Is your building accessible for wheelchair users?">
+                        <input ng-model="building.wheelchairaccessible" id="building_wheelchairaccessible_##building.index##" value="1" type="checkbox" class="hidden" autocomplete="off" name="building_wheelchairaccessible_##building.index##">
                     </label>
                 </div>
             </div>
         </div>
         <div class="form-group">
             <label for="building_extrainfo"><strong>Extra info</strong></label>
-            <textarea class="form-control" ng-model="building.extrainfo" id="building_extrainfo" type="text" name="building_extrainfo"></textarea>
+            <textarea class="form-control" ng-model="building.extrainfo" id="building_extrainfo" type="text" name="building_extrainfo" placeholder="Add some extra info about this building..."></textarea>
         </div>
 
-        <button type="button" class="btn btn-secundary"  ng-click="offer.events.removeBuilding($index)">Remove building</button>
+        <button type="button" class="btn btn-danger pull-right"  ng-click="offer.events.removeBuilding($index)"><i class="fa fa-times" aria-hidden="true"></i> Remove building</button>
 
-        <hr class="color-primary">
+        <hr class="color-primary m-t-80">
     </fieldset>
 
     <!-- Fieldset for adding meadow -->
     <fieldset  ng-repeat="meadow in offer.state.meadows">
-        <h2>Meadow n° ##meadow.index##</h2>
+        <h3>Meadow n° ##meadow.index##</h3>
         <div class="row">
             <div class="col-sm-6">
                 <div class="form-group">
-                    <label for="meadow_capacity"><strong>Capacity</strong></label>
-                    <input ng-model="meadow.capacity" class="form-control" id="meadow_capacity" type="number" name="meadow_capacity">
+                    <label for="meadow_capacity_##meadow.index##"><strong>Capacity</strong></label>
+                    <input ng-model="meadow.capacity" class="form-control" id="meadow_capacity_##meadow.index##" type="number" name="meadow_capacity_##meadow.index##" placeholder="0">
                 </div>
             </div>
             <div class="col-sm-6">
                 <div class="form-group">
-                    <label for="meadow_sq_meters"><strong>Square meters</strong></label>
-                    <input ng-model="meadow.sqmeters" class="form-control" id="meadow_sq_meters" type="number" name="meadow_sq_meters">
+                    <label for="meadow_sq_meters_##meadow.index##"><strong>Size of the meadow/field (m<sup>2</sup>)</strong></label>
+                    <input ng-model="meadow.sqmeters" class="form-control" id="meadow_sq_meters_##meadow.index##" type="number" name="meadow_sq_meters_##meadow.index##" placeholder="0">
                 </div>
             </div>
         </div>
+        <label class="color-secundary m-b-20">Indicate your meadow facilities</label>
         <div class="row icons">
-            <div class="col-sm-3">
-                <label for="meadow_haswater" class="btn">
-                    <img src="/assets/img/icons/icon-water.png" alt="" ng-class="{notchecked: meadow.haswater}" ng-click="offer.handlers.changeClass($event)">
-                    <input ng-model="meadow.haswater" id="meadow_haswater" value="1" type="checkbox" class="hidden" autocomplete="off" name="meadow_haswater">
+            <div class="col-sm-3 col-xs-4">
+                <label for="meadow_haswater_##meadow.index##" class="pointer">
+                    <img src="/assets/img/icons/icon-water.png" alt="" class="notchecked" ng-class="{checked: meadow.haswater}" ng-click="offer.handlers.changeClass($event)">
+                    <input ng-model="meadow.haswater_##meadow.index##" id="meadow_haswater_##meadow.index##" value="1" type="checkbox" class="hidden" autocomplete="off" name="meadow_haswater_##meadow.index##">
                 </label>
             </div>
-            <div class="col-sm-3">
+            <div class="col-sm-3 col-xs-4">
                 <div class="form-group">
-                    <label for="meadow_haselectricity" class="btn">
-                        <img src="/assets/img/icons/icon-electricity.png" alt="..." ng-class="{notchecked: meadow.haselectricity}" ng-click="offer.handlers.changeClass($event)">
-                        <input ng-model="meadow.haselectricity" id="meadow_haselectricity" value="1" type="checkbox" class="hidden" autocomplete="off" name="meadow_haselectricity">
+                    <label for="meadow_haselectricity_##meadow.index##" class="pointer">
+                        <img src="/assets/img/icons/icon-electricity.png" alt="..." class="notchecked" ng-class="{checked: meadow.haselectricity}" ng-click="offer.handlers.changeClass($event)">
+                        <input ng-model="meadow.haselectricity" id="meadow_haselectricity_##meadow.index##" value="1" type="checkbox" class="hidden" autocomplete="off" name="meadow_haselectricity_##meadow.index##">
                     </label>
                 </div>
             </div>
-            <div class="col-sm-3">
+            <div class="col-sm-3 col-xs-4">
                 <div class="form-group">
-                    <label for="meadow_tentsallowed" class="btn">
-                        <img src="/assets/img/icons/icon-tent.png" alt="..." ng-class="{notchecked: meadow.tentsallowed}" ng-click="offer.handlers.changeClass($event)">
-                        <input ng-model="meadow.tentsallowed" id="meadow_tentsallowed" value="1" type="checkbox" class="hidden" autocomplete="off" name="meadow_tentsallowed">
+                    <label for="meadow_tentsallowed_##meadow.index##" class="pointer">
+                        <img src="/assets/img/icons/icon-tent.png" alt="..." class="notchecked" ng-class="{checked: meadow.tentsallowed}" ng-click="offer.handlers.changeClass($event)">
+                        <input ng-model="meadow.tentsallowed" id="meadow_tentsallowed_##meadow.index##" value="1" type="checkbox" class="hidden" autocomplete="off" name="meadow_tentsallowed_##meadow.index##">
                     </label>
                 </div>
             </div>
-            <div class="col-sm-3">
+            <div class="col-sm-3 col-xs-4">
                 <div class="form-group">
                     <div class="form-group">
-                        <label for="meadow_campfireallowed" class="btn">
-                            <img src="/assets/img/icons/icon-bonfire.png" alt="..." ng-class="{notchecked: meadow.campfireallowed}" ng-click="offer.handlers.changeClass($event)">
+                        <label for="meadow_campfireallowed" class="pointer">
+                            <img src="/assets/img/icons/icon-bonfire.png" alt="..." class="notchecked" ng-class="{checked: meadow.campfireallowed}" ng-click="offer.handlers.changeClass($event)">
                             <input ng-model="meadow.campfireallowed" id="meadow_campfireallowed" value="1" type="checkbox" class="hidden" autocomplete="off" name="meadow_campfireallowed">
                         </label>
                     </div>
@@ -127,22 +159,21 @@
         </div>
         <div class="form-group">
             <label for="meadow_extrainfo"><strong>Extra info</strong></label>
-            <textarea class="form-control" ng-model="meadow.extrainfo" id="meadow_extrainfo" type="text" name="meadow_extrainfo"></textarea>
+            <textarea class="form-control" ng-model="meadow.extrainfo" id="meadow_extrainfo" type="text" name="meadow_extrainfo" placeholder="Add some extra info about this meadow..."></textarea>
         </div>
 
-        <button type="button" class="btn btn-secundary"  ng-click="offer.events.removeMeadow($index)">Remove meadow</button>
+        <button type="button" class="btn btn-danger pull-right"  ng-click="offer.events.removeMeadow($index)"><i class="fa fa-times" aria-hidden="true"></i> Remove meadow</button>
 
-        <hr class="color-primary">
+        <hr class="color-primary m-t-80">
     </fieldset>
 
-    <button type="button" class="btn btn-secundary" ng-click="offer.events.addNewBuilding()">Add Building</button>
-    <button type="button" class="btn btn-secundary" ng-click="offer.events.addNewMeadow()">Add Meadow</button>
+
 
     <div class="form-group">
-        <button type="button" class="btn btn-secundary p-l-40 p-r-40 pull-left" data-ng-click="offer.events.updateCampsiteData(0)">
+        <button type="button" class="btn btn-secundary p-l-30 p-r-30 pull-left" data-ng-click="offer.events.updateCampsiteData(0)">
             Back
         </button>
-        <button type="submit" class="btn btn-secundary p-l-40 p-r-40 pull-right" validation-submit="campsitefacilitiesinformation" data-ng-click="offer.events.updateCampsiteData(2)">
+        <button type="submit" ng-disabled="offer.state.buildings.length == 0 && offer.state.meadows.length == 0" class="btn btn-secundary p-l-30 p-r-30 pull-right" validation-submit="campsitefacilitiesinformation" data-ng-click="offer.events.updateCampsiteData(2)">
             Next
         </button>
     </div>

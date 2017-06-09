@@ -92,7 +92,7 @@ class CampsiteController extends Controller
         $campsitedata = $request->get('campsite');
         $images = $request->get('images');
         $buildings = $request->get('buildings');
-        $meadows = $request->get('meadowse');
+        $meadows = $request->get('meadows');
 
         $campsitevalidator = Validator::make($campsitedata, [
             'placename' => 'required',

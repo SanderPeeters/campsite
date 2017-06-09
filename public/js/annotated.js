@@ -400,7 +400,7 @@ campsite.controllers.controller('OfferCtrl', ["$scope", "$rootScope", "$location
                 { name: 'state-2.html', url: 'assets/templates/offer/state-2.html', index: 1},
                 { name: 'state-3.html', url: 'assets/templates/offer/state-3.html', index: 2},
                 { name: 'state-finish.html', url: 'assets/templates/offer/state-finish.html', index: 4}];
-            self.state.template = self.state.templates[0];
+            self.state.template = self.state.templates[1];
         },
 
         postDataToServer: function () {
