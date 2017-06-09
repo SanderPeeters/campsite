@@ -6,32 +6,26 @@
 @section('content')
 
     <!-- Section intro with searchfield -->
-    <section id="home-intro" class="main vh-min-100">
+    <section id="home-intro" class="main vh-min-80">
         <div class="container">
             <div class="section--centered">
-                <form action="">
-                    <div class="row">
-                        <div class="col-sm-10 col-sm-offset-1">
-                            <div class="image--home m-b-30 m-t-20">
-                                <img src="assets/img/logo/Campsite_logo_white.png" alt="Logo from Campsite">
-                            </div>
-                            {{--<h3 class="m-b-20">Find the perfect campsite</h3>--}}
+                <div class="row">
+                    <div class="col-sm-2 col-sm-offset-5 col-xs-6 col-xs-offset-3">
+                        <div class="image--home">
+                            <img src="assets/img/logo/Campsite_logo_white.png" alt="Logo from Campsite">
                         </div>
                     </div>
-                    <div class="row bg--transparent">
-                        <div class="col-sm-12">
-                            <div class="form-group m-t-15">
-                                <a href="{{ route('search-campsite') }}" target="_self">
-                                    <button type="submit" class="btn btn-block btn-main">
-                                        Start looking for a Campsite!
-                                    </button>
-                                </a>
-                            </div>
-                        </div>
+                </div>
+                {{--<h3 >Find the perfect campsite</h3>--}}
+                <div class="row m-t-20">
+                    <div class="col-sm-6 col-sm-offset-3">
+                        <a href="{{route('search-campsite')}}" target="_self">
+                            <img src="assets/img/bg/Belgium.svg" alt="" style="width: 100%;">
+                        </a>
                     </div>
-                </form>
-                <div class="row m-t-60">
-                    <div class="col-xs-6 col-xs-offset-3">
+                </div>
+                <div class="row m-t-60 m-b-30">
+                    <div class="col-xs-4 col-xs-offset-4">
                         <a href="" target="_self">
                             <button type="button" class="btn btn-transparent btn-block">
                                 How it works?
