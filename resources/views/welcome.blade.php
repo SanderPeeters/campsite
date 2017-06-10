@@ -59,18 +59,18 @@
                         @foreach($campsites as $campsite)
                             <div class="item card">
                                 <div class="card--img">
-                                    <a href="{{  route('campsite.display', [ 'id' => $campsite->id ]) }}" target="_self">
-                                        @if (count($campsite->campimages))
-                                            <img src="/img/campsites/{{$campsite->campimages[0]->filename}}">
+                                    <a href="{{  route('campsite.display', [ 'id' => $campsite[0]->id ]) }}" target="_self">
+                                        @if (count($campsite[0]->campimages))
+                                            <img src="/img/campsites/{{$campsite[0]->campimages[0]->filename}}">
                                         @else
                                             <img src="/assets/img/defaults/default-campsite-1.jpg">
                                         @endif
                                     </a>
                                 </div>
                                 <div class="card--info">
-                                    <p>{{ $campsite->state->name }} - {{$campsite->province->name }} - {{$campsite->city}}</p>
-                                    <a href="{{  route('campsite.display', [ 'id' => $campsite->id ]) }}" target="_self">
-                                        <h3>{{$campsite->campsite_name}}</h3>
+                                    <p>{{ $campsite[0]->state->name }} - {{$campsite[0]->province->name }} - {{$campsite[0]->city}}</p>
+                                    <a href="{{  route('campsite.display', [ 'id' => $campsite[0]->id ]) }}" target="_self">
+                                        <h3>{{$campsite[0]->campsite_name}}</h3>
                                     </a>
                                 </div>
                             </div>

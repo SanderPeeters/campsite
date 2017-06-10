@@ -7799,6 +7799,11 @@ section#search-campsite-section .results .result__image img {
   object-position: 50%;
 }
 
+section#search-campsite-section .results .result__info {
+  height: 100%;
+  padding-right: 15px;
+}
+
 section#search-campsite-section .results .result__info--address {
   margin: 0px;
   padding-top: 15px;
@@ -7813,6 +7818,17 @@ section#search-campsite-section .results .result__info--name {
   padding-bottom: 10px;
   font-size: 20px;
   color: #134352;
+}
+
+section#search-campsite-section .results .result__info .icon--wrapper {
+  position: absolute;
+  right: 30px;
+  bottom: 15px;
+  max-width: 50px;
+}
+
+section#search-campsite-section .results .result__info .icon--wrapper img {
+  width: 100%;
 }
 
 section#search-campsite-section .search {

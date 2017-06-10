@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Validator;
 
 class CampsiteController extends Controller
 {
-    private $paginatenumber = 25;
+    private $paginatenumber = 5;
 
     public function index()
     {
@@ -44,11 +44,84 @@ class CampsiteController extends Controller
 
     public function getAllCampsites()
     {
-        $campsites = Campsite::with('campimages')->with('province')->with('state')->latest()->paginate($this->paginatenumber);
+        /*$campsites = Campsite::with('campimages')->with('user.movement')->with('buildings')->with('meadows')->with('province')->with('state')->latest()->paginate($this->paginatenumber);
         foreach ($campsites as $campsite)
         {
             $campsite->province->name = trans('provinces.'.$campsite->province->id);
-            $campsite->state->name = trans('states.'.$campsite->state->id);
+           $campsite->state->name = trans('states.'.$campsite->state->id);
+        }*/
+        $campsites = Campsite::with('campimages')->with('province')->with('state')->with('user.movement')->latest()->get();
+        $campsites = $campsites->groupBy('campsite_name');
+
+        $campsites = $this->collectCampsites($campsites);
+        return $campsites;
+    }
+
+    public function collectCampsites($campsites)
+    {
+        foreach ($campsites as $name => $campsite) {
+            $buildings = Building::where('campsite_id', $campsite[0]->id)->get();
+            $meadows = Meadow::where('campsite_id', $campsite[0]->id)->get();
+
+            $campsite[0]->province->name = trans('provinces.'.$campsite[0]->province->id);
+            $campsite[0]->state->name = trans('states.'.$campsite[0]->state->id);
+
+            $totalcapacity = 0;
+            $haswifi = false;
+            $haskitchen = false;
+            $haswater = false;
+            $haselectricity = false;
+            $campfiresallowed = false;
+            $tentsallowed = false;
+
+            foreach ($buildings as $building) {
+                if ($building->has_wifi)
+                {
+                    $haswifi = true;
+                }
+                if ($building->has_kitchen)
+                {
+                    $haskitchen = true;
+                }
+                if ($building->has_water)
+                {
+                    $haswater = true;
+                }
+                if ($building->has_electricity)
+                {
+                    $haselectricity = true;
+                }
+
+                $totalcapacity += $building->capacity;
+            }
+            foreach ($meadows as $meadow) {
+                $totalcapacity += $meadow->capacity;
+                if ($meadow->tents_allowed)
+                {
+                    $tentsallowed = true;
+                }
+                if ($meadow->campfire_allowed)
+                {
+                    $campfiresallowed = true;
+                }
+                if ($meadow->has_water)
+                {
+                    $haswater = true;
+                }
+                if ($meadow->has_electricity)
+                {
+                    $haselectricity = true;
+                }
+            }
+            $campsite->put('tentsallowed', $tentsallowed);
+            $campsite->put('campfireallowed', $campfiresallowed);
+            $campsite->put('haswifi', $haswifi);
+            $campsite->put('haskitchen', $haskitchen);
+            $campsite->put('haswater', $haswater);
+            $campsite->put('haselectricity', $haselectricity);
+            $campsite->put('totalcapacity', $totalcapacity);
+            $campsite->put('buildings', $buildings);
+            $campsite->put('meadows', $meadows);
         }
         return $campsites;
     }

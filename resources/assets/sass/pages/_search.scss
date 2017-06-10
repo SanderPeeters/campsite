@@ -32,6 +32,9 @@ section#search-campsite-section {
       }
 
       &__info {
+        height: 100%;
+        padding-right: 15px;
+
         &--address {
           margin: 0px;
           padding-top: 15px;
@@ -45,6 +48,16 @@ section#search-campsite-section {
           padding-bottom: 10px;
           font-size: 20px;
           color: $brand-secundary;
+        }
+
+        .icon--wrapper {
+          position: absolute;
+          right: 30px;
+          bottom: 15px;
+          max-width: 50px;
+          img {
+            width: 100%;
+          }
         }
       }
     }

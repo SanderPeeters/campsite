@@ -8,7 +8,7 @@ use App\Http\Controllers\Controller;
 
 class SearchController extends Controller
 {
-    private $paginatenumber = 10;
+    private $paginatenumber = 5;
 
     public function index ()
     {
@@ -19,7 +19,7 @@ class SearchController extends Controller
     {
         $query = Campsite::select();
         $query->where('province_id',$id);
-        $campsites = $query->with('campimages')->latest()->paginate($this->paginatenumber);
+        $campsites = $query->with('campimages')->with('user.movement')->with('buildings')->with('meadows')->with('province')->with('state')->latest()->paginate($this->paginatenumber);
         foreach ($campsites as $campsite)
         {
             $campsite->province->name = trans('provinces.'.$campsite->province->id);
@@ -35,11 +35,6 @@ class SearchController extends Controller
         if ($request->get('campsite_name')){
             $query->where('campsite_name', 'like', '%'.$request->get('campsite_name').'%');
         }
-        /*if ($request->get('capacity_slider')){
-            $query->whereHas('buildings', function ($query) use ($request) {
-                $query->whereBetween('capacity', [json_decode($request->capacity_slider)->minValue, json_decode($request->capacity_slider)->maxValue]);
-            });
-        }*/
         if ($request->get('price_slider')){
             $query->whereBetween('price_per_night', [json_decode($request->price_slider)->minValue, json_decode($request->price_slider)->maxValue]);
         }
@@ -76,12 +71,26 @@ class SearchController extends Controller
             $query->whereIn('state_id',array_pluck(json_decode($request->get('states'), true), 'id'));
         }
 
-        $campsites = $query->with('campimages')->latest()->paginate($this->paginatenumber);
+        $campsites = $query->with('campimages')->with('user.movement')->latest()->paginate($this->paginatenumber);
 
         foreach ($campsites as $campsite)
         {
             $campsite->province->name = trans('provinces.'.$campsite->province->id);
             $campsite->state->name = trans('states.'.$campsite->state->id);
+        }
+        $campsites = $campsites->groupBy('campsite_name');
+
+        app('App\Http\Controllers\Campsite\CampsiteController')->collectCampsites($campsites);
+
+        if ($request->get('capacity_slider')){
+            foreach ($campsites as $value => $campsite)
+            {
+                if ($campsite['totalcapacity'] <= json_decode($request->capacity_slider)->minValue ||  json_decode($request->capacity_slider)->maxValue <= $campsite['totalcapacity'])
+                {
+                    $campsites->forget($value);
+                }
+            }
+            //$campsites = $campsites->whereBetween('capacity', [json_decode($request->capacity_slider)->minValue, json_decode($request->capacity_slider)->maxValue]);
         }
 
         return $campsites;

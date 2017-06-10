@@ -4,8 +4,8 @@ campsite.controllers.controller('SearchCtrl', function($scope, $rootScope, $http
     var campsitesearchurl = "/" + currentlanguage + "/campsite/search";
     var provincesurl = "/" + currentlanguage + "/provinces";
     var statesurl = "/" + currentlanguage + "/states";
-    var searchOnProvinceUrl = '/en/search-campsite/';
-    var searchpage = '/en/search-campsite';
+    var searchOnProvinceUrl = '/' + currentlanguage + '/search-campsite/';
+    var searchpage = '/' + currentlanguage + '/search-campsite';
 
     angular.element( document.querySelectorAll( '#belgiummap > path') ).click(
         function (event) {
@@ -14,8 +14,8 @@ campsite.controllers.controller('SearchCtrl', function($scope, $rootScope, $http
                 method: "GET",
                 url: searchOnProvinceUrl + sessionStorage.provinceId
             }).then(function success(response) {
-                sessionStorage.searchresults = JSON.stringify(response.data.data);
-                console.log(response.data.data);
+                sessionStorage.searchresults = JSON.stringify(response.data);
+                console.log(sessionStorage.searchresults);
                 $window.location.href = searchpage;
             }, function error(response) {
                 console.log(response);
@@ -35,23 +35,22 @@ campsite.controllers.controller('SearchCtrl', function($scope, $rootScope, $http
 
             if (sessionStorage.searchresults)
             {
-                var searchedprovinces = JSON.parse(sessionStorage.searchresults)
-                self.state.campsite_offers = searchedprovinces;
-                console.log(searchedprovinces);
-                /*self.state.campsite_offers_loading = false;
-                 self.state.paginate_nexturl = JSON.parse(sessionStorage.searchresults.next_page_url);
-                 self.state.paginate_previousurl = JSON.parse(sessionStorage.searchresults.prev_page_url);
+                var searchedprovinces = JSON.parse(sessionStorage.searchresults);
+                self.state.campsite_offers = searchedprovinces.data;
+                self.state.campsite_offers_loading = false;
+                self.state.paginate_nexturl = searchedprovinces.next_page_url;
+                self.state.paginate_previousurl = searchedprovinces.prev_page_url;
 
-                 self.state.number_of_campsites = JSON.parse(sessionStorage.searchresults.total);
-                 self.state.number_of_all_campsites = JSON.parse(sessionStorage.searchresults.total);
-                 self.state.current_page = JSON.parse(sessionStorage.searchresults.current_page);
-                 self.state.number_of_pages = JSON.parse(sessionStorage.searchresults.last_page);*/
+                self.state.number_of_campsites = searchedprovinces.total;
+                self.state.number_of_all_campsites = searchedprovinces.total;
+                self.state.current_page = searchedprovinces.current_page;
+                self.state.number_of_pages = searchedprovinces.last_page;
 
             } else {
                 service.get(campsiteinventoryurl)
                     .then(function success(response) {
                         console.log(response);
-                        self.state.campsite_offers = response.data;
+                        self.state.campsite_offers = response;
                         self.state.campsite_offers_loading = false;
                         self.state.paginate_nexturl = response.next_page_url;
                         self.state.paginate_previousurl = response.prev_page_url;
@@ -109,7 +108,7 @@ campsite.controllers.controller('SearchCtrl', function($scope, $rootScope, $http
                 service.get(campsitesearchurl, self.state.searchObject)
                     .then(function success(response) {
                         console.log(response);
-                        self.state.campsite_offers = response.data;
+                        self.state.campsite_offers = response;
                         if (response.total == 0)
                         {
                             self.state.noresultsfound = true;
