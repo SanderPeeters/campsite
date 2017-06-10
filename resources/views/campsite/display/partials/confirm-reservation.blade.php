@@ -10,6 +10,7 @@
             <div class="panel m-t-120 m-b-20 no-border-radius no-border" >
                 <div class="panel-body no-padding m-b-60">
                     <form name="reservationform" ng-controller="ReservationCtrl as reservation" class="no-margin" method="POST" action="{{route('reservation.store')}}">
+                        {{csrf_field()}}
                         <div class="row">
                             <div class="col-md-7">
                                 <div class="p-b-60 p-t-20 p-l-20 p-r-20">

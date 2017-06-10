@@ -1,5 +1,5 @@
 <form name="campsitebasicinformation">
-    <h2>Basic information</h2>
+    <h2 class="color-secundary">Basic information</h2>
 
     <div class="form-group">
         <label for="placename"><strong>Name your Campsite</strong></label>
@@ -19,7 +19,7 @@
     <div class="row">
         <div class="col-sm-3">
             <div class="form-group">
-                <label for="price"><strong>Price per night (€)</strong></label>
+                <label for="price"><strong>Price per night (€)</strong> <a href="" tooltips tooltip-template="Price is per night per person in euros" tooltip-size="small"><i class="fa fa-info-circle"></i></a></label>
                 <input ng-model="offer.state.campsitetosend.price" class="form-control" id="price" type="number" name="price" validator="required, number" min="0" placeholder="Price (€)">
             </div>
         </div>

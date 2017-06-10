@@ -26,11 +26,19 @@ section#search-campsite-section {
           object-fit: cover;
           height: 100%;
           max-height: 260px;
+          min-height: 260px;
           object-position: 50%;
         }
       }
 
       &__info {
+        height: 100%;
+        padding-right: 15px;
+
+        p {
+          margin-bottom: 0px;
+        }
+
         &--address {
           margin: 0px;
           padding-top: 15px;
@@ -44,6 +52,34 @@ section#search-campsite-section {
           padding-bottom: 10px;
           font-size: 20px;
           color: $brand-secundary;
+        }
+
+        .left-positioned {
+          position: absolute;
+          bottom: 15px;
+          left: 15px;
+        }
+        .icon--wrapper {
+          max-width: 50px;
+
+          &.right-positioned {
+            position: absolute;
+            right: 30px;
+            bottom: 15px;
+          }
+          img {
+            width: 100%;
+          }
+        }
+
+        .icon--small {
+          max-width: 30px;
+          float: left;
+          padding-top: 5px;
+          margin-right: 15px;
+          img {
+            width: 100%;
+          }
         }
       }
     }

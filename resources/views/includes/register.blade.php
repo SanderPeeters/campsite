@@ -8,15 +8,27 @@
         </div>
         <div class="row">
             <div class="col-sm-10 col-sm-offset-1">
-                <h2 class="color-light-grey">
-                    Do you have a campsite and/or meadow for rent? <br>
-                    Please register here for free and create your campsite!
-                </h2>
-                <a href="{{ route('register') }}" target="_self">
-                    <button type="button" class="btn btn-white p-t-10 p-b-10 p-l-40 p-r-40 m-t-60">
-                        Register
-                    </button>
-                </a>
+                @if (Auth::guest())
+                    <h2 class="color-light-grey">
+                        Do you have a campsite and/or meadow for rent? <br>
+                        Please register here for free and create your campsite!
+                    </h2>
+                    <a href="{{ route('register') }}" target="_self">
+                        <button type="button" class="btn btn-white p-t-10 p-b-10 p-l-40 p-r-40 m-t-60">
+                            Register
+                        </button>
+                    </a>
+                @else
+                    <h2 class="color-light-grey">
+                        Want to make changes to your Campsite? <br>
+                        Or want to manage your reservations?
+                    </h2>
+                    <a href="{{ route('offer-campsite') }}" target="_self">
+                        <button type="button" class="btn btn-white p-t-10 p-b-10 p-l-40 p-r-40 m-t-60">
+                            My campsite
+                        </button>
+                    </a>
+                @endif
             </div>
         </div>
     </div>

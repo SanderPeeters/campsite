@@ -5,7 +5,7 @@
 
 
 @section('content')
-    <section id="search-campsite-section" class="main vh-min-90" ng-controller="SearchCtrl as search">
+    <section id="search-campsite-section" class="main vh-min-90" ng-controller="SearchCtrl as search" ng-init="search.events.getAllCampsites()">
         <div class="container">
             <div class="panel m-t-120 m-b-0 no-border-radius no-border" >
                 <div class="panel-body no-padding">
@@ -36,7 +36,7 @@
                 </div>
             </div>
 
-            <div id="search-results-section" class="container">
+            <div id="search-results-section" class="container" ng-init="search.handlers.getAllCampsites()">
                 <div class="panel no-bg no-border-radius no-border m-b-20">
                     <div class="row">
                         <div class="col-sm-4 no-right-padding whitebg">
@@ -53,13 +53,13 @@
                 </div>
             </div>
 
-            <div class="row m-t-20 m-b-80 text-center" ng-cloak>
+            {{--<div class="row m-t-20 m-b-80 text-center" ng-cloak>
                 <div class="col-sm-6 col-sm-offset-3">
                     <p class="color-white">{{ trans('pagination.page') }} ##search.state.current_page## {{ trans('pagination.of') }} ##search.state.number_of_pages##</p>
                     <button class="btn btn-white" ng-disabled="!search.state.paginate_previousurl" ng-click="search.events.changePage(search.state.paginate_previousurl)">{{trans('pagination.previous')}}</button>
                     <button class="btn btn-white" ng-disabled="!search.state.paginate_nexturl" ng-click="search.events.changePage(search.state.paginate_nexturl)">{{trans('pagination.next')}}</button>
                 </div>
-            </div>
+            </div>--}}
 
         </div>
     </section>

@@ -10,6 +10,10 @@
   a {
     color: white;
   }
+  .nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
+    background: transparent;
+    border-color: white;
+  }
 
   li {
     a {
@@ -32,6 +36,24 @@
 
     &:hover, &.active {
       border-bottom: 1px solid white;
+    }
+
+    .dropdown-menu {
+      min-width: 0px;
+      text-align: center;
+      background: rgba(255,255,255,0.7);
+      border-radius: 0;
+      border: 0;
+      li {
+        &:hover, &:focus, &:link {
+          border: none !important;
+        }
+        a {
+          margin: 0px;
+          border: none;
+          color: $brand-primary;
+        }
+      }
     }
   }
 
