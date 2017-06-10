@@ -12,7 +12,6 @@ class VerifyCsrfToken extends BaseVerifier
      * @var array
      */
     protected $except = [
-        '/en/campsite-offer/images/store',
-        '/en/make-reservation'
+        '/en/campsite-offer/images/store'
     ];
 }

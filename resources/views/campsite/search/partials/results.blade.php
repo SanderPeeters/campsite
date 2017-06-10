@@ -21,25 +21,36 @@
                 <a href="{{ app()->getLocale() }}/campsite/##campsite[0].id##" target="_self">
                     <h3 class="result__info--name">##campsite[0].campsite_name##</h3>
                 </a>
-
-                {{--<table class="table">
-                    <tr>
-                        <td class="text-center">
-                            Buildings <br>
-                            <span>##campsite.buildings.length##</span>
-                        </td>
-                        <td class="text-center">
-                            Meadows <br>
-                            <span>##campsite.meadows.length##</span>
-                        </td>
-                        <td class="text-center">
-                            Price <br>
-                            <span>##campsite.price_per_night##€</span>
-                        </td>
-                    </tr>
-                </table>--}}
-
-                <div class="icon--wrapper">
+                <p>
+                    Price: ##campsite[0].price_per_night##€
+                </p>
+                <p>
+                    Group Capacity: ##campsite.totalcapacity##
+                </p>
+                <div ng-if="campsite.haselectricity" class="icon--small">
+                    <img src="/assets/img/icons/icon-plug.svg" alt="">
+                </div>
+                <div ng-if="campsite.haswater" class="icon--small">
+                    <img src="/assets/img/icons/icon-tap.svg" alt="">
+                </div>
+                <div ng-if="campsite.haskitchen" class="icon--small">
+                    <img src="/assets/img/icons/icon-pot.svg" alt="">
+                </div>
+                <div ng-if="campsite.haswifi" class="icon--small">
+                    <img src="/assets/img/icons/icon-wifi.svg" alt="">
+                </div>
+                <div ng-if="campsite.tentsallowed" class="icon--small">
+                    <img src="/assets/img/icons/icon-tent-green.svg" alt="">
+                </div>
+                <div ng-if="campsite.campfireallowed" class="icon--small">
+                    <img src="/assets/img/icons/icon-bonfire-green.svg" alt="">
+                </div>
+                <div class="left-positioned">
+                    <a href="{{ app()->getLocale() }}/campsite/##campsite[0].id##" target="_self">
+                    <button class="btn btn-secundary-opposite p-l-20 p-r-20">More info</button>
+                    </a>
+                </div>
+                <div class="icon--wrapper right-positioned">
                     <img src="/assets/img/defaults/##campsite[0].user.movement.filename##" alt="">
                 </div>
             </div>

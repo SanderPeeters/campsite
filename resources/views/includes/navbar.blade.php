@@ -26,7 +26,39 @@
         @if (Auth::guest())
           <li><a href="{{ route('login') }}" target="_self">{{ trans('navigation.login') }}</a></li>
           <li class=""><a href="{{ route('register') }}" target="_self">{{ trans('navigation.register') }}</a></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              {{ app()->getLocale() }} <i class="fa fa-caret-down"></i>
+            </a>
+            <ul class="dropdown-menu">
+              @foreach (config('translatable.locales') as $lang => $language)
+                @if ($lang != app()->getLocale())
+                  <li>
+                    <a href="{{ route('lang.switch', $lang) }}" target="_self">
+                      {{ $lang }}
+                    </a>
+                  </li>
+                @endif
+              @endforeach
+            </ul>
+          </li>
         @else
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              {{ app()->getLocale() }} <i class="fa fa-caret-down"></i>
+            </a>
+            <ul class="dropdown-menu">
+              @foreach (config('translatable.locales') as $lang => $language)
+                @if ($lang != app()->getLocale())
+                  <li>
+                    <a href="{{ route('lang.switch', $lang) }}" target="_self">
+                      {{ $lang }}
+                    </a>
+                  </li>
+                @endif
+              @endforeach
+            </ul>
+          </li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
               {{ Auth::user()->name }} <span class="caret"></span>
@@ -47,22 +79,6 @@
             </ul>
           </li>
         @endif
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            {{ app()->getLocale() }} <i class="fa fa-caret-down"></i>
-          </a>
-          <ul class="dropdown-menu">
-            @foreach (config('translatable.locales') as $lang => $language)
-              @if ($lang != app()->getLocale())
-                <li>
-                  <a href="{{ route('lang.switch', $lang) }}" target="_self">
-                    {{ $lang }}
-                  </a>
-                </li>
-              @endif
-            @endforeach
-          </ul>
-        </li>
       </ul>
     </div>
   </div>

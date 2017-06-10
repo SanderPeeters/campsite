@@ -7804,6 +7804,10 @@ section#search-campsite-section .results .result__info {
   padding-right: 15px;
 }
 
+section#search-campsite-section .results .result__info p {
+  margin-bottom: 0px;
+}
+
 section#search-campsite-section .results .result__info--address {
   margin: 0px;
   padding-top: 15px;
@@ -7820,14 +7824,34 @@ section#search-campsite-section .results .result__info--name {
   color: #134352;
 }
 
-section#search-campsite-section .results .result__info .icon--wrapper {
+section#search-campsite-section .results .result__info .left-positioned {
   position: absolute;
-  right: 30px;
   bottom: 15px;
+  left: 15px;
+}
+
+section#search-campsite-section .results .result__info .icon--wrapper {
   max-width: 50px;
 }
 
+section#search-campsite-section .results .result__info .icon--wrapper.right-positioned {
+  position: absolute;
+  right: 30px;
+  bottom: 15px;
+}
+
 section#search-campsite-section .results .result__info .icon--wrapper img {
+  width: 100%;
+}
+
+section#search-campsite-section .results .result__info .icon--small {
+  max-width: 30px;
+  float: left;
+  padding-top: 5px;
+  margin-right: 15px;
+}
+
+section#search-campsite-section .results .result__info .icon--small img {
   width: 100%;
 }
 
@@ -8443,6 +8467,11 @@ a, a:hover, a:link, a:focus, a:active {
   color: white;
 }
 
+.navbar .nav .open > a, .navbar .nav .open > a:hover, .navbar .nav .open > a:focus {
+  background: transparent;
+  border-color: white;
+}
+
 .navbar li a {
   margin-top: 14px;
   margin-bottom: 14px;
@@ -8461,6 +8490,24 @@ a, a:hover, a:link, a:focus, a:active {
 
 .navbar li:hover, .navbar li.active {
   border-bottom: 1px solid white;
+}
+
+.navbar li .dropdown-menu {
+  min-width: 0px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 0;
+  border: 0;
+}
+
+.navbar li .dropdown-menu li:hover, .navbar li .dropdown-menu li:focus, .navbar li .dropdown-menu li:link {
+  border: none !important;
+}
+
+.navbar li .dropdown-menu li a {
+  margin: 0px;
+  border: none;
+  color: #009133;
 }
 
 @media screen and (max-width: 767px) {

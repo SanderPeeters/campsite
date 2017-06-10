@@ -609,6 +609,7 @@ campsite.controllers.controller('SearchCtrl', ["$scope", "$rootScope", "$http", 
             {
                 var searchedprovinces = JSON.parse(sessionStorage.searchresults);
                 self.state.campsite_offers = searchedprovinces.data;
+                console.log(searchedprovinces.data);
                 self.state.campsite_offers_loading = false;
                 self.state.searchObject.provinces = [searchedprovinces.data.province];
 
@@ -712,6 +713,7 @@ campsite.controllers.controller('SearchCtrl', ["$scope", "$rootScope", "$http", 
                     building: false,
                     meadow: false
                 }};
+            self.events.getAllCampsites();
         }
     };
 

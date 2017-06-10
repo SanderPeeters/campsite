@@ -588,7 +588,6 @@ campsite.controllers.controller('SearchCtrl', ["$scope", "$rootScope", "$http", 
             }).then(function success(response) {
                 console.log(response);
                 sessionStorage.searchresults = JSON.stringify(response);
-                console.log(sessionStorage.searchresults);
                 $window.location.href = searchpage;
             }, function error(response) {
                 console.log(response);
@@ -612,13 +611,11 @@ campsite.controllers.controller('SearchCtrl', ["$scope", "$rootScope", "$http", 
                 self.state.campsite_offers = searchedprovinces.data;
                 console.log(searchedprovinces.data);
                 self.state.campsite_offers_loading = false;
-                console.log(searchedprovinces.data.province);
                 self.state.searchObject.provinces = [searchedprovinces.data.province];
 
             } else {
                 service.get(campsiteinventoryurl)
                     .then(function success(response) {
-                        console.log(response);
                         self.state.campsite_offers = response;
                         self.state.campsite_offers_loading = false;
                     }, function error(response) {
@@ -716,6 +713,7 @@ campsite.controllers.controller('SearchCtrl', ["$scope", "$rootScope", "$http", 
                     building: false,
                     meadow: false
                 }};
+            self.events.getAllCampsites();
         }
     };
 
