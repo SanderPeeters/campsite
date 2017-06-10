@@ -7941,6 +7941,41 @@ section#show-campsite-section .legend img {
   height: 30px;
 }
 
+p.review--date {
+  font-size: 10px;
+  margin: 0px;
+  text-align: center;
+  color: #9b9da0;
+}
+
+p.review--user {
+  text-align: center;
+  display: block;
+  position: relative;
+  margin: 0;
+}
+
+p.review--user span {
+  display: inline-block;
+  background: #fff;
+  padding: 5px 10px;
+  position: relative;
+  font-size: 16px;
+  color: #009133;
+  font-weight: 700;
+}
+
+p.review--user:before {
+  content: '';
+  display: block;
+  position: absolute;
+  height: 2px;
+  width: 100%;
+  background-color: #009133;
+  top: 50%;
+  margin-top: -1px;
+}
+
 .form-control {
   min-height: 40px;
   padding: 10px 15px;
@@ -8495,7 +8530,7 @@ a, a:hover, a:link, a:focus, a:active {
 .navbar li .dropdown-menu {
   min-width: 0px;
   text-align: center;
-  background: rgba(255, 255, 255, 0.7);
+  background: white;
   border-radius: 0;
   border: 0;
 }
@@ -8512,7 +8547,7 @@ a, a:hover, a:link, a:focus, a:active {
 
 @media screen and (max-width: 767px) {
   .navbar .navbar-collapse {
-    background: rgba(255, 255, 255, 0.7);
+    background: white;
   }
   .navbar li {
     text-align: center;

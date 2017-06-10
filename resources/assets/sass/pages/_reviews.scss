@@ -1,0 +1,40 @@
+p {
+  &.review {
+    &--date {
+      font-size: 10px;
+      margin: 0px;
+      text-align: center;
+      color: $brand-light-grey;
+    }
+    &--user {
+      text-align: center;
+      display: block;
+      position: relative;
+      margin: 0;
+
+      span {
+        display: inline-block;
+        background: #fff;
+        padding: 5px 10px;
+        position: relative;
+        font-size: 16px;
+        color: $brand-primary;
+        font-weight: 700;
+      }
+
+      &:before {
+        content: '';
+        display: block;
+        position: absolute;
+        height: 2px;
+        width: 100%;
+        background-color: $brand-primary;
+        top: 50%;
+        margin-top: -1px;
+      }
+    }
+    &--text {
+
+    }
+  }
+}

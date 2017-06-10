@@ -35,6 +35,7 @@ Route::get('lang/{language}', 'LanguageController@switchLang')->name('lang.switc
 //    Only logged in users can access these routes else redirected to '/'
 Route::group(['middleware' => 'auth'], function()
 {
+    Route::post(trans('routes.storereview'), 'Review\ReviewController@storeReview')->name('review.store');
 
     Route::post('/campsite-offer/store', 'Campsite\CampsiteController@storeCampsite');
     Route::post('/campsite-offer/images/store', 'Campsite\ImageController@saveImage');

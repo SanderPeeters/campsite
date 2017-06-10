@@ -149,7 +149,7 @@ class CampsiteController extends Controller
     public function showCampsite($id, $slug=null)
     {
         try {
-            $campsite = Campsite::with('campimages')->findOrFail($id);
+            $campsite = Campsite::with('campimages')->with('reviews')->findOrFail($id);
 
         } catch(ModelNotFoundException $e) {
             return redirect( route('search-campsite') );
