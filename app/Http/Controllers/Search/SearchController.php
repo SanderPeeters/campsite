@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Search;
 
+use App\Models\Province;
 use App\Models\Campsite;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class SearchController extends Controller
 {
-    private $paginatenumber = 5;
 
     public function index ()
     {
@@ -17,14 +17,12 @@ class SearchController extends Controller
 
     public function searchOnProvince(Request $request, $id)
     {
-        $query = Campsite::select();
-        $query->where('province_id',$id);
-        $campsites = $query->with('campimages')->with('user.movement')->with('buildings')->with('meadows')->with('province')->with('state')->latest()->paginate($this->paginatenumber);
-        foreach ($campsites as $campsite)
-        {
-            $campsite->province->name = trans('provinces.'.$campsite->province->id);
-            $campsite->state->name = trans('states.'.$campsite->state->id);
-        }
+        $campsites = Campsite::where('province_id', $id)->with('campimages')->with('province')->with('state')->with('user.movement')->latest()->get();
+        $campsites = $campsites->groupBy('campsite_name');
+        $province = Province::find($id);
+        $province->name = trans('provinces.'.$id);
+        app('App\Http\Controllers\Campsite\CampsiteController')->collectCampsites($campsites);
+        $campsites->put('province', $province);
         return $campsites;
     }
 
@@ -71,7 +69,7 @@ class SearchController extends Controller
             $query->whereIn('state_id',array_pluck(json_decode($request->get('states'), true), 'id'));
         }
 
-        $campsites = $query->with('campimages')->with('user.movement')->latest()->paginate($this->paginatenumber);
+        $campsites = $query->with('campimages')->with('user.movement')->latest()->get();
 
         foreach ($campsites as $campsite)
         {
@@ -90,7 +88,6 @@ class SearchController extends Controller
                     $campsites->forget($value);
                 }
             }
-            //$campsites = $campsites->whereBetween('capacity', [json_decode($request->capacity_slider)->minValue, json_decode($request->capacity_slider)->maxValue]);
         }
 
         return $campsites;

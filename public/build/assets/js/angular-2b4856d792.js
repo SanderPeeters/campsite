@@ -586,7 +586,8 @@ campsite.controllers.controller('SearchCtrl', ["$scope", "$rootScope", "$http", 
                 method: "GET",
                 url: searchOnProvinceUrl + sessionStorage.provinceId
             }).then(function success(response) {
-                sessionStorage.searchresults = JSON.stringify(response.data);
+                console.log(response);
+                sessionStorage.searchresults = JSON.stringify(response);
                 console.log(sessionStorage.searchresults);
                 $window.location.href = searchpage;
             }, function error(response) {
@@ -609,14 +610,10 @@ campsite.controllers.controller('SearchCtrl', ["$scope", "$rootScope", "$http", 
             {
                 var searchedprovinces = JSON.parse(sessionStorage.searchresults);
                 self.state.campsite_offers = searchedprovinces.data;
+                console.log(searchedprovinces.data);
                 self.state.campsite_offers_loading = false;
-                self.state.paginate_nexturl = searchedprovinces.next_page_url;
-                self.state.paginate_previousurl = searchedprovinces.prev_page_url;
-
-                self.state.number_of_campsites = searchedprovinces.total;
-                self.state.number_of_all_campsites = searchedprovinces.total;
-                self.state.current_page = searchedprovinces.current_page;
-                self.state.number_of_pages = searchedprovinces.last_page;
+                console.log(searchedprovinces.data.province);
+                self.state.searchObject.provinces = [searchedprovinces.data.province];
 
             } else {
                 service.get(campsiteinventoryurl)
@@ -624,13 +621,6 @@ campsite.controllers.controller('SearchCtrl', ["$scope", "$rootScope", "$http", 
                         console.log(response);
                         self.state.campsite_offers = response;
                         self.state.campsite_offers_loading = false;
-                        self.state.paginate_nexturl = response.next_page_url;
-                        self.state.paginate_previousurl = response.prev_page_url;
-
-                        self.state.number_of_campsites = response.total;
-                        self.state.number_of_all_campsites = response.total;
-                        self.state.current_page = response.current_page;
-                        self.state.number_of_pages = response.last_page;
                     }, function error(response) {
                         console.log(response);
                     });
@@ -688,12 +678,6 @@ campsite.controllers.controller('SearchCtrl', ["$scope", "$rootScope", "$http", 
                             self.state.noresultsfound = false;
                         }
                         self.state.campsite_offers_loading = false;
-                        self.state.paginate_nexturl = response.next_page_url;
-                        self.state.paginate_previousurl = response.prev_page_url;
-
-                        self.state.number_of_campsites = response.total;
-                        self.state.current_page = response.current_page;
-                        self.state.number_of_pages = response.last_page;
                         self.state.searchObject.provinces = JSON.parse(self.state.searchObject.provinces);
                         self.state.searchObject.states = JSON.parse(self.state.searchObject.states);
                         self.state.campsite_offers_loading = false;
@@ -732,23 +716,6 @@ campsite.controllers.controller('SearchCtrl', ["$scope", "$rootScope", "$http", 
                     building: false,
                     meadow: false
                 }};
-        },
-
-        getPagination: function(url) {
-            self.state.campsite_offers_loading = true;
-            service.get(url)
-                .then(function success(response) {
-                    console.log(response);
-                    self.state.campsite_offers = response.data;
-                    self.state.campsite_offers_loading = false;
-                    self.state.paginate_nexturl = response.next_page_url;
-                    self.state.paginate_previousurl = response.prev_page_url;
-
-                    self.state.current_page = response.current_page;
-                    self.state.number_of_pages = response.last_page;
-                }, function error(response) {
-                    console.log(response);
-                });
         }
     };
 
@@ -790,9 +757,6 @@ campsite.controllers.controller('SearchCtrl', ["$scope", "$rootScope", "$http", 
 
         noresultsfound: false,
         searchAdvanced: false,
-
-        paginate_nexturl: null,
-        paginate_previousurl: null,
 
         current_page: null,
         number_of_pages: null
