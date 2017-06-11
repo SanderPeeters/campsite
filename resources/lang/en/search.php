@@ -12,7 +12,9 @@ return [
     */
 
     'searchresults' => 'Search results',
+    'numberoffound' => 'Campsites were found',
     'main-title'    => 'Search a Campsite',
+    'intro-text'    => 'Are you in a youth movement that is looking for a nice Campsite for your group? Fill in the search fields and find your perfect Campsite!',
     'loading'       => 'Loading...',
     'labels'  => [
         'campsite-name'     => 'Campsite Name',

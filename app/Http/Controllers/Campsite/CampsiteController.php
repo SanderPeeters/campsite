@@ -9,7 +9,6 @@ use App\Models\Province;
 use App\Models\Building;
 use App\Models\Campsite;
 use App\Models\Campimage;
-use App\Support\Collection;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -17,7 +16,6 @@ use Illuminate\Support\Facades\Validator;
 
 class CampsiteController extends Controller
 {
-    private $paginatenumber = 5;
 
     public function index()
     {
@@ -45,17 +43,10 @@ class CampsiteController extends Controller
 
     public function getAllCampsites()
     {
-        /*$campsites = Campsite::with('campimages')->with('user.movement')->with('buildings')->with('meadows')->with('province')->with('state')->latest()->paginate($this->paginatenumber);
-        foreach ($campsites as $campsite)
-        {
-            $campsite->province->name = trans('provinces.'.$campsite->province->id);
-           $campsite->state->name = trans('states.'.$campsite->state->id);
-        }*/
         $campsites = Campsite::with('campimages')->with('province')->with('state')->with('user.movement')->latest()->get();
         $campsites = $campsites->groupBy('campsite_name');
 
         $campsites = $this->collectCampsites($campsites);
-        $campsites = ( new Collection( $campsites ) )->paginate( 5 );
         return $campsites;
     }
 

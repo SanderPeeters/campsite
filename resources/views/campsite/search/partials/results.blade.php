@@ -22,7 +22,7 @@
                     <h3 class="result__info--name">##campsite[0].campsite_name##</h3>
                 </a>
                 <p>
-                    Price: ##campsite[0].price_per_night##€
+                    Price: €##campsite[0].price_per_night##
                 </p>
                 <p>
                     Group Capacity: ##campsite.totalcapacity##

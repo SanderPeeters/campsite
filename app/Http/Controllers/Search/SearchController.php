@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Search;
 
 use App\Models\Province;
 use App\Models\Campsite;
-use App\Support\Collection;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -24,7 +23,6 @@ class SearchController extends Controller
         $province->name = trans('provinces.'.$id);
         app('App\Http\Controllers\Campsite\CampsiteController')->collectCampsites($campsites);
         $campsites->put('province', $province);
-        $campsites = ( new Collection( $campsites ) )->paginate( 5 );
         return $campsites;
     }
 
@@ -91,7 +89,6 @@ class SearchController extends Controller
                 }
             }
         }
-
         return $campsites;
     }
 }
