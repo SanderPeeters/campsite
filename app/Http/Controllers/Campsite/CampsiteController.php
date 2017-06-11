@@ -9,6 +9,7 @@ use App\Models\Province;
 use App\Models\Building;
 use App\Models\Campsite;
 use App\Models\Campimage;
+use App\Support\Collection;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -54,6 +55,7 @@ class CampsiteController extends Controller
         $campsites = $campsites->groupBy('campsite_name');
 
         $campsites = $this->collectCampsites($campsites);
+        $campsites = ( new Collection( $campsites ) )->paginate( 5 );
         return $campsites;
     }
 
