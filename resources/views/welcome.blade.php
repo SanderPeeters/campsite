@@ -32,8 +32,8 @@
                         {!! file_get_contents('assets/img/bg/Belgium.svg') !!}
                     </div>
                 </div>
-                <div class="row m-t-60 m-b-30">
-                    <div class="col-xs-4 col-xs-offset-4">
+                <div class="row m-t-20 m-b-30">
+                    <div class="col-sm-4 col-sm-offset-4 col-xs-6 col-xs-offset-3">
                         <a href="" target="_self">
                             <button type="button" class="btn btn-transparent btn-block">
                                 How it works?

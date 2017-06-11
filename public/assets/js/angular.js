@@ -609,10 +609,22 @@ campsite.controllers.controller('SearchCtrl', ["$scope", "$rootScope", "$http", 
             {
                 var searchedprovinces = JSON.parse(sessionStorage.searchresults);
                 self.state.campsite_offers = searchedprovinces.data;
-                console.log(searchedprovinces.data);
-                self.state.campsite_offers_loading = false;
                 self.state.searchObject.provinces = [searchedprovinces.data.province];
-
+                var count = 0;
+                var i;
+                delete self.state.campsite_offers.province;
+                for (i in self.state.campsite_offers) {
+                    if (self.state.campsite_offers.hasOwnProperty(i)) {
+                        count++;
+                    }
+                }
+                if (count == 0)
+                {
+                    self.state.noresultsfound = true;
+                } else {
+                    self.state.noresultsfound = false;
+                }
+                self.state.campsite_offers_loading = false;
             } else {
                 service.get(campsiteinventoryurl)
                     .then(function success(response) {
@@ -668,7 +680,7 @@ campsite.controllers.controller('SearchCtrl', ["$scope", "$rootScope", "$http", 
                     .then(function success(response) {
                         console.log(response);
                         self.state.campsite_offers = response;
-                        if (response.total == 0)
+                        if (response.length == 0)
                         {
                             self.state.noresultsfound = true;
                         } else {

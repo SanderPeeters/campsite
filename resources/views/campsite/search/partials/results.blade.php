@@ -5,7 +5,7 @@
         </div>
     </div>
 </div>
-<div class="result" ng-repeat="campsite in search.state.campsite_offers">
+<div class="result" ng-repeat="campsite in search.state.campsite_offers" ng-if="!campsite['province']">
     <div class="row" vertilize-container>
         <div class="col-sm-6 wrapper" vertilize>
             <div class="result__image">
