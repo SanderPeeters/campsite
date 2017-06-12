@@ -21,5 +21,7 @@ return [
     'make-reservation' => 'make-reservation/campsite/{id}/{slug?}',
     'delete-reservation' => 'delete-reservation/{id}',
     'accept-reservation' => 'accept-reservation/{id}',
-    'my-profile'      => 'my-profile'
+    'my-profile'      => 'my-profile',
+    'profile-update'    => 'update-profile',
+    'password-change'   =>  'change-password'
 ];

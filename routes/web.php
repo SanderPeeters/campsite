@@ -42,6 +42,8 @@ Route::group(['middleware' => 'auth'], function()
     Route::post('/campsite-offer/images/store', 'Campsite\ImageController@saveImage');
 
     Route::get(trans('routes.my-profile'), 'HomeController@myProfile')->name('my-profile');
+    Route::post(trans('routes.profile-update'), 'HomeController@updateProfile')->name('profile.update');
+    Route::post(trans('routes.password-change'), 'HomeController@changePassword')->name('profile.changepassword');
 
     Route::get(trans('routes.make-reservation', ['id', 'slug?']), 'Reservation\ReservationController@showReservationForm')->name('reservation.showform');
     Route::post('/make-reservation', 'Reservation\ReservationController@makeReservation')->name('reservation.store');
