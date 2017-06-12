@@ -11,7 +11,6 @@ campsite.controllers.controller('ReservationCtrl', function($scope, $rootScope, 
         },
 
         statusSaveCampsite: function ($id) {
-            console.log(self.state.saved);
             self.state.datatosend.campsiteid = $id;
             self.state.datatosend.saved = self.state.saved;
             self.state.saved = !self.state.saved;

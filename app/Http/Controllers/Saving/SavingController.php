@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Saving;
 
-use App\Models\Saving;
 use App\Models\Campsite;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -12,15 +11,12 @@ class SavingController extends Controller
 {
     public function statusSaveCampsite (Request $request)
     {
-        if ($saving = Saving::where([['user_id', Auth::user()->id], ['campsite_id', $request->get('campsiteid')]])->first())
+        if (Auth::user()->savings()->where('campsite_id', $request->get('campsiteid'))->first())
         {
-            $saving->delete();
+            Auth::user()->savings()->detach($request->get('campsiteid'));
             return 0;
         } else {
-            $saving = new Saving();
-            $saving->campsite_id = $request->get('campsiteid');
-            $saving->user_id = Auth::user()->id;
-            $saving->save();
+            Auth::user()->savings()->attach($request->get('campsiteid'));
             return 1;
         }
     }

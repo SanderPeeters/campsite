@@ -49,6 +49,6 @@ class User extends Authenticatable
 
     public function savings ()
     {
-        return $this->hasMany ('App\Models\Saving');
+        return $this->belongsToMany ('App\Models\Campsite');
     }
 }

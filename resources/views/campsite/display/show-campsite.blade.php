@@ -67,13 +67,13 @@
                                     </div>
                                     <!-- /owl-carousel -->
                                 </div>
-                                <div class="col-sm-12 m-t-40">
+                                {{--<div class="col-sm-12 m-t-40">
                                     <a href="{{ route('search-campsite') }}" target="_self">
                                         <button class="btn btn-secundary btn-block">
                                             {{ trans('campsite.buttons.goback') }}
                                         </button>
                                     </a>
-                                </div>
+                                </div>--}}
                             </div>
                         </div>
                     </div>

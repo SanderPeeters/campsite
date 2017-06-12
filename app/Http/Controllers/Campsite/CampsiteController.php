@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Campsite;
 use App\User;
 use App\Models\State;
 use App\Models\Meadow;
-use App\Models\Saving;
 use App\Models\Province;
 use App\Models\Building;
 use App\Models\Campsite;
@@ -154,7 +153,7 @@ class CampsiteController extends Controller
         }
         if (Auth::user())
         {
-            if (Saving::where([['user_id', Auth::user()->id], ['campsite_id', $id]])->first())
+            if (User::find($id)->savings()->where('campsite_id', $id)->first())
             {
                 $saved = 1;
             } else {

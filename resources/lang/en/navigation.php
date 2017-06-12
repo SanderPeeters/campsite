@@ -15,6 +15,7 @@ return [
     ],
     'login'           => 'Login',
     'register'        => 'Register',
-    'reservations'    => 'Reservations'
+    'reservations'    => 'Reservations',
+    'my-profile'      => 'My profile'
 
 ];

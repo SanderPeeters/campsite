@@ -52,6 +52,6 @@ class Campsite extends Model
 
     public function savings ()
     {
-        return $this->hasMany ('App\Models\Saving');
+        return $this->belongsToMany ('App\User');
     }
 }

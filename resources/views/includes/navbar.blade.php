@@ -43,6 +43,9 @@
             </ul>
           </li>
         @else
+          <li>
+            <a href="{{ route('my-profile') }}" target="_self">{{ trans('navigation.my-profile') }}</a>
+          </li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               {{ app()->getLocale() }} <i class="fa fa-caret-down"></i>
@@ -59,7 +62,6 @@
               @endforeach
             </ul>
           </li>
-
           <li>
             <a href="{{ url('/logout') }}" target="_self"
                onclick="event.preventDefault();
