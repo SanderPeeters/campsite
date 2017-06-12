@@ -82,7 +82,7 @@
                         <li class="active"><a data-toggle="tab" href="#location" target="_self"> {{ trans('campsite.location') }} </a></li>
                         <li><a data-toggle="tab" href="#facilities" target="_self"> {{ trans('campsite.facilities') }} </a></li>
                         <li><a data-toggle="tab" href="#reviews" target="_self">{{ trans('campsite.reviews') }} </a></li>
-                        <li><a data-toggle="tab" href="#reservations" target="_self">{{ trans('campsite.calendar') }}</a></li>
+                        <li><a data-toggle="tab" href="#reservations" target="_self" onclick="initCalendar()">{{ trans('campsite.calendar') }}</a></li>
                     </ul>
 
                     <div class="tab-content">
@@ -331,5 +331,42 @@
             });
         }
         initMap();
+    </script>
+    <script>
+        var today = {!! json_encode(\Carbon\Carbon::now()->parse()) !!};
+        var events = {!! json_encode($campsite->reservations) !!};
+        reservations = [{title: '', start: '', end: '', backgroundColor: '', borderColor: ''}];
+        console.log(currentlanguage);
+
+        for (var i=0; i< events.length; i++)
+        {
+            var color = '';
+            if (events[i].pending_request == 0 && events[i].accepted_request == 1)
+            {
+                color = '#bf5329';
+            } else {
+                color = '#cbb956';
+            }
+            reservations[i] = {title: events[i].user.name, start: events[i].start_date, end: events[i].end_date, backgroundColor: color, borderColor: color};
+        }
+        console.log(reservations);
+
+        function initCalendar() {
+            setTimeout(function(){
+                $('#calendar').fullCalendar({
+                    header: {
+                        left: 'prev,next today',
+                        center: 'title',
+                        right: 'prevYear,month,basicWeek,nextYear'
+                    },
+                    defaultDate: today.date,
+                    navLinks: true, // can click day/week names to navigate views
+                    editable: false,
+                    eventLimit: true, // allow "more" link when too many events
+                    events: reservations
+                });
+            }, 200);
+        }
+
     </script>
 @endsection

@@ -1,0 +1,120 @@
+#calendar-reservation {
+  .fc-toolbar {
+    h2 {
+
+      color: $brand-secundary;
+      line-height: 1.6;
+
+    }
+    .fc-button {
+
+      box-shadow: none;
+      border-radius: 0;
+      border: 1px solid $brand-light-grey;
+      background-image: none;
+      background-color: transparent;
+      text-shadow: none;
+      color: $brand-secundary;
+      outline: none;
+      transition: all, 0.3s;
+      padding: 12px 20px;
+      height: 48px;
+      margin-top: 5px;
+
+     /* &:hover {
+
+        background-color: darken($brand-primary, 2%);
+
+      }*/
+
+      .fc-icon {
+
+        font-size: 1.2em;
+        width: 1em;
+
+      }
+    }
+
+    &.fc-next-button, &.fc-prev-button{
+      padding: 10.5px 20px;
+    }
+
+    .fc-today-button {display: none;}
+    .fc-prevYear-button, .fc-nextYear-button {display: none;}
+    .fc-left {float: none; display: inline-block;}
+    .fc-right {float: none; display: inline-block;}
+
+    @media screen and (min-width: 767px) {
+      .fc-today-button {display: block;}
+      .fc-prevYear-button, .fc-nextYear-button {display: block;}
+      .fc-button { margin: 0px; }
+
+      .fc-left {
+
+        float: left;
+
+      }
+
+      .fc-right {
+
+        float: right;
+
+      }
+    }
+  }
+
+  .fc-view-container {
+
+    table {margin-bottom: 0;}
+
+    th, td, thead, tbody, .fc-divider, .fc-row, .fc-content, .fc-popover {
+
+      border-color: $brand-light-grey;
+
+    }
+
+    thead {
+
+      background-color: white;
+
+    }
+
+    tbody {
+
+      background-color: transparent;
+
+    }
+
+    .fc-event-container {
+
+      .fc-event {
+
+        border-radius: 0;
+        background-color: $brand-light-grey;
+        border: none;
+        padding: 5px 10px;
+
+      }
+
+    }
+
+    .fc-content-skeleton {
+
+      td {
+
+        border-color: $brand-light-grey;
+
+      }
+
+    }
+
+    .fc-highlight {
+
+      background-color: $brand-primary !important;
+      opacity: 0.1;
+
+    }
+
+  }
+
+}
