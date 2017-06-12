@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Campsite;
 use App\User;
 use App\Models\State;
 use App\Models\Meadow;
+use App\Models\Saving;
 use App\Models\Province;
 use App\Models\Building;
 use App\Models\Campsite;
@@ -141,6 +142,7 @@ class CampsiteController extends Controller
 
     public function showCampsite($id, $slug=null)
     {
+        $saved = 0;
         try {
             $campsite = Campsite::with('campimages')->with('reviews')->findOrFail($id);
 
@@ -150,7 +152,16 @@ class CampsiteController extends Controller
         if ($slug !== str_slug($campsite->campsite_name)){
             return redirect(action('Campsite\CampsiteController@showCampsite', ['id' => $campsite->id, 'slug' => str_slug($campsite->campsite_name)]), 301);
         }
-        return view('campsite.display.show-campsite')->with('campsite', $campsite);
+        if (Auth::user())
+        {
+            if (Saving::where([['user_id', Auth::user()->id], ['campsite_id', $id]])->first())
+            {
+                $saved = 1;
+            } else {
+                $saved = 0;
+            }
+        }
+        return view('campsite.display.show-campsite')->with('campsite', $campsite)->with('saved', $saved);
     }
 
     public function storeCampsite (Request $request)

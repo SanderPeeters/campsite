@@ -26,6 +26,11 @@
             </div>
         </div>
     </div>
+    <div class="col-sm-12">
+        <a href="{{ route('campsite.display', ['id' => $campsite->id]) }}" target="_self">
+            Go to Campsite profile
+        </a>
+    </div>
 </div>
 
 <hr class="color-secundary">

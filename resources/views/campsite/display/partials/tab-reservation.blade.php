@@ -1,4 +1,4 @@
-<div id="calendar-reservation" ng-controller="ReservationCtrl as reservation">
+<div id="calendar-reservation">
     <h2>Check availability</h2>
     <div class="row">
         <div class="col-sm-4">

@@ -49,4 +49,9 @@ class Campsite extends Model
     {
         return $this->hasMany('App\Models\Review');
     }
+
+    public function savings ()
+    {
+        return $this->hasMany ('App\Models\Saving');
+    }
 }

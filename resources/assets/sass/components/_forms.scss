@@ -1,6 +1,7 @@
 .form-control {
   min-height: 40px;
   padding: 10px 15px;
+  -webkit-appearance: none;
 }
 
 input[type='checkbox'] {
@@ -11,4 +12,13 @@ input[type='checkbox'] {
 
 label {
   color: $brand-secundary;
+}
+
+select.form-control {
+  background: url('/assets/img/icons/down-arrow-green.png') no-repeat 97% 50%;
+  padding-right: 25px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  outline: 0;
 }

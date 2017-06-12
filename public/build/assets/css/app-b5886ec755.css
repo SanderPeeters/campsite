@@ -7899,6 +7899,12 @@ section#search-campsite-section .search label {
   section#search-campsite-section .left-positioned {
     padding-left: 15px;
   }
+  section#search-campsite-section .show-mobile {
+    display: block;
+  }
+  section#search-campsite-section .hide-mobile {
+    display: none;
+  }
 }
 
 @media screen and (min-width: 767px) {
@@ -7907,6 +7913,12 @@ section#search-campsite-section .search label {
   }
   section#search-campsite-section .no-right-padding {
     padding-right: 0;
+  }
+  section#search-campsite-section .show-mobile {
+    display: none;
+  }
+  section#search-campsite-section .hide-mobile {
+    display: block;
   }
 }
 
@@ -7987,6 +7999,7 @@ p.review--user:before {
 .form-control {
   min-height: 40px;
   padding: 10px 15px;
+  -webkit-appearance: none;
 }
 
 input[type='checkbox']:focus {
@@ -7995,6 +8008,15 @@ input[type='checkbox']:focus {
 
 label {
   color: #134352;
+}
+
+select.form-control {
+  background: url("/assets/img/icons/down-arrow-green.png") no-repeat 97% 50%;
+  padding-right: 25px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  outline: 0;
 }
 
 button {
@@ -8551,6 +8573,10 @@ a, a:hover, a:link, a:focus, a:active {
   margin: 0px;
   border: none;
   color: #009133;
+}
+
+.navbar img.icon--logout {
+  max-height: 22px;
 }
 
 @media screen and (max-width: 767px) {

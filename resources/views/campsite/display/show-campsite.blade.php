@@ -6,7 +6,7 @@
 
 @section('content')
 
-    <section id="show-campsite-section" class="main vh-min-90">
+    <section id="show-campsite-section" class="main vh-min-90" ng-controller="ReservationCtrl as reservation">
         <div class="container">
             <div class="panel m-t-120 m-b-0 no-border-radius no-border" >
                 <div class="panel-body">
@@ -28,12 +28,19 @@
                         <div class="col-md-5 col-xs-12">
                             <div class="row">
                                 <div class="col-xs-6">
-                                    <div class="form-group">
-                                        <a href="{{ route('search-campsite') }}" target="_self">
-                                            <button class="btn btn-secundary btn-block">
-                                                {{ trans('campsite.buttons.goback') }}
-                                            </button>
-                                        </a>
+                                    <div class="form-group" ng-init="reservation.state.saved = {{$saved}}" ng-cloak>
+                                        <button class="btn btn-secundary-opposite btn-block" type="button" ng-model="reservation.state.saved" ng-disabled="{{ Auth::guest() }}" ng-click="reservation.events.statusSaveCampsite({{$campsite->id}})">
+                                            @if (Auth::guest())
+                                                {{ trans('campsite.buttons.save') }}
+                                            @else
+                                                <div ng-if="!reservation.state.saved">
+                                                    {{ trans('campsite.buttons.save') }}
+                                                </div>
+                                                <div ng-if="reservation.state.saved">
+                                                    {{ trans('campsite.buttons.unsave') }}
+                                                </div>
+                                            @endif
+                                        </button>
                                     </div>
                                 </div>
                                 <div class="col-xs-6">
@@ -59,6 +66,13 @@
                                         @endforeach
                                     </div>
                                     <!-- /owl-carousel -->
+                                </div>
+                                <div class="col-sm-12 m-t-40">
+                                    <a href="{{ route('search-campsite') }}" target="_self">
+                                        <button class="btn btn-secundary btn-block">
+                                            {{ trans('campsite.buttons.goback') }}
+                                        </button>
+                                    </a>
                                 </div>
                             </div>
                         </div>

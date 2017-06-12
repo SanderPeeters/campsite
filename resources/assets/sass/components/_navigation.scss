@@ -57,6 +57,12 @@
     }
   }
 
+  img {
+    &.icon--logout {
+      max-height: 22px;
+    }
+  }
+
   @media screen and (max-width: 767px) {
 
     .navbar-collapse {

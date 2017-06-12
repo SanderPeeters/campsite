@@ -145,6 +145,14 @@ section#search-campsite-section {
     .left-positioned {
       padding-left: 15px;
     }
+
+    .show-mobile {
+      display: block;
+    }
+
+    .hide-mobile {
+      display: none;
+    }
   }
 
   @media screen and (min-width: 767px) {
@@ -156,6 +164,14 @@ section#search-campsite-section {
 
     .no-right-padding {
       padding-right: 0;
+    }
+
+    .show-mobile {
+      display: none;
+    }
+
+    .hide-mobile {
+      display: block;
     }
   }
 }

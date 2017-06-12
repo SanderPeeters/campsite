@@ -30,7 +30,7 @@
                 <div class="col-sm-6 col-sm-offset-3">
                     <h3 class="color-white uppercase">{{ trans('search.searchresults') }}</h3>
                     <hr class="color-secundary w-20--p m-t-0">
-                    <h4 class="color-white"> ##search.state.number_of_campsites## {{ trans('search.numberoffound') }}</h4>
+                    <h4 class="color-white" ng-cloak> ##search.state.number_of_campsites## {{ trans('search.numberoffound') }}</h4>
                 </div>
             </div>
 
@@ -39,7 +39,17 @@
                     <div class="row">
                         <div class="col-sm-4 no-padding-small no-right-padding whitebg">
                             <div class="search" ng-cloak>
-                                @include('campsite.search.partials.searchbar')
+                                <div class="show-mobile">
+                                    <div class="p-b-10">
+                                        <a href="" data-toggle="collapse" data-target="#searchbar">Show/hide filters</a>
+                                    </div>
+                                    <div id="searchbar" class="collapse">
+                                        @include('campsite.search.partials.searchbar')
+                                    </div>
+                                </div>
+                                <div class="hide-mobile">
+                                    @include('campsite.search.partials.searchbar')
+                                </div>
                             </div>
                         </div>
                         <div class="col-sm-8 no-padding-small whitebg">

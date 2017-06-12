@@ -40,7 +40,7 @@ campsite.controllers.controller('SearchCtrl', function($scope, $rootScope, $http
                 self.state.searchObject.provinces = [searchedprovinces.data.province];
 
                 delete self.state.campsite_offers.province;
-                var count = self.state.handlers.getLengthOfObject(self.state.campsite_offers);
+                var count = self.handlers.getLengthOfObject(self.state.campsite_offers);
                 if (count == 0)
                 {
                     self.state.noresultsfound = true;
@@ -99,6 +99,7 @@ campsite.controllers.controller('SearchCtrl', function($scope, $rootScope, $http
         },
 
         search: function() {
+            console.log('searchfuncti');
             if (!self.state.searchObject.provinces || self.state.searchObject.provinces.length == 0) {
                 self.state.searchObject.provinces = self.state.provinces;
             }
@@ -114,6 +115,7 @@ campsite.controllers.controller('SearchCtrl', function($scope, $rootScope, $http
                 service.get(campsitesearchurl, self.state.searchObject)
                     .then(function success(response) {
                         self.state.campsite_offers = response;
+                        console.log(response);
                         var count = self.handlers.getLengthOfObject(response);
                         if (count == 0)
                         {

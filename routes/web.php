@@ -36,6 +36,7 @@ Route::get('lang/{language}', 'LanguageController@switchLang')->name('lang.switc
 Route::group(['middleware' => 'auth'], function()
 {
     Route::post(trans('routes.storereview'), 'Review\ReviewController@storeReview')->name('review.store');
+    Route::post('/save-campsite', 'Saving\SavingController@statusSaveCampsite');
 
     Route::post('/campsite-offer/store', 'Campsite\CampsiteController@storeCampsite');
     Route::post('/campsite-offer/images/store', 'Campsite\ImageController@saveImage');

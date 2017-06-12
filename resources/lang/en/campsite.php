@@ -27,7 +27,9 @@ return [
 
     'buttons'       => [
         'goback'    =>  'Go back',
-        'reserve'   =>  'Reserve'
+        'reserve'   =>  'Reserve',
+        'save'      =>  'Save to my list',
+        'unsave'    =>  'Delete from my list',
     ]
 
 ];

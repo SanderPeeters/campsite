@@ -521,16 +521,31 @@ campsite.controllers.controller('OfferCtrl', ["$scope", "$rootScope", "$location
     };
 }]);
 
-campsite.controllers.controller('ReservationCtrl', ["$scope", "$rootScope", "$location", "service", "$window", "toastr", "$injector", function($scope, $rootScope, $location, service, $window, toastr, $injector){
+campsite.controllers.controller('ReservationCtrl', ["$scope", "$rootScope", "$location", "service", "toastr", "$injector", function($scope, $rootScope, $location, service, toastr, $injector){
     var self = this;
     var movementsurl = '/en/movements';
+    var savingurl = '/en/save-campsite';
 
 
     // Events
     this.events = {
         nextDate: function(id) {
             angular.element( document.querySelector( '#' + id ) ).focus();
+        },
+
+        statusSaveCampsite: function ($id) {
+            console.log(self.state.saved);
+            self.state.datatosend.campsiteid = $id;
+            self.state.datatosend.saved = self.state.saved;
+            self.state.saved = !self.state.saved;
+            service.post(savingurl, self.state.datatosend).then (
+                function successCallback(response) {
+                    console.log(response);
+                }, function errorCallback(response) {
+                    console.log(response);
+                });
         }
+
     };
 
     // Handlers
@@ -612,7 +627,7 @@ campsite.controllers.controller('SearchCtrl', ["$scope", "$rootScope", "$http", 
                 self.state.searchObject.provinces = [searchedprovinces.data.province];
 
                 delete self.state.campsite_offers.province;
-                var count = self.state.handlers.getLengthOfObject(self.state.campsite_offers);
+                var count = self.handlers.getLengthOfObject(self.state.campsite_offers);
                 if (count == 0)
                 {
                     self.state.noresultsfound = true;
@@ -671,6 +686,7 @@ campsite.controllers.controller('SearchCtrl', ["$scope", "$rootScope", "$http", 
         },
 
         search: function() {
+            console.log('searchfuncti');
             if (!self.state.searchObject.provinces || self.state.searchObject.provinces.length == 0) {
                 self.state.searchObject.provinces = self.state.provinces;
             }
@@ -686,6 +702,7 @@ campsite.controllers.controller('SearchCtrl', ["$scope", "$rootScope", "$http", 
                 service.get(campsitesearchurl, self.state.searchObject)
                     .then(function success(response) {
                         self.state.campsite_offers = response;
+                        console.log(response);
                         var count = self.handlers.getLengthOfObject(response);
                         if (count == 0)
                         {

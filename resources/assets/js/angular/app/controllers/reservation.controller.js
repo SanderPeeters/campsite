@@ -1,13 +1,28 @@
-campsite.controllers.controller('ReservationCtrl', function($scope, $rootScope, $location, service, $window, toastr, $injector){
+campsite.controllers.controller('ReservationCtrl', function($scope, $rootScope, $location, service, toastr, $injector){
     var self = this;
     var movementsurl = '/en/movements';
+    var savingurl = '/en/save-campsite';
 
 
     // Events
     this.events = {
         nextDate: function(id) {
             angular.element( document.querySelector( '#' + id ) ).focus();
+        },
+
+        statusSaveCampsite: function ($id) {
+            console.log(self.state.saved);
+            self.state.datatosend.campsiteid = $id;
+            self.state.datatosend.saved = self.state.saved;
+            self.state.saved = !self.state.saved;
+            service.post(savingurl, self.state.datatosend).then (
+                function successCallback(response) {
+                    console.log(response);
+                }, function errorCallback(response) {
+                    console.log(response);
+                });
         }
+
     };
 
     // Handlers
