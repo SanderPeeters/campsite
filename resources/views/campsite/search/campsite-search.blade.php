@@ -13,7 +13,7 @@
                         <div class="col-sm-7 col-xs-12">
                             <div class="p-b-20 p-t-20 p-l-20 p-r-20" ng-cloak>
                                 <h1 class="color-primary">{{ trans('search.main-title') }}</h1>
-                                <h3 class="color-secundary">{{$numberofcampsites}} Campsites available!</h3>
+                                <h3 class="color-secundary">{{$numberofcampsites}} {{ trans( 'search.campsites-available') }}</h3>
                                 <p>{{ trans('search.intro-text') }}</p>
                             </div>
                         </div>
@@ -39,7 +39,7 @@
                     <div class="row">
                         <div class="col-sm-4 no-padding-small no-right-padding whitebg">
                             <div class="search" ng-cloak>
-                                <div class="show-mobile">
+                                {{--<div class="show-mobile">
                                     <div class="p-b-10">
                                         <a href="" data-toggle="collapse" data-target="#searchbar">Show/hide filters</a>
                                     </div>
@@ -49,7 +49,8 @@
                                 </div>
                                 <div class="hide-mobile">
                                     @include('campsite.search.partials.searchbar')
-                                </div>
+                                </div>--}}
+                                @include('campsite.search.partials.searchbar')
                             </div>
                         </div>
                         <div class="col-sm-8 no-padding-small whitebg">

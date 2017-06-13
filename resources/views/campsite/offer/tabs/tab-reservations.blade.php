@@ -1,13 +1,13 @@
-<h2 class="color-secundary">Pending requests</h2>
+<h2 class="color-secundary">{{ trans('reservation.pending') }}</h2>
 <div class="table-responsive">
     <table class="table table-condensed">
         <thead>
         <tr>
-            <td>Movement</td>
-            <td>{{ trans('reservation.labels.date-of-arrival') }}</td>
-            <td>{{ trans('reservation.labels.date-of-departure') }}</td>
-            <td>Capacity</td>
-            <td>Contact email</td>
+            <th>{{ trans('reservation.movement') }}</th>
+            <th>{{ trans('reservation.labels.date-of-arrival') }}</th>
+            <th>{{ trans('reservation.labels.date-of-departure') }}</th>
+            <th>{{ trans('reservation.capacity') }}</th>
+            <th>{{ trans('reservation.contactemail') }}</th>
         </tr>
         </thead>
         <tbody>
@@ -21,12 +21,12 @@
                     <td>{{$reservation->user->email}}</td>
                     <td>
                         <a href="{{ route('reservation.accept', ['id' => $reservation->id])}}" target="_self">
-                            <button class="btn btn-secundary">Accept</button>
+                            <button class="btn btn-secundary">{{ trans('forms.buttons.accept') }}</button>
                         </a>
                     </td>
                     <td>
                         <a href="{{ route('reservation.delete', ['id' => $reservation->id])}}" target="_self">
-                            <button class="btn btn-danger">Delete</button>
+                            <button class="btn btn-danger">{{ trans('forms.buttons.delete') }}</button>
                         </a>
                     </td>
                 </tr>
@@ -36,16 +36,16 @@
     </table>
 </div>
 
-<h2 class="color-secundary">Accepted requests</h2>
+<h2 class="color-secundary">{{ trans('reservation.accepted') }}</h2>
 <div class="table-responsive">
     <table class="table table-condensed">
         <thead>
         <tr>
-            <td>Movement</td>
-            <td>{{ trans('reservation.labels.date-of-arrival') }}</td>
-            <td>{{ trans('reservation.labels.date-of-departure') }}</td>
-            <td>Capacity</td>
-            <td>Contact email</td>
+            <th>{{ trans('reservation.movement') }}</th>
+            <th>{{ trans('reservation.labels.date-of-arrival') }}</th>
+            <th>{{ trans('reservation.labels.date-of-departure') }}</th>
+            <th>{{ trans('reservation.capacity') }}</th>
+            <th>{{ trans('reservation.contactemail') }}</th>
         </tr>
         </thead>
         <tbody>

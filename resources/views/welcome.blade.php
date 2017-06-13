@@ -5,7 +5,6 @@
 
 @section('content')
 
-    <!-- Section intro with searchfield -->
     <section id="home-intro" class="main vh-min-80">
         <div class="container">
             <div class="section--centered" ng-controller="SearchCtrl as map">
@@ -16,27 +15,16 @@
                         </div>
                     </div>
                 </div>
-                {{--<h3 >Find the perfect campsite</h3>--}}
-                {{--<div class="row m-t-20">
-                    <div class="col-sm-6 col-sm-offset-3">
-                        <a href="{{route('search-campsite')}}" target="_self">
-                            <img src="assets/img/bg/Belgium.svg" alt="" style="width: 100%;">
-                        </a>
-                    </div>
-                </div>--}}
                 <div class="row m-t-20">
                     <div class="col-sm-6 col-sm-offset-3">
-                        {{--<object id="belgiummap" type="image/svg+xml" data="assets/img/bg/Belgium.svg">
-                            Your browser does not support SVG
-                        </object>--}}
                         {!! file_get_contents('assets/img/bg/Belgium.svg') !!}
                     </div>
                 </div>
                 <div class="row m-t-20 m-b-30">
                     <div class="col-sm-4 col-sm-offset-4 col-xs-6 col-xs-offset-3">
                         <a href="" target="_self">
-                            <button type="button" class="btn btn-transparent btn-block">
-                                How it works?
+                            <button type="button" class="btn btn-transparent btn-block" data-toggle="modal" data-target="#modal-how-it-works">
+                                {{ trans('forms.buttons.howitworks') }}
                             </button>
                         </a>
                     </div>
@@ -50,7 +38,7 @@
             <div class="container-fluid">
                 <div class="row m-b-20 text-center">
                     <div class="col-sm-6 col-sm-offset-3">
-                        <h3 class="color-light-grey uppercase">popular campsites</h3>
+                        <h3 class="color-light-grey uppercase">{{ trans('home.titles.popular') }}</h3>
                         <hr class="color-primary w-20--p m-t-0">
                     </div>
                 </div>
@@ -80,7 +68,7 @@
                 <div class="row text-center m-b-40">
                     <a href="" target="_self">
                         <button type="button" class="btn btn-tertiary p-t-5 p-b-5 p-l-25 p-r-25">
-                            Browse more
+                            {{ trans('forms.buttons.browsemore') }}
                         </button>
                     </a>
                 </div>
@@ -93,7 +81,7 @@
         <div class="container text-center">
             <div class="row m-b-20">
                 <div class="col-sm-6 col-sm-offset-3">
-                    <h3 class="color-white uppercase">why use our service</h3>
+                    <h3 class="color-white uppercase">{{ trans('home.titles.whyuse') }}</h3>
                     <hr class="color-secundary w-20--p m-t-0">
                 </div>
             </div>
@@ -102,28 +90,27 @@
                     <div class="icon">
                         <img src='assets/img/icons/text-document.svg' alt="">
                     </div>
-                    <h3 class="color-secundary font--bold">Easy paperworks</h3>
+                    <h3 class="color-secundary font--bold">{{ trans('home.text.reservation-title') }}</h3>
                     <p class="color-secundary">
-                        When you register, all documents and forms regarding insurance etc. can be obtained here on the website or with the owner.
+                        {{ trans('home.text.reservation-text') }}
                     </p>
                 </div>
                 <div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-0 p-b-40">
                     <div class="icon">
                         <img src='assets/img/icons/thumb-up.svg' alt="">
                     </div>
-                    <h3 class="color-secundary font--bold">Register for free</h3>
+                    <h3 class="color-secundary font--bold">{{ trans('home.text.register-title') }}</h3>
                     <p class="color-secundary">
-                        Easy register/log in with Facebook or on the website. For people who search a campsite or who wants to offer a site/meadow.
+                        {{ trans('home.text.register-text') }}
                     </p>
                 </div>
                 <div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-0 p-b-40">
                     <div class="icon">
                         <img src='assets/img/icons/tent.svg' alt="">
                     </div>
-                    <h3 class="color-secundary font--bold">Verified campsites</h3>
+                    <h3 class="color-secundary font--bold">{{ trans('home.text.verified-title') }}</h3>
                     <p class="color-secundary">
-                        We assure you that our campsites and meadows are verified and insured.
-                        We’re proud of being scam-free!
+                        {{ trans('home.text.verified-text') }}
                     </p>
                 </div>
             </div>
@@ -132,4 +119,28 @@
 
     @include('includes.register')
 
+    <!-- Modal -->
+    <div id="modal-how-it-works" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h3 class="modal-title color-secundary">{{ trans('home.modals.title-howitworks') }}</h3>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        {!! trans('home.modals.text-howitworks') !!}
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secundary-opposite p-l-40 p-r-40" data-dismiss="modal">
+                        {{ trans('forms.buttons.gotit') }}
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
 @endsection

@@ -16,7 +16,7 @@
                             <h1 class="color-primary m-t-5">{{ $campsite->campsite_name }}</h1>
                             {!! $campsite->description !!}
                             <p class="color-light-grey">
-                                <strong>Location</strong> <br>
+                                <strong>{{ trans('campsite.location') }}</strong> <br>
                                 {{ $campsite->street }}, {{ $campsite->zipcode }} {{ $campsite->city }}
                             </p>
                             <p>

@@ -60,7 +60,6 @@ campsite.controllers.controller('SearchCtrl', function($scope, $rootScope, $http
                         console.log(response);
                     });
             }
-
             sessionStorage.removeItem('searchresults');
             sessionStorage.removeItem('provinceId');
 
@@ -108,7 +107,7 @@ campsite.controllers.controller('SearchCtrl', function($scope, $rootScope, $http
             }
             self.state.provinces_loading = true;
             self.state.states_loading = true;
-            sessionStorage.searchobject = JSON.stringify(self.state.searchObject);
+            //sessionStorage.searchobject = JSON.stringify(self.state.searchObject);
             self.state.searchObject.provinces = JSON.stringify(self.state.searchObject.provinces);
             self.state.searchObject.states = JSON.stringify(self.state.searchObject.states);
             $timeout( function(){
@@ -181,7 +180,7 @@ campsite.controllers.controller('SearchCtrl', function($scope, $rootScope, $http
 
     // Listeners
     $rootScope.$on('$locationChangeSuccess', function() {
-        self.handlers.getSearchobjectfromSession();
+        //self.handlers.getSearchobjectfromSession();
         self.handlers.getAllProvinces();
         self.handlers.getAllStates();
     });

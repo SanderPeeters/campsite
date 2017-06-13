@@ -11,11 +11,13 @@ return [
     |
     */
 
-    'searchresults' => 'Search results',
-    'numberoffound' => 'Campsites were found',
-    'main-title'    => 'Search a Campsite',
+    'buttons'   => [
+        'search'    =>  'Search',
+        'reset'     =>  'Reset'
+    ],
+    'campsites-available'   =>  'Campsites available!',
+    'capacity'              =>  'Group capacity',
     'intro-text'    => 'Are you in a youth movement that is looking for a nice Campsite for your group? Fill in the search fields and find your perfect Campsite!',
-    'loading'       => 'Loading...',
     'labels'  => [
         'campsite-name'     => 'Campsite Name',
         'provinces'         => 'Provinces',
@@ -36,14 +38,17 @@ return [
             'kitchen'           =>  'Kitchen'
         ]
     ],
-    'placeholders'  => [
+    'loading'           => 'Loading...',
+    'main-title'        => 'Look for a Campsite',
+    'noresultsfound'    => 'No results match your search criteria',
+    'numberoffound'     => 'Campsites were found',
+    'placeholders'      => [
         'campsite-name'     => 'Search on name',
         'provinces'         => 'Search on regions',
         'states'            => 'Search on state'
     ],
-    'buttons'   => [
-        'search'    =>  'Search',
-        'reset'     =>  'Reset'
-    ]
+    'price'         => 'Price',
+    'searchresults' => 'Search results'
+
 
 ];

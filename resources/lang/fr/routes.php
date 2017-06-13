@@ -26,7 +26,7 @@ return [
   'profile-update'                => 'profil-de-mise-à-jour',
   'password-change'               => 'change-mot-de-passe',
   'provinces'                     => 'provinces',
-  'register'                      => 'registre',
+  'register'                      => 'register',
   'save-campsite'                 => 'sauve-campsite',
   'search-campsites'              => 'campsite/cherche',
   'search-campsite'               => 'cherche-campsite',

@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-sm-6">
-        <h2 class="color-secundary m-b-20">Reviews</h2>
+        <h2 class="color-secundary m-b-20">{{ trans('campsite.reviews') }}</h2>
     </div>
 </div>
 <div class="row">
@@ -12,7 +12,7 @@
 
                 <div class="form-group">
                     <div class="form-group{{ $errors->has('review') ? ' has-error' : '' }}">
-                        <textarea id="review" type="text" class="form-control" name="review" value="{{ old('review') }}" placeholder="Write a review for this Campsite" ></textarea>
+                        <textarea id="review" type="text" class="form-control" name="review" value="{{ old('review') }}" placeholder="{{ trans('forms.placeholders.review') }}" ></textarea>
 
                         @if ($errors->has('review'))
                             <span class="help-block">
@@ -23,7 +23,7 @@
                 </div>
                 <div class="form-group">
                     <button type="submit" class="btn btn-secundary pull-right">
-                        Submit
+                        {{ trans('forms.buttons.submit') }}
                     </button>
                 </div>
             </form>
@@ -47,7 +47,7 @@
                 @endforeach
             @else
                 <div class="col-sm-12">
-                    <p>No reviews yet for this Campsite.</p>
+                    <p>{{ trans('campsite.noreviews') }}</p>
                 </div>
             @endif
         </div>

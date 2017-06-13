@@ -66,6 +66,7 @@ class CampsiteController extends Controller
             $haselectricity = false;
             $campfiresallowed = false;
             $tentsallowed = false;
+            $wheelchairaccessible = false;
 
             foreach ($buildings as $building) {
                 if ($building->has_wifi)
@@ -83,6 +84,10 @@ class CampsiteController extends Controller
                 if ($building->has_electricity)
                 {
                     $haselectricity = true;
+                }
+                if ($building->wheelchair_accessible)
+                {
+                    $wheelchairaccessible = true;
                 }
 
                 $totalcapacity += $building->capacity;
@@ -108,6 +113,7 @@ class CampsiteController extends Controller
             }
             $campsite->put('tentsallowed', $tentsallowed);
             $campsite->put('campfireallowed', $campfiresallowed);
+            $campsite->put('wheelchairaccessible', $wheelchairaccessible);
             $campsite->put('haswifi', $haswifi);
             $campsite->put('haskitchen', $haskitchen);
             $campsite->put('haswater', $haswater);
@@ -153,7 +159,7 @@ class CampsiteController extends Controller
         }
         if (Auth::user())
         {
-            if (User::find($id)->savings()->where('campsite_id', $id)->first())
+            if (Auth::user()->savings()->where('campsite_id', $id)->first())
             {
                 $saved = 1;
             } else {
@@ -231,6 +237,9 @@ class CampsiteController extends Controller
                 }
                 if(isset($building['haskitchen'])){
                     $newbuilding->has_kitchen = $building['haskitchen'];
+                }
+                if(isset($building['wheelchairaccessible'])){
+                    $newbuilding->wheelchair_accessible = $building['wheelchairaccessible'];
                 }
                 if(isset($building['extrainfo'])){
                     $newbuilding->extra_info = $building['extrainfo'];

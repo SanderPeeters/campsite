@@ -1,7 +1,7 @@
 <div ng-if="search.state.noresultsfound">
     <div class="row text-center">
         <div class="col-sm-12">
-            <p class="m-t-60 m-b-60">No results match your search criteria</p>
+            <p class="m-t-60 m-b-60">{{ trans('search.noresultsfound') }}</p>
         </div>
     </div>
 </div>
@@ -22,10 +22,10 @@
                     <h3 class="result__info--name">##campsite[0].campsite_name##</h3>
                 </a>
                 <p>
-                    Price: €##campsite[0].price_per_night##
+                    {{ trans('search.price') }}: €##campsite[0].price_per_night##
                 </p>
                 <p>
-                    Group Capacity: ##campsite.totalcapacity##
+                    {{ trans('search.capacity') }}: ##campsite.totalcapacity##
                 </p>
                 <div ng-if="campsite.haselectricity" class="icon--small">
                     <img src="/assets/img/icons/icon-plug.svg" alt="">
@@ -45,9 +45,12 @@
                 <div ng-if="campsite.campfireallowed" class="icon--small">
                     <img src="/assets/img/icons/icon-bonfire-green.svg" alt="">
                 </div>
+                <div ng-if="campsite.wheelchairaccessible" class="icon--small">
+                    <img src="/assets/img/icons/icon-bonfire-green.svg" alt="">
+                </div>
                 <div class="left-positioned">
                     <a href="{{ app()->getLocale() }}/campsite/##campsite[0].id##" target="_self">
-                    <button class="btn btn-secundary-opposite p-l-20 p-r-20">More info</button>
+                    <button class="btn btn-secundary-opposite p-l-20 p-r-20">{{ trans('forms.buttons.moreinfo') }}</button>
                     </a>
                 </div>
                 <div class="icon--wrapper right-positioned">

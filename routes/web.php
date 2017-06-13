@@ -15,8 +15,6 @@ Route::get('/', 'Campsite\CampsiteController@index')->name('welcome');
 
 Auth::routes();
 
-Route::get(trans('routes.home'), ['as' => 'home', 'uses' => 'HomeController@index']);
-
 Route::get(trans('routes.search-campsite'), 'Search\SearchController@index')->name('search-campsite');
 Route::get(trans('routes.search-campsites'), 'Search\SearchController@searchCampsites');
 Route::get(trans('routes.search-campsite-with-province', ['id']), 'Search\SearchController@searchOnProvince')->name('search-campsite.withprovince');

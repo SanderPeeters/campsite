@@ -7,17 +7,15 @@
             <div class="col-sm-4">
                 <ul class="menu-horizontal">
                     <li>
-                        <a href="">About</a>
+                        <a href="">{{ trans('navigation.about') }}</a>
                     </li>
                     <li>
-                        <a href="">Contact</a>
+                        <a href="">{{ trans('navigation.contact') }}</a>
                     </li>
                     <li>
-                        <a href="">FAQ</a>
+                        <a href="">{{ trans('navigation.faq') }}</a>
                     </li>
                     <li>
-                        <a href="">NL</a>
-                    </li>
                 </ul>
             </div>
             <div class="col-sm-4">

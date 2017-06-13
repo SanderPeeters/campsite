@@ -21,6 +21,7 @@ class CreateBuildingsTable extends Migration
             $table->boolean('has_electricity')->default(0);
             $table->boolean('has_wifi')->default(0);
             $table->boolean('has_kitchen')->default(0);
+            $table->boolean('wheelchair_accessible')->default(0);
             $table->integer('beds')->nullable();
             $table->integer('showers')->nullable();
             $table->integer('toilets')->nullable();

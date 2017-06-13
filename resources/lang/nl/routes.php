@@ -26,7 +26,7 @@ return [
   'profile-update'                => 'update-profiel',
   'password-change'               => 'wijzig-wachtwoord',
   'provinces'                     => 'provincies',
-  'register'                      => 'registreer',
+  'register'                      => 'register',
   'save-campsite'                 => 'campsite-opslaan',
   'search-campsites'              => 'campsite/zoek',
   'search-campsite'               => 'campsite-zoeken',

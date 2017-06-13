@@ -17,13 +17,13 @@
                                     <h1 class="color-primary">{{trans('reservation.main-title')}}</h1>
 
                                     <div class="show-mobile">
-                                        <h3 class="color-secundary">Chosen Campsite: {{ $campsite->campsite_name }}</h3>
+                                        <h3 class="color-secundary">{{ trans('campsite.chosencampsite') }}: {{ $campsite->campsite_name }}</h3>
                                         <p>
-                                            <strong>Location </strong> <br>
+                                            <strong>{{ trans('campsite.location') }} </strong> <br>
                                             {{ $campsite->street }}, {{ $campsite->city }}
                                         </p>
                                         <p>
-                                            <strong>Contact</strong> <br>
+                                            <strong>{{ trans('campsite.contact') }}</strong> <br>
                                             {{$campsite->user->name}}
                                         </p>
                                         @include('includes.succes')
@@ -99,7 +99,7 @@
                                         <textarea name="extrainfo" class="form-control" id="extrainfo" value="{{ old('extrainfo') }}" cols="30" rows="5"></textarea>
                                     </div>
                                     <div class="form-group">
-                                        <button type="submit" class="btn btn-secundary pull-right">Request reservation</button>
+                                        <button type="submit" class="btn btn-secundary pull-right">{{ trans('forms.buttons.requestreservation') }}</button>
                                     </div>
                                 </div>
                             </div>
@@ -108,13 +108,13 @@
                                     <img src="/img/campsites/{{$campsite->campimages[0]->filename}}" class="full-width" alt="">
                                 </div>
                                 <div class="hidden-mobile">
-                                    <h3 class="color-secundary">Chosen Campsite: {{ $campsite->campsite_name }}</h3>
+                                    <h3 class="color-secundary">{{ trans('campsite.chosencampsite') }}: {{ $campsite->campsite_name }}</h3>
                                     <p>
-                                        <strong>Location </strong> <br>
+                                        <strong>{{ trans('campsite.location') }} </strong> <br>
                                         {{ $campsite->street }}, {{ $campsite->city }}
                                     </p>
                                     <p>
-                                        <strong>Contact</strong> <br>
+                                        <strong>{{ trans('campsite.contact') }}</strong> <br>
                                         {{$campsite->user->name}}
                                     </p>
                                     @include('includes.succes')

@@ -1,5 +1,5 @@
 <div id="calendar-reservation">
-    <h2 class="color-secundary">Check availability</h2>
+    <h2 class="color-secundary">{{ trans('reservation.checkavailability') }}</h2>
     <div id="calendar" class="m-t-20">
 
     </div>

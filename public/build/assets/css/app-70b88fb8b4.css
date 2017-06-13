@@ -8935,15 +8935,15 @@ section#section-my-savings .card .card-title {
   width: 100%;
   background-color: rgba(19, 67, 82, 0.63);
   transition: height 0.2s ease;
-  /*h4 {
-        font-family: $font-main;
-      }
-*/
 }
 
 section#section-my-savings .card .card-title h4, section#section-my-savings .card .card-title p {
   opacity: 1;
   transition: opacity 0.1s ease;
+}
+
+section#section-my-savings .card .card-title h4 {
+  font-size: 20px;
 }
 
 section#section-my-savings .card .card-title h5, section#section-my-savings .card .card-title p {
