@@ -8,13 +8,17 @@ return [
     |--------------------------------------------------------------------------
     */
 
-    'campsite-search' => 'Search a Campsite',
+    'about'           => 'About',
+    'campsite-search' => 'Look for a Campsite',
     'campsite-offer' => [
         'no-campsites'      => 'Offer a Campsite',
         'has-campsites'     => 'My Campsite'
     ],
+    'contact'         => 'Contact',
+    'faq'             => 'FAQ',
     'login'           => 'Login',
     'register'        => 'Register',
-    'reservations'    => 'Reservations'
+    'reservations'    => 'Reservations',
+    'my-profile'      => 'My profile'
 
 ];

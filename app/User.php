@@ -27,16 +27,28 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function campsite () {
+    public function campsite ()
+    {
         return $this->hasOne('App\Models\Campsite');
     }
 
-    public function reservations () {
+    public function reservations ()
+    {
         return $this->hasMany('App\Models\Reservation');
     }
 
     public function movement()
     {
         return $this->belongsTo('App\Models\Movement');
+    }
+
+    public function reviews ()
+    {
+        return $this->hasMany('App\Models\Review');
+    }
+
+    public function savings ()
+    {
+        return $this->belongsToMany ('App\Models\Campsite');
     }
 }

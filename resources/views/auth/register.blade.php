@@ -19,7 +19,7 @@
                                 <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
 
                                     <div class="col-md-12">
-                                        <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" placeholder="Name" required autofocus>
+                                        <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" placeholder="{{ trans('forms.placeholders.name') }}" required autofocus>
 
                                         @if ($errors->has('name'))
                                             <span class="help-block">
@@ -32,7 +32,7 @@
                                 <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
 
                                     <div class="col-md-12">
-                                        <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="E-mail address" required>
+                                        <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="{{ trans('forms.placeholders.email') }}" required>
 
                                         @if ($errors->has('email'))
                                             <span class="help-block">
@@ -45,7 +45,7 @@
                                 <div class="form-group{{ $errors->has('movement_id') ? ' has-error' : '' }}">
 
                                     <div class="col-md-12">
-                                        <select name="movement_id" id="movement_id" class="form-control" value="{{ old('movement_id') }}" placeholder="Youth movement" required>
+                                        <select name="movement_id" id="movement_id" class="form-control" value="{{ old('movement_id') }}" placeholder="{{ trans('forms.placeholders.youthmovement') }}" required>
                                             <option value="" disabled selected>Youth movement</option>
                                             @for ($i = 1; $i < 7; $i++)
                                                 <option value="{{$i}}">{{ trans('movements.'.$i) }}</option>
@@ -62,7 +62,7 @@
                                 <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
 
                                     <div class="col-md-12">
-                                        <input id="password" type="password" class="form-control" name="password" placeholder="Password" required>
+                                        <input id="password" type="password" class="form-control" name="password" placeholder="{{ trans('forms.placeholders.password') }}" required>
 
                                         @if ($errors->has('password'))
                                             <span class="help-block">
@@ -75,14 +75,14 @@
                                 <div class="form-group">
 
                                     <div class="col-md-12">
-                                        <input id="password-confirm" type="password" class="form-control" name="password_confirmation" placeholder="Confirm password" required>
+                                        <input id="password-confirm" type="password" class="form-control" name="password_confirmation" placeholder="{{ trans('forms.placeholders.confirmpassword') }}" required>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <div class="col-md-12">
                                         <button type="submit" class="btn btn-secundary btn-block">
-                                            Register
+                                            {{ trans('forms.buttons.register') }}
                                         </button>
                                     </div>
                                 </div>

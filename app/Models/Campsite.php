@@ -10,19 +10,23 @@ class Campsite extends Model
         'description', 'latitude', 'longitude', 'city', 'zipcode', 'street',
         'state', 'province', 'price_is_per_person'];
 
-    public function user() {
+    public function user()
+    {
         return $this->belongsTo('App\User');
     }
 
-    public function campimages() {
+    public function campimages()
+    {
         return $this->hasMany('App\Models\Campimage');
     }
 
-    public function buildings() {
+    public function buildings()
+    {
         return $this->hasMany('App\Models\Building');
     }
 
-    public function meadows() {
+    public function meadows()
+    {
         return $this->hasMany('App\Models\Meadow');
     }
 
@@ -36,7 +40,18 @@ class Campsite extends Model
         return $this->belongsTo('App\Models\State');
     }
 
-    public function reservations() {
+    public function reservations()
+    {
         return $this->hasMany('App\Models\Reservation');
+    }
+
+    public function reviews ()
+    {
+        return $this->hasMany('App\Models\Review');
+    }
+
+    public function savings ()
+    {
+        return $this->belongsToMany ('App\User');
     }
 }

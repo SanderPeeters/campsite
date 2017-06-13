@@ -12,7 +12,8 @@ class SearchController extends Controller
 
     public function index ()
     {
-        return view('campsite.search.campsite-search');
+        $campsites = Campsite::all();
+        return view('campsite.search.campsite-search')->with('numberofcampsites', $campsites->count());
     }
 
     public function searchOnProvince(Request $request, $id)
@@ -89,7 +90,6 @@ class SearchController extends Controller
                 }
             }
         }
-
         return $campsites;
     }
 }

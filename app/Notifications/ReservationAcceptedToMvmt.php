@@ -42,10 +42,10 @@ class ReservationAcceptedToMvmt extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->subject('Campsite - Reservation request accepted!')
+            ->subject(trans('notifications.reservation-accepted.subject'))
             ->greeting('Hello!')
-            ->line('Good news, the owner of Campsite '.$this->reservation->campsite->campsite_name.' has accepted your request for renting this Campsite!')
-            ->line('Thank you for using our application and enjoy your trip!');
+            ->line(trans('notifications.reservation-accepted.message', ['campsitename' => $this->reservation->campsite->campsite_name]))
+            ->line(trans('notifications.reservation-accepted.goodbye'));
     }
 
     /**

@@ -6,7 +6,7 @@
 
 @section('content')
 
-    <section id="show-campsite-section" class="main vh-min-90">
+    <section id="show-campsite-section" class="main vh-min-90" ng-controller="ReservationCtrl as reservation">
         <div class="container">
             <div class="panel m-t-120 m-b-0 no-border-radius no-border" >
                 <div class="panel-body">
@@ -16,7 +16,7 @@
                             <h1 class="color-primary m-t-5">{{ $campsite->campsite_name }}</h1>
                             {!! $campsite->description !!}
                             <p class="color-light-grey">
-                                <strong>Location</strong> <br>
+                                <strong>{{ trans('campsite.location') }}</strong> <br>
                                 {{ $campsite->street }}, {{ $campsite->zipcode }} {{ $campsite->city }}
                             </p>
                             <p>
@@ -28,12 +28,19 @@
                         <div class="col-md-5 col-xs-12">
                             <div class="row">
                                 <div class="col-xs-6">
-                                    <div class="form-group">
-                                        <a href="{{ route('search-campsite') }}" target="_self">
-                                            <button class="btn btn-secundary btn-block">
-                                                {{ trans('campsite.buttons.goback') }}
-                                            </button>
-                                        </a>
+                                    <div class="form-group" ng-init="reservation.state.saved = {{$saved}}" ng-cloak>
+                                        <button class="btn btn-secundary-opposite btn-block" type="button" ng-model="reservation.state.saved" ng-disabled="{{ Auth::guest() }}" ng-click="reservation.events.statusSaveCampsite({{$campsite->id}})">
+                                            @if (Auth::guest())
+                                                {{ trans('campsite.buttons.save') }}
+                                            @else
+                                                <div ng-if="!reservation.state.saved">
+                                                    {{ trans('campsite.buttons.save') }}
+                                                </div>
+                                                <div ng-if="reservation.state.saved">
+                                                    {{ trans('campsite.buttons.unsave') }}
+                                                </div>
+                                            @endif
+                                        </button>
                                     </div>
                                 </div>
                                 <div class="col-xs-6">
@@ -60,6 +67,13 @@
                                     </div>
                                     <!-- /owl-carousel -->
                                 </div>
+                                {{--<div class="col-sm-12 m-t-40">
+                                    <a href="{{ route('search-campsite') }}" target="_self">
+                                        <button class="btn btn-secundary btn-block">
+                                            {{ trans('campsite.buttons.goback') }}
+                                        </button>
+                                    </a>
+                                </div>--}}
                             </div>
                         </div>
                     </div>
@@ -68,7 +82,7 @@
                         <li class="active"><a data-toggle="tab" href="#location" target="_self"> {{ trans('campsite.location') }} </a></li>
                         <li><a data-toggle="tab" href="#facilities" target="_self"> {{ trans('campsite.facilities') }} </a></li>
                         <li><a data-toggle="tab" href="#reviews" target="_self">{{ trans('campsite.reviews') }} </a></li>
-                        <li><a data-toggle="tab" href="#reservations" target="_self">{{ trans('campsite.calendar') }}</a></li>
+                        <li><a data-toggle="tab" href="#reservations" target="_self" onclick="initCalendar()">{{ trans('campsite.calendar') }}</a></li>
                     </ul>
 
                     <div class="tab-content">
@@ -317,5 +331,40 @@
             });
         }
         initMap();
+    </script>
+    <script>
+        var today = {!! json_encode(\Carbon\Carbon::now()->parse()) !!};
+        var events = {!! json_encode($campsite->reservations) !!};
+        reservations = [];
+
+        for (var i=0; i< events.length; i++)
+        {
+            var color = '';
+            if (events[i].pending_request == 0 && events[i].accepted_request == 1)
+            {
+                color = '#bf5329';
+            } else {
+                color = '#cbb956';
+            }
+            reservations[i] = {title: events[i].user.name, start: events[i].start_date, end: events[i].end_date, backgroundColor: color, borderColor: color};
+        }
+
+        function initCalendar() {
+            setTimeout(function(){
+                $('#calendar').fullCalendar({
+                    header: {
+                        left: 'prev,next today',
+                        center: 'title',
+                        right: 'prevYear,month,basicWeek,nextYear'
+                    },
+                    defaultDate: today.date,
+                    navLinks: true, // can click day/week names to navigate views
+                    editable: false,
+                    eventLimit: true, // allow "more" link when too many events
+                    events: reservations
+                });
+            }, 200);
+        }
+
     </script>
 @endsection

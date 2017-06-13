@@ -11,23 +11,29 @@ return [
     |
     */
 
-    'searchcampsite' => 'Search campsite',
-    'offercampsite' => 'Offer a campsite',
-
-    'doctors'       =>  'Doctors',
-    'supermarkets'  =>  'Stores',
-    'parks'         =>  'Parks',
-
-    'facilities'    =>  'Facilities',
-    'location'      =>  'Location',
-    'reviews'       =>  'Reviews',
-    'calendar'      =>  'Calendar',
-
-    'visitwebsite'  =>  'Visit website',
-
+    'buildings'     =>  'Buildings',
     'buttons'       => [
         'goback'    =>  'Go back',
-        'reserve'   =>  'Reserve'
-    ]
+        'reserve'   =>  'Reserve',
+        'save'      =>  'Save to my list',
+        'unsave'    =>  'Delete from my list',
+    ],
+    'calendar'      =>  'Calendar',
+    'chosencampsite'=>  'Chosen Campsite',
+    'contact'       =>  'Contact',
+    'details'       =>  'Details',
+    'doctors'       =>  'Doctors',
+    'facilities'    =>  'Facilities',
+    'location'      =>  'Location',
+    'meadows'       =>  'Meadows',
+    'mycampsite'    =>  'My Campsite',
+    'nosavings'     =>  'You have no saved Campsites',
+    'noreviews'     =>  'No reviews yet for this Campsite.',
+    'offercampsite' =>  'Offer a campsite',
+    'parks'         =>  'Parks',
+    'searchcampsite'=>  'Search campsite',
+    'supermarkets'  =>  'Stores',
+    'reviews'       =>  'Reviews',
+    'visitwebsite'  =>  'Visit website',
 
 ];

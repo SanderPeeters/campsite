@@ -33,7 +33,7 @@ class MovementTableSeeder extends Seeder
         ]);
         DB::table('movements')->insert([
             'name' => 'Anders',
-            'filename' => 'logo-other.png'
+            'filename' => 'logo-other.svg'
         ]);
     }
 }

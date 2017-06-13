@@ -16,7 +16,6 @@ use Illuminate\Support\Facades\Validator;
 
 class CampsiteController extends Controller
 {
-    private $paginatenumber = 5;
 
     public function index()
     {
@@ -44,12 +43,6 @@ class CampsiteController extends Controller
 
     public function getAllCampsites()
     {
-        /*$campsites = Campsite::with('campimages')->with('user.movement')->with('buildings')->with('meadows')->with('province')->with('state')->latest()->paginate($this->paginatenumber);
-        foreach ($campsites as $campsite)
-        {
-            $campsite->province->name = trans('provinces.'.$campsite->province->id);
-           $campsite->state->name = trans('states.'.$campsite->state->id);
-        }*/
         $campsites = Campsite::with('campimages')->with('province')->with('state')->with('user.movement')->latest()->get();
         $campsites = $campsites->groupBy('campsite_name');
 
@@ -73,6 +66,7 @@ class CampsiteController extends Controller
             $haselectricity = false;
             $campfiresallowed = false;
             $tentsallowed = false;
+            $wheelchairaccessible = false;
 
             foreach ($buildings as $building) {
                 if ($building->has_wifi)
@@ -90,6 +84,10 @@ class CampsiteController extends Controller
                 if ($building->has_electricity)
                 {
                     $haselectricity = true;
+                }
+                if ($building->wheelchair_accessible)
+                {
+                    $wheelchairaccessible = true;
                 }
 
                 $totalcapacity += $building->capacity;
@@ -115,6 +113,7 @@ class CampsiteController extends Controller
             }
             $campsite->put('tentsallowed', $tentsallowed);
             $campsite->put('campfireallowed', $campfiresallowed);
+            $campsite->put('wheelchairaccessible', $wheelchairaccessible);
             $campsite->put('haswifi', $haswifi);
             $campsite->put('haskitchen', $haskitchen);
             $campsite->put('haswater', $haswater);
@@ -148,8 +147,9 @@ class CampsiteController extends Controller
 
     public function showCampsite($id, $slug=null)
     {
+        $saved = 0;
         try {
-            $campsite = Campsite::with('campimages')->findOrFail($id);
+            $campsite = Campsite::with('campimages')->with('reviews')->with('reservations.user')->findOrFail($id);
 
         } catch(ModelNotFoundException $e) {
             return redirect( route('search-campsite') );
@@ -157,7 +157,16 @@ class CampsiteController extends Controller
         if ($slug !== str_slug($campsite->campsite_name)){
             return redirect(action('Campsite\CampsiteController@showCampsite', ['id' => $campsite->id, 'slug' => str_slug($campsite->campsite_name)]), 301);
         }
-        return view('campsite.display.show-campsite')->with('campsite', $campsite);
+        if (Auth::user())
+        {
+            if (Auth::user()->savings()->where('campsite_id', $id)->first())
+            {
+                $saved = 1;
+            } else {
+                $saved = 0;
+            }
+        }
+        return view('campsite.display.show-campsite')->with('campsite', $campsite)->with('saved', $saved);
     }
 
     public function storeCampsite (Request $request)
@@ -229,6 +238,9 @@ class CampsiteController extends Controller
                 if(isset($building['haskitchen'])){
                     $newbuilding->has_kitchen = $building['haskitchen'];
                 }
+                if(isset($building['wheelchairaccessible'])){
+                    $newbuilding->wheelchair_accessible = $building['wheelchairaccessible'];
+                }
                 if(isset($building['extrainfo'])){
                     $newbuilding->extra_info = $building['extrainfo'];
                 }
@@ -242,26 +254,26 @@ class CampsiteController extends Controller
                 $newmeadow = new Meadow();
                 $newmeadow->campsite_id = $campsite->id;
 
-                if (isset($building['capacity'])) {
+                if (isset($meadow['capacity'])) {
                     $newmeadow->capacity = $meadow['capacity'];
                 }
-                if (isset($building['sqmeters'])) {
-                    $newmeadow->beds = $building['beds'];
+                if (isset($meadow['sqmeters'])) {
+                    $newmeadow->sq_meters = $meadow['sqmeters'];
                 }
-                if (isset($building['haswater'])) {
-                    $newmeadow->has_water = $building['haswater'];
+                if (isset($meadow['haswater'])) {
+                    $newmeadow->has_water = $meadow['haswater'];
                 }
-                if (isset($building['haselectricity'])) {
-                    $newmeadow->has_electricity = $building['haselectricity'];
+                if (isset($meadow['haselectricity'])) {
+                    $newmeadow->has_electricity = $meadow['haselectricity'];
                 }
-                if (isset($building['campfiresallowed'])) {
-                    $newmeadow->campfire_allowed = $building['campfireallowed'];
+                if (isset($meadow['campfiresallowed'])) {
+                    $newmeadow->campfire_allowed = $meadow['campfireallowed'];
                 }
-                if (isset($building['tentsallowed'])) {
-                    $newmeadow->tents_allowed = $building['tentsallowed'];
+                if (isset($meadow['tentsallowed'])) {
+                    $newmeadow->tents_allowed = $meadow['tentsallowed'];
                 }
-                if (isset($building['extrainfo'])) {
-                    $newmeadow->extra_info = $building['extrainfo'];
+                if (isset($meadow['extrainfo'])) {
+                    $newmeadow->extra_info = $meadow['extrainfo'];
                 }
 
                 $newmeadow->save();

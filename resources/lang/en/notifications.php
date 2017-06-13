@@ -10,12 +10,17 @@ return [
     */
 
     'reservationrequest' => [
+        'button'        =>  'Go to my profile',
         'subject'       =>  'Campsite - Reservation Request',
-        'newrequest'    =>  'Someone has made a request to make a reservation for your Campsite: ',
-        'fromdate'      =>  'From: ',
-        'todate'        =>  ' to ',
-        'group'         =>  'The type of youth movement is: ',
-        'capacity'      =>  ' with a total of persons: ',
-        'message'       =>  'Personal message: ',
-    ]
+        'message'       =>
+            'Someone has made a request to make a reservation for your Campsite :campsitename from :startdate to :enddate.
+             It\'s a :movement movement with a total of :capacity persons.
+             And heir personal message is: :extra.'
+    ],
+    'reservation-accepted' => [
+        'button'        =>  'Go to my profile',
+        'subject'       =>  'Campsite - Reservation Request Accepted',
+        'message'       =>  'Good news, the owner of Campsite :campsitename has accepted your request for renting this Campsite!',
+        'goodbye'       =>  'Thank you for using our application and enjoy your trip!'
+    ],
 ];

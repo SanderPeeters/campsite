@@ -11,8 +11,8 @@
                     <div class="panel m-t-120 no-border-radius no-border">
                         <div class="panel-body">
                             <ul class="nav nav-tabs">
-                                <li class="active"><a data-toggle="tab" href="#details" target="_self">Details</a></li>
-                                <li><a data-toggle="tab" href="#menu1" target="_self">Reservations</a></li>
+                                <li class="active"><a data-toggle="tab" href="#details" target="_self">{{ trans('campsite.details') }}</a></li>
+                                <li><a data-toggle="tab" href="#menu1" target="_self">{{ trans('reservation.title') }}</a></li>
                             </ul>
 
                             <div class="tab-content">

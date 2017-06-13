@@ -18,6 +18,7 @@ return [
     'tents'         => 'Tents allowed?',
     'toilets'       => 'Toilets',
     'water'         => 'Water available?',
+    'wheelchair'    => 'Accessible for wheelchairs?',
     'wifi'          => 'Wifi available?',
 
 ];

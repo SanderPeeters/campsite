@@ -1,5 +1,5 @@
 @if($campsite->buildings)
-    <h2 class="color-secundary m-b-20">Buildings <span class="smaller-font">({{ $campsite->buildings->count() }})</span></h2>
+    <h2 class="color-secundary m-b-20">{{ trans('campsite.buildings') }} <span class="smaller-font">({{ $campsite->buildings->count() }})</span></h2>
     <div class="row">
         <div class="col-sm-12">
             @foreach($campsite->buildings as $building)
@@ -63,6 +63,14 @@
                                     {{ $building->has_wifi  ? 'Yes' : 'No' }}
                                 </p>
                             </td>
+                            <td>
+                                <p data-toggle="tooltip" title="{{ trans('tooltips.wheelchair') }}">
+                                    <img src="/assets/img/icons/icon-disabled-green.svg" class="table--icon" alt="Icon representing the accessibility for wheelchair users">
+                                </p>
+                                <p>
+                                    {{ $building->wheelchair_accessible  ? 'Yes' : 'No' }}
+                                </p>
+                            </td>
                         </tr>
                         @if ($building->extra_info)
                             <tr>
@@ -82,7 +90,7 @@
 @endif
 
 @if($campsite->meadows)
-    <h2 class="color-secundary m-b-20">Meadows <span class="smaller-font">({{ $campsite->meadows->count() }})</span></h2>
+    <h2 class="color-secundary m-b-20 capitalize">{{ trans('campsite.meadows') }} <span class="smaller-font">({{ $campsite->meadows->count() }})</span></h2>
     @foreach($campsite->meadows as $meadow)
         <div class="row">
             <div class="col-sm-12">

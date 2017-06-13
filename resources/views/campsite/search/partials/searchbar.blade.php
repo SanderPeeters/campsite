@@ -1,13 +1,13 @@
 <form name="searchcampsiteform" ng-submit="search.handlers.search()">
     <div class="search--block greybg">
-        <div class="form-group">
+        <div class="">
             <label for="campsite_name">{{ trans('search.labels.campsite-name') }}</label>
             <input type="text" class="form-control" name="campsite_name" ng-model="search.state.searchObject.campsite_name" placeholder="{{ trans('search.placeholders.campsite-name') }}">
         </div>
     </div>
 
-    <div class="search--block">
-        <div class="form-group">
+    {{--<div class="search--block">
+        <div class="">
             <label for="states">{{ trans('search.labels.states') }}</label>
             <ui-select ng-if="!search.state.states_loading" multiple ng-model="search.state.searchObject.states" theme="bootstrap" class="form-control" sortable="true" close-on-select="false">
                 <ui-select-match placeholder="{{ trans('search.placeholders.states') }}">##$item.name##</ui-select-match>
@@ -17,10 +17,10 @@
             </ui-select>
             <p ng-if="search.state.states_loading">{{ trans('search.loading') }}</p>
         </div>
-    </div>
+    </div>--}}
 
     <div class="search--block">
-        <div class="form-group">
+        <div class="">
             <label for="provinces">{{ trans('search.labels.provinces') }}</label>
             <ui-select ng-if="!search.state.provinces_loading" multiple ng-model="search.state.searchObject.provinces" theme="bootstrap" class="form-control" sortable="true" close-on-select="false">
                 <ui-select-match placeholder="{{ trans('search.placeholders.provinces') }}">##$item.name##</ui-select-match>
@@ -33,7 +33,7 @@
     </div>
 
     <div class="search--block">
-        <div class="form-group">
+        <div class="">
             <label for="capacity">{{ trans('search.labels.capacity') }}</label>
             <rzslider rz-slider-model="search.state.searchObject.capacity_slider.minValue"
                       rz-slider-high="search.state.searchObject.capacity_slider.maxValue"
@@ -42,7 +42,7 @@
     </div>
 
     <div class="search--block">
-        <div class="form-group">
+        <div class="">
             <label for="price_per_night">{{ trans('search.labels.pricepernight') }}</label>
             <rzslider rz-slider-model="search.state.searchObject.price_slider.minValue"
                       rz-slider-high="search.state.searchObject.price_slider.maxValue"
@@ -51,7 +51,7 @@
     </div>
 
     <div class="search--block">
-        <div class="form-group">
+        <div class="">
             <label for="">{{ trans('search.labels.facilities') }}</label>
             <div class="checkbox">
                 <label><input type="checkbox" value="1" ng-model="search.state.searchObject.hasbuilding" data-toggle="collapse" data-target="#building-facility-info">{{ trans('search.labels.building') }}</label>
@@ -62,7 +62,7 @@
         </div>
     </div>
 
-    <div class="form-group collapse" id="building-facility-info" ng-if="search.state.searchObject.hasbuilding">
+    <div class="collapse" id="building-facility-info" ng-if="search.state.searchObject.hasbuilding">
         <div class="search--block">
             <label for="">{{ trans('search.labels.buildingoptions') }}</label>
             <div class="checkbox">
@@ -77,10 +77,22 @@
             <div class="checkbox">
                 <label><input type="checkbox" value="1" ng-model="search.state.searchObject.buildingoptions.has_kitchen">{{ trans('search.labels.options.kitchen') }}</label>
             </div>
+            <div class="checkbox">
+                <label><input type="checkbox" value="1" ng-model="search.state.searchObject.buildingoptions.beds">{{ trans('search.labels.options.beds') }}</label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" value="1" ng-model="search.state.searchObject.buildingoptions.showers">{{ trans('search.labels.options.showers') }}</label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" value="1" ng-model="search.state.searchObject.buildingoptions.toilets">{{ trans('search.labels.options.toilets') }}</label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" value="1" ng-model="search.state.searchObject.buildingoptions.wheelchair_accessible">{{ trans('search.labels.options.wheelchair') }}</label>
+            </div>
         </div>
     </div>
 
-    <div class="form-group collapse" id="meadow-facility-info" ng-if="search.state.searchObject.hasmeadow">
+    <div class="collapse" id="meadow-facility-info" ng-if="search.state.searchObject.hasmeadow">
         <div class="search--block">
             <label for="">{{ trans('search.labels.meadowoptions') }}</label>
             <div class="checkbox">

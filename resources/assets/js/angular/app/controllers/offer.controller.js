@@ -1,7 +1,5 @@
 campsite.controllers.controller('OfferCtrl', function($scope, $rootScope, $location, service, $window, FileUploader, toastr, $injector){
     var self = this;
-    var savecampsiteurl = '/en/campsite-offer/store';
-    var imagesaveurl = '/en/campsite-offer/images/store';
 
     // Events
     this.events = {
@@ -80,9 +78,7 @@ campsite.controllers.controller('OfferCtrl', function($scope, $rootScope, $locat
                     sessionStorage.removeItem("buildings");
                     sessionStorage.removeItem("meadows");
 
-                    self.events.changeTemplate(4);
-
-                    self.state.finish_message = "Success!";
+                    $window.location.href = offerurl;
 
                 }, function errorCallback(response) {
                     console.log(response);

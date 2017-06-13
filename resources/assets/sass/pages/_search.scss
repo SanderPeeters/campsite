@@ -133,18 +133,45 @@ section#search-campsite-section {
         padding: 5px 15px;
       }
     }
+
+    .search {
+      padding-top: 15px;
+    }
+
+    .no-padding-small {
+      padding: 0px;
+    }
+
+    .left-positioned {
+      padding-left: 15px;
+    }
+
+    .show-mobile {
+      display: block;
+    }
+
+    .hide-mobile {
+      display: none;
+    }
   }
 
   @media screen and (min-width: 767px) {
     .result {
       .wrapper {
-        padding-left: 0;
         padding-right: 0;
       }
     }
 
     .no-right-padding {
       padding-right: 0;
+    }
+
+    .show-mobile {
+      display: none;
+    }
+
+    .hide-mobile {
+      display: block;
     }
   }
 }

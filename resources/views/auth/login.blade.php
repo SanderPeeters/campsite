@@ -20,7 +20,7 @@
                                 <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
 
                                     <div class="col-md-12">
-                                        <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="E-mail address" required autofocus>
+                                        <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="{{ trans('forms.placeholders.email') }}" required autofocus>
 
                                         @if ($errors->has('email'))
                                             <span class="help-block">
@@ -33,7 +33,7 @@
                                 <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
 
                                     <div class="col-md-12">
-                                        <input id="password" type="password" class="form-control" name="password" placeholder="Password" required>
+                                        <input id="password" type="password" class="form-control" name="password" placeholder="{{ trans('forms.placeholders.password') }}" required>
 
                                         @if ($errors->has('password'))
                                             <span class="help-block">
@@ -56,15 +56,15 @@
                                 <div class="form-group">
                                     <div class="col-md-12">
                                         <button type="submit" class="btn btn-secundary btn-block">
-                                            Login
+                                            {{ trans('forms.buttons.login') }}
                                         </button>
                                     </div>
                                 </div>
 
                                 <div class="form-group text-center">
                                     <div class="col-md-12">
-                                        <a class="btn btn-link" href="{{ url('/password/reset') }}">
-                                            Forgot Your Password?
+                                        <a class="btn btn-link" href="{{ url('/en/password/reset') }}" target="_self">
+                                            {{ trans('forms.labels.forgotpassword') }}
                                         </a>
                                     </div>
                                 </div>
