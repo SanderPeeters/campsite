@@ -11,7 +11,7 @@
       </button>
 
       <!-- Branding Image -->
-      <a class="navbar-brand" href="{{ url('/') }}" target="_self">
+      <a class="navbar-brand" href="{{ route('welcome') }}" target="_self">
         <img src="assets/img/logo/Campsite_logo_white.png" alt="Logo from Campsite">
       </a>
     </div>

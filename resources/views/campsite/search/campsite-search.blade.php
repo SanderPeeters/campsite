@@ -13,7 +13,7 @@
                         <div class="col-sm-7 col-xs-12">
                             <div class="p-b-20 p-t-20 p-l-20 p-r-20" ng-cloak>
                                 <h1 class="color-primary">{{ trans('search.main-title') }}</h1>
-                                <h3 class="color-secundary">##search.state.number_of_all_campsites## Campsites available!</h3>
+                                <h3 class="color-secundary">{{$numberofcampsites}} Campsites available!</h3>
                                 <p>{{ trans('search.intro-text') }}</p>
                             </div>
                         </div>

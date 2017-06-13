@@ -1,8 +1,5 @@
 campsite.controllers.controller('ReservationCtrl', function($scope, $rootScope, $location, service, toastr, $injector){
     var self = this;
-    var movementsurl = '/en/movements';
-    var savingurl = '/en/save-campsite';
-
 
     // Events
     this.events = {

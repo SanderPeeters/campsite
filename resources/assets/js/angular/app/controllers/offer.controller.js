@@ -1,7 +1,5 @@
 campsite.controllers.controller('OfferCtrl', function($scope, $rootScope, $location, service, $window, FileUploader, toastr, $injector){
     var self = this;
-    var savecampsiteurl = '/en/campsite-offer/store';
-    var imagesaveurl = '/en/campsite-offer/images/store';
 
     // Events
     this.events = {

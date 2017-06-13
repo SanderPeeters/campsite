@@ -245,26 +245,26 @@ class CampsiteController extends Controller
                 $newmeadow = new Meadow();
                 $newmeadow->campsite_id = $campsite->id;
 
-                if (isset($building['capacity'])) {
+                if (isset($meadow['capacity'])) {
                     $newmeadow->capacity = $meadow['capacity'];
                 }
-                if (isset($building['sqmeters'])) {
-                    $newmeadow->beds = $building['beds'];
+                if (isset($meadow['sqmeters'])) {
+                    $newmeadow->sq_meters = $meadow['sqmeters'];
                 }
-                if (isset($building['haswater'])) {
-                    $newmeadow->has_water = $building['haswater'];
+                if (isset($meadow['haswater'])) {
+                    $newmeadow->has_water = $meadow['haswater'];
                 }
-                if (isset($building['haselectricity'])) {
-                    $newmeadow->has_electricity = $building['haselectricity'];
+                if (isset($meadow['haselectricity'])) {
+                    $newmeadow->has_electricity = $meadow['haselectricity'];
                 }
-                if (isset($building['campfiresallowed'])) {
-                    $newmeadow->campfire_allowed = $building['campfireallowed'];
+                if (isset($meadow['campfiresallowed'])) {
+                    $newmeadow->campfire_allowed = $meadow['campfireallowed'];
                 }
-                if (isset($building['tentsallowed'])) {
-                    $newmeadow->tents_allowed = $building['tentsallowed'];
+                if (isset($meadow['tentsallowed'])) {
+                    $newmeadow->tents_allowed = $meadow['tentsallowed'];
                 }
-                if (isset($building['extrainfo'])) {
-                    $newmeadow->extra_info = $building['extrainfo'];
+                if (isset($meadow['extrainfo'])) {
+                    $newmeadow->extra_info = $meadow['extrainfo'];
                 }
 
                 $newmeadow->save();

@@ -332,24 +332,15 @@ campsite.services.service('service', ["$http", "$q", function($http, $q){
 }]);
 
 campsite.controllers.controller('MapCtrl', ["$scope", "$rootScope", "$location", "service", "$window", "toastr", "$injector", function($scope, $rootScope, $location, service, $window, toastr, $injector){
-    var searchOnProvinceUrl = '/en/search-campsite/';
-
     angular.element( document.querySelectorAll( '#belgiummap > path') ).click(
         function (event) {
             $window.location.href = searchOnProvinceUrl + event.currentTarget.id;
         }
     );
-
-    this.state = {
-
-    };
-
 }]);
 
 campsite.controllers.controller('OfferCtrl', ["$scope", "$rootScope", "$location", "service", "$window", "FileUploader", "toastr", "$injector", function($scope, $rootScope, $location, service, $window, FileUploader, toastr, $injector){
     var self = this;
-    var savecampsiteurl = '/en/campsite-offer/store';
-    var imagesaveurl = '/en/campsite-offer/images/store';
 
     // Events
     this.events = {
@@ -523,9 +514,6 @@ campsite.controllers.controller('OfferCtrl', ["$scope", "$rootScope", "$location
 
 campsite.controllers.controller('ReservationCtrl', ["$scope", "$rootScope", "$location", "service", "toastr", "$injector", function($scope, $rootScope, $location, service, toastr, $injector){
     var self = this;
-    var movementsurl = '/en/movements';
-    var savingurl = '/en/save-campsite';
-
 
     // Events
     this.events = {
@@ -586,12 +574,6 @@ campsite.controllers.controller('ReservationCtrl', ["$scope", "$rootScope", "$lo
 
 campsite.controllers.controller('SearchCtrl', ["$scope", "$rootScope", "$http", "$location", "service", "$window", "$route", "$timeout", function($scope, $rootScope, $http, $location, service, $window, $route, $timeout){
     var self = this;
-    var campsiteinventoryurl = "/" + currentlanguage + "/campsite/offers";
-    var campsitesearchurl = "/" + currentlanguage + "/campsite/search";
-    var provincesurl = "/" + currentlanguage + "/provinces";
-    var statesurl = "/" + currentlanguage + "/states";
-    var searchOnProvinceUrl = '/' + currentlanguage + '/search-campsite/';
-    var searchpage = '/' + currentlanguage + '/search-campsite';
 
     angular.element( document.querySelectorAll( '#belgiummap > path') ).click(
         function (event) {
@@ -633,13 +615,20 @@ campsite.controllers.controller('SearchCtrl', ["$scope", "$rootScope", "$http", 
                 } else {
                     self.state.noresultsfound = false;
                 }
-                console.log(count);
                 self.state.number_of_campsites = count;
                 self.state.campsite_offers_loading = false;
             } else {
                 service.get(campsiteinventoryurl)
                     .then(function success(response) {
                         self.state.campsite_offers = response;
+                        var count = self.handlers.getLengthOfObject(self.state.campsite_offers);
+                        if (count == 0)
+                        {
+                            self.state.noresultsfound = true;
+                        } else {
+                            self.state.noresultsfound = false;
+                        }
+                        self.state.number_of_campsites = count;
                         self.state.campsite_offers_loading = false;
                     }, function error(response) {
                         console.log(response);
@@ -649,7 +638,7 @@ campsite.controllers.controller('SearchCtrl', ["$scope", "$rootScope", "$http", 
             sessionStorage.removeItem('searchresults');
             sessionStorage.removeItem('provinceId');
 
-        },
+        }
 
     };
 
@@ -685,7 +674,6 @@ campsite.controllers.controller('SearchCtrl', ["$scope", "$rootScope", "$http", 
         },
 
         search: function() {
-            console.log('searchfuncti');
             if (!self.state.searchObject.provinces || self.state.searchObject.provinces.length == 0) {
                 self.state.searchObject.provinces = self.state.provinces;
             }
@@ -701,7 +689,6 @@ campsite.controllers.controller('SearchCtrl', ["$scope", "$rootScope", "$http", 
                 service.get(campsitesearchurl, self.state.searchObject)
                     .then(function success(response) {
                         self.state.campsite_offers = response;
-                        console.log(response);
                         var count = self.handlers.getLengthOfObject(response);
                         if (count == 0)
                         {
@@ -760,6 +747,8 @@ campsite.controllers.controller('SearchCtrl', ["$scope", "$rootScope", "$http", 
 
             self.events.getAllCampsites();
             sessionStorage.removeItem('searchobject');
+            sessionStorage.removeItem('searchresults');
+            sessionStorage.removeItem('provinceId');
         }
 
     };

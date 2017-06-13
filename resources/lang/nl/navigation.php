@@ -9,8 +9,13 @@ return [
     */
 
     'campsite-search' => 'Zoek Campsite',
-    'campsite-offer'  => 'Campsite aanbieden',
+    'campsite-offer' => [
+        'no-campsites'      => 'Campsite aanbieden',
+        'has-campsites'     => 'Mijn Campsite'
+    ],
     'login'           => 'Login',
-    'register'        => 'Registreer'
+    'register'        => 'Registreer',
+    'reservations'    => 'Reservaties',
+    'my-profile'      => 'Mijn profiel'
 
 ];
