@@ -78,9 +78,7 @@ campsite.controllers.controller('OfferCtrl', function($scope, $rootScope, $locat
                     sessionStorage.removeItem("buildings");
                     sessionStorage.removeItem("meadows");
 
-                    self.events.changeTemplate(4);
-
-                    self.state.finish_message = "Success!";
+                    $window.location.href = offerurl;
 
                 }, function errorCallback(response) {
                     console.log(response);

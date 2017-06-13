@@ -99,6 +99,7 @@ campsite.controllers.controller('SearchCtrl', function($scope, $rootScope, $http
         },
 
         search: function() {
+            console.log(self.state.searchObject);
             if (!self.state.searchObject.provinces || self.state.searchObject.provinces.length == 0) {
                 self.state.searchObject.provinces = self.state.provinces;
             }

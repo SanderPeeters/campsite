@@ -43,7 +43,7 @@
             </ul>
           </li>
         @else
-          <li>
+          <li class="{{ Route::is('my-profile') ? 'active' : '' }}">
             <a href="{{ route('my-profile') }}" target="_self">{{ trans('navigation.my-profile') }}</a>
           </li>
           <li class="dropdown">

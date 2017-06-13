@@ -63,6 +63,14 @@
                                     {{ $building->has_wifi  ? 'Yes' : 'No' }}
                                 </p>
                             </td>
+                            <td>
+                                <p data-toggle="tooltip" title="{{ trans('tooltips.wheelchair') }}">
+                                    <img src="/assets/img/icons/icon-disabled-green.svg" class="table--icon" alt="Icon representing the accessibility for wheelchair users">
+                                </p>
+                                <p>
+                                    {{ $building->wheelchair_accessible  ? 'Yes' : 'No' }}
+                                </p>
+                            </td>
                         </tr>
                         @if ($building->extra_info)
                             <tr>

@@ -23,6 +23,7 @@ return [
     ],
     'main-title'        =>  'Make a reservation request',
     'movement'          =>  'Movement',
+    'noreservations'    =>  'It seems that there are no reservations available.',
     'pending'           =>  'Pending requests',
     'success'           =>  'Your reservation request was succesfully sent!',
     'title'             =>  'Reservations'

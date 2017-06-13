@@ -30,12 +30,16 @@ return [
         'building'          => 'Building',
         'meadow'            => 'Meadow',
         'options'           => [
-            'electricity'       =>  'Electricity',
-            'water'             =>  'Water',
-            'tentsallowed'      =>  'Tents allowed',
+            'beds'              =>  'Beds',
             'campfireallowed'   =>  'Campfire allowed',
+            'electricity'       =>  'Electricity',
+            'kitchen'           =>  'Kitchen',
+            'showers'           =>  'Showers',
+            'tentsallowed'      =>  'Tents allowed',
+            'toilets'           =>  'Toilets',
+            'water'             =>  'Water',
+            'wheelchair'        =>  'Accessible for wheelchair users',
             'wifi'              =>  'Wifi',
-            'kitchen'           =>  'Kitchen'
         ]
     ],
     'loading'           => 'Loading...',

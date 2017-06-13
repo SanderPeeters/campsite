@@ -12,6 +12,7 @@ switch(currentlanguage) {
         var imagesaveurl = '/en/campsite-offer/images/store';
         var movementsurl = '/en/movements';
         var savingurl = '/en/save-campsite';
+        var offerurl = '/en/offer-campsite';
         break;
     case 'nl':
         var campsiteinventoryurl = "/nl/campsite/aanbiedingen";
@@ -24,6 +25,7 @@ switch(currentlanguage) {
         var imagesaveurl = '/nl/campsite-offer/afbeeldingen/opslaan';
         var movementsurl = '/nl/jeugdbewegingen';
         var savingurl = '/nl/campsite-opslaan';
+        var offerurl = '/nl/campsite-aanbieden';
         break;
     case 'fr':
         var campsiteinventoryurl = "/fr/campsite/offres";
@@ -36,6 +38,7 @@ switch(currentlanguage) {
         var imagesaveurl = '/fr/offre-campsite/images/sauve';
         var movementsurl = '/fr/movements-de-jeunesse';
         var savingurl = '/fr/sauve-campsite';
+        var offerurl = '/fr/offre-campsite';
         break;
     default:
         var campsiteinventoryurl = "/en/campsite/offers";
@@ -44,6 +47,10 @@ switch(currentlanguage) {
         var statesurl = "/en/states";
         var searchOnProvinceUrl = '/en/search-campsite/';
         var searchpage = '/en/search-campsite';
+        var savecampsiteurl = '/en/campsite-offer/store';
+        var imagesaveurl = '/en/campsite-offer/images/store';
+        var movementsurl = '/en/movements';
+        var savingurl = '/en/save-campsite';
 }
 
 $(document).ready(function(){

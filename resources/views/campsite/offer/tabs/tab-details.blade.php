@@ -17,7 +17,7 @@
         </p>
         <p>
             <strong>{{ trans('forms.labels.website') }}</strong> <br>
-            {{$campsite->website}}
+            <a href="{{$campsite->website}}" target="_blank">{{$campsite->website}}</a>
         </p>
     </div>
     <div class="col-sm-6">

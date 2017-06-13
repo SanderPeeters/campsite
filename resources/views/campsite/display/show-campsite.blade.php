@@ -335,8 +335,7 @@
     <script>
         var today = {!! json_encode(\Carbon\Carbon::now()->parse()) !!};
         var events = {!! json_encode($campsite->reservations) !!};
-        reservations = [{title: '', start: '', end: '', backgroundColor: '', borderColor: ''}];
-        console.log(currentlanguage);
+        reservations = [];
 
         for (var i=0; i< events.length; i++)
         {
@@ -349,7 +348,6 @@
             }
             reservations[i] = {title: events[i].user.name, start: events[i].start_date, end: events[i].end_date, backgroundColor: color, borderColor: color};
         }
-        console.log(reservations);
 
         function initCalendar() {
             setTimeout(function(){

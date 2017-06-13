@@ -419,9 +419,7 @@ campsite.controllers.controller('OfferCtrl', ["$scope", "$rootScope", "$location
                     sessionStorage.removeItem("buildings");
                     sessionStorage.removeItem("meadows");
 
-                    self.events.changeTemplate(4);
-
-                    self.state.finish_message = "Success!";
+                    $window.location.href = offerurl;
 
                 }, function errorCallback(response) {
                     console.log(response);
@@ -673,6 +671,7 @@ campsite.controllers.controller('SearchCtrl', ["$scope", "$rootScope", "$http", 
         },
 
         search: function() {
+            console.log(self.state.searchObject);
             if (!self.state.searchObject.provinces || self.state.searchObject.provinces.length == 0) {
                 self.state.searchObject.provinces = self.state.provinces;
             }

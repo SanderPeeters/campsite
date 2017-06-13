@@ -46,7 +46,7 @@
                     <img src="/assets/img/icons/icon-bonfire-green.svg" alt="">
                 </div>
                 <div ng-if="campsite.wheelchairaccessible" class="icon--small">
-                    <img src="/assets/img/icons/icon-bonfire-green.svg" alt="">
+                    <img src="/assets/img/icons/icon-disabled-green.svg" alt="">
                 </div>
                 <div class="left-positioned">
                     <a href="{{ app()->getLocale() }}/campsite/##campsite[0].id##" target="_self">
