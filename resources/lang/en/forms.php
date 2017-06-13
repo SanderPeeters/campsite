@@ -37,6 +37,7 @@ return [
         'youthmovement'     =>  'Youth movement'
     ],
     'buttons' => [
+        'accept'                =>  'Accept',
         'browsemore'            =>  'Browse more',
         'change'                =>  'Change',
         'confirm'               =>  'Confirm',

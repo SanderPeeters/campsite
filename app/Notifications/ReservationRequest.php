@@ -44,10 +44,11 @@ class ReservationRequest extends Notification
         return (new MailMessage)
             ->subject(trans('notifications.reservationrequest.subject'))
             ->greeting('Hello!')
-            ->line(trans('notifications.reservationrequest.newrequest').$this->reservation->campsite->campsite_name)
-            ->line(trans('notifications.reservationrequest.fromdate').$this->reservation->start_date->format('d/m/y').trans('notifications.reservationrequest.todate').$this->reservation->end_date->format('d/m/y'))
-            ->line(trans('notifications.reservationrequest.group') . trans('movements.'.$this->reservation->movement_id) . trans('notifications.reservationrequest.capacity') . $this->reservation->capacity)
-            ->line(trans('notifications.reservationrequest.message') . $this->reservation->extra_info);
+            ->line(trans('notifications.reservationrequest.message',
+                ['campsitename' => $this->reservation->campsite->campsite_name, 'startdate' => $this->reservation->start_date->format('d/m/y'),
+                    'enddate' => $this->reservation->end_date->format('d/m/y'), 'movement' => trans('movements.'.$this->reservation->movement_id),
+                    'capacity' => $this->reservation->capacity, 'extra' => $this->reservation->extra_info]))
+            ->action(trans('notifications.reservationrequest.button'), route('my-profile'));
     }
 
     /**
