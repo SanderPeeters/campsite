@@ -11,3 +11,13 @@ section#show-campsite-section {
     margin-bottom: 15px;
   }
 }
+
+section#section-my-campsite {
+  .tab-content {
+    .icon-edit {
+      img {
+        max-width: 25px;
+      }
+    }
+  }
+}

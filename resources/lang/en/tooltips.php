@@ -11,6 +11,7 @@ return [
     'beds'          => 'Beds',
     'campfire'      => 'Campfires allowed?',
     'capacity'      => 'Capacity of group',
+    'editcampsite'  => 'Edit my Campsite',
     'electricity'   => 'Electricity available?',
     'kitchen'       => 'Kitchen available?',
     'showers'       => 'Showers',

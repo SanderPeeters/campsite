@@ -13,14 +13,28 @@ return [
 
     'labels' => [
         'address'       =>  "What's the address?",
+        'beds'          =>  'Beds',
+        'campfireallowed'=> 'Campfires allowed?',
         'campsitename'  =>  'Name your Campsite',
+        'capacity'      =>  'Size of group',
         'description'   =>  'Add a description',
         'email'         =>  'E-mail',
+        'extrainfo'     =>  'Extra info',
+        'haswater'      =>  'Water?',
+        'haselectricity'=>  'Electricity?',
+        'haskitchen'    =>  'Kitchen?',
+        'haswater'      =>  'Water available?',
+        'haswifi'       =>  'Wifi?',
         'forgotpassword'=>  'Forgot your password?',
         'location'      =>  'Location',
         'name'          =>  'Name',
         'price'         =>  'Price per night per person',
+        'showers'       =>  'Showers',
+        'sqmeters'      =>  'Size of terrain (m2)',
+        'tentsallowed'  =>  'Tents allowed?',
+        'toilets'       =>  'Toilets',
         'website'       =>  'Website',
+        'wheelchairaccessible' =>  'Wheelchair accessible?',
         'youthmovement' =>  'Youth movement'
     ],
     'placeholders' => [
@@ -39,6 +53,7 @@ return [
     'buttons' => [
         'accept'                =>  'Accept',
         'browsemore'            =>  'Browse more',
+        'cancel'                =>  'Cancel',
         'change'                =>  'Change',
         'confirm'               =>  'Confirm',
         'delete'                =>  'Delete',
@@ -49,10 +64,15 @@ return [
         'login'                 =>  'Login',
         'moreinfo'              =>  'More info',
         'mycampsite'            =>  'My Campsite',
+        'newbuilding'           =>  'Add new building',
+        'newmeadow'             =>  'Add new meadow',
         'offercampsite'         =>  'Offer a Campsite',
         'submit'                =>  'Submit',
         'register'              =>  'Register',
+        'removebuilding'        =>  'Remove building',
+        'removemeadow'          =>  'Remove meadow',
         'requestreservation'    =>  'Request reservation',
+        'update'                =>  'Update'
     ]
 
 ];

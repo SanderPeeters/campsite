@@ -296,4 +296,133 @@ class CampsiteController extends Controller
         );
         return response()->json($returnData, 200);
     }
+
+    public function updateCampsite (Request $request)
+    {
+        $this->validate($request, [
+            'campsitename'  =>  'required',
+            'price'         =>  'required|integer',
+            'description'   =>  'required',
+            'website'       =>  'required|url'
+        ]);
+
+        $campsite = Campsite::find($request->get('campsiteid'));
+        $campsite->campsite_name = $request->get('campsitename');
+        $campsite->price_per_night = $request->get('price');
+        $campsite->description = $request->get('description');
+        $campsite->website = $request->get('website');
+        $campsite->save();
+        return redirect()->back()->with('success_message', 'You\'re Campsite was successfully updated!');
+    }
+
+    public function addBuilding(Request $request)
+    {
+        $this->validate($request, [
+            'building_capacity'  =>  'required|integer',
+            'building_beds'      =>  'required|integer',
+            'building_showers'   =>  'required|integer',
+            'building_toilets'   =>  'required|integer'
+        ]);
+        $building = new Building();
+        $building->campsite_id = $request->get('campsiteid');
+        if($request->get('building_capacity') || $request->get('building_capacity') == 0)
+        {
+            $building->capacity = $request->get('building_capacity');
+        }
+        if($request->get('building_beds') || $request->get('building_beds') == 0)
+        {
+            $building->beds = $request->get('building_beds');
+        }
+        if($request->get('building_showers') || $request->get('building_showers') == 0)
+        {
+            $building->showers = $request->get('building_showers');
+        }
+        if($request->get('building_toilets') || $request->get('building_toilets') == 0)
+        {
+            $building->toilets = $request->get('building_toilets');
+        }
+        if($request->get('building_haswater'))
+        {
+            $building->has_water = $request->get('building_haswater');
+        }
+        if($request->get('building_haselectricity'))
+        {
+            $building->has_electricity = $request->get('building_haselectricity');
+        }
+        if($request->get('building_haswifi'))
+        {
+            $building->has_wifi = $request->get('building_haswifi');
+        }
+        if($request->get('building_haskitchen'))
+        {
+            $building->has_kitchen = $request->get('building_haskitchen');
+        }
+        if($request->get('building_wheelchairaccessible'))
+        {
+            $building->wheelchair_accessible = $request->get('building_wheelchairaccessible');
+        }
+        if($request->get('building_extrainfo'))
+        {
+            $building->extra_info = $request->get('building_extrainfo');
+        }
+
+        $building->save();
+        return redirect()->back()->with('success_message', 'You\'re building was successfully added to your Campsite!');
+    }
+
+    public function addMeadow(Request $request)
+    {
+        $this->validate($request, [
+            'meadow_capacity'  =>  'required|integer',
+            'meadow_sqmeters'  =>  'required|integer',
+        ]);
+        $meadow = new Meadow();
+        $meadow->campsite_id = $request->get('campsiteid');
+        if($request->get('meadow_capacity') || $request->get('meadow_capacity') == 0)
+        {
+            $meadow->capacity = $request->get('meadow_capacity');
+        }
+        if($request->get('meadow_sqmeters') || $request->get('meadow_sqmeters') == 0)
+        {
+            $meadow->sq_meters = $request->get('meadow_sqmeters');
+        }
+        if($request->get('meadow_haselectricity'))
+        {
+            $meadow->has_electricity = $request->get('meadow_haselectricity');
+        }
+        if($request->get('meadow_haswater'))
+        {
+            $meadow->has_water = $request->get('meadow_haswater');
+        }
+        if($request->get('meadow_tentsallowed'))
+        {
+            $meadow->tents_allowed = $request->get('meadow_tentsallowed');
+        }
+        if($request->get('meadow_campfireallowed'))
+        {
+            $meadow->campfire_allowed = $request->get('meadow_campfireallowed');
+        }
+        if($request->get('meadow_extrainfo'))
+        {
+            $meadow->extra_info = $request->get('meadow_extrainfo');
+        }
+
+        $meadow->save();
+        return redirect()->back()->with('success_message', 'You\'re meadow was successfully added to your Campsite!');
+    }
+
+    public function deleteBuilding($id)
+    {
+        $building = Building::find($id);
+        $building->delete();
+        return redirect()->back()->with('success_message', 'You\'re building was successfully deleted!');
+    }
+
+    public function deleteMeadow($id)
+    {
+        $meadow = Meadow::find($id);
+        $meadow->delete();
+        return redirect()->back()->with('success_message', 'You\'re meadow was successfully deleted!');
+
+    }
 }

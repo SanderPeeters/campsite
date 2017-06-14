@@ -27,13 +27,18 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/offer-campsite';
+    protected function redirectTo()
+    {
+        return '/'.app()->getLocale();
+    }
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
+    protected $redirectTo = '/';
+
     public function __construct()
     {
         $this->middleware('guest');
