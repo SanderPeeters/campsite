@@ -8,11 +8,14 @@ return [
     |--------------------------------------------------------------------------
     */
 
-    'campsite-search' => 'Zoek Campsite',
+    'about'           => 'Over',
+    'campsite-search' => 'Zoek een Campsite',
     'campsite-offer' => [
         'no-campsites'      => 'Campsite aanbieden',
         'has-campsites'     => 'Mijn Campsite'
     ],
+    'contact'         => 'Contact',
+    'faq'             => 'FAQ',
     'login'           => 'Login',
     'register'        => 'Registreer',
     'reservations'    => 'Reservaties',
