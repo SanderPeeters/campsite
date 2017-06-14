@@ -66,7 +66,7 @@
                     </div>
                 </div>
                 <div class="row text-center m-b-40">
-                    <a href="" target="_self">
+                    <a href="{{ route('search-campsite') }}" target="_self">
                         <button type="button" class="btn btn-tertiary p-t-5 p-b-5 p-l-25 p-r-25">
                             {{ trans('forms.buttons.browsemore') }}
                         </button>
