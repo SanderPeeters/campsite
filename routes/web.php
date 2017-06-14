@@ -13,7 +13,21 @@
 
 Route::get('/', 'Campsite\CampsiteController@index')->name('welcome');
 
-Auth::routes();
+// Authentication Routes...
+Route::get(trans('routes.auth.login'), 'Auth\LoginController@showLoginForm')->name('login');
+Route::post(trans('routes.auth.login'), 'Auth\LoginController@login');
+Route::post(trans('routes.auth.logout'), 'Auth\LoginController@logout')->name('logout');
+
+// Registration Routes...
+Route::get(trans('routes.auth.register'), 'Auth\RegisterController@showRegistrationForm')->name('register');
+Route::post(trans('routes.auth.register'), 'Auth\RegisterController@register');
+
+// Password Reset Routes...
+Route::get(trans('routes.auth.password.reset'), 'Auth\ForgotPasswordController@showLinkRequestForm');
+Route::post(trans('routes.auth.password.email'), 'Auth\ForgotPasswordController@sendResetLinkEmail');
+Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm');
+Route::post(trans('routes.auth.password.reset'), 'Auth\ResetPasswordController@reset');
+
 
 Route::get(trans('routes.search-campsite'), 'Search\SearchController@index')->name('search-campsite');
 Route::get(trans('routes.search-campsites'), 'Search\SearchController@searchCampsites');
@@ -38,6 +52,11 @@ Route::group(['middleware' => 'auth'], function()
 
     Route::post(trans('routes.offer-campsite-save'), 'Campsite\CampsiteController@storeCampsite');
     Route::post(trans('routes.offer-campsite-images-save'), 'Campsite\ImageController@saveImage');
+    Route::post(trans('routes.offer-campsite-update'), 'Campsite\CampsiteController@updateCampsite')->name('campsite.update');
+    Route::post(trans('routes.add-building'), 'Campsite\CampsiteController@addBuilding')->name('campsite.buildings.add');
+    Route::post(trans('routes.add-meadow'), 'Campsite\CampsiteController@addMeadow')->name('campsite.meadows.add');
+    Route::get(trans('routes.delete-building', ['id']), 'Campsite\CampsiteController@deleteBuilding')->name('campsite.building.delete');
+    Route::get(trans('routes.delete-meadow', ['id']), 'Campsite\CampsiteController@deleteMeadow')->name('campsite.meadow.delete');
 
     Route::get(trans('routes.my-profile'), 'HomeController@myProfile')->name('my-profile');
     Route::post(trans('routes.profile-update'), 'HomeController@updateProfile')->name('profile.update');

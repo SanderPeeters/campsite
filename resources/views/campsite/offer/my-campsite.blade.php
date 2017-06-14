@@ -4,7 +4,7 @@
 @section('description', 'Have a nice campsite with or without a meadow to offer? Join Campsite now!')
 
 @section('content')
-    <section class="main vh-min-90">
+    <section id="section-my-campsite" class="main vh-min-90">
         <div class="container">
             <div class="row">
                 <div class="col-md-10 col-md-offset-1">
