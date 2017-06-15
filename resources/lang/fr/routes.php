@@ -19,7 +19,7 @@ return [
             'email' =>  'email',
             'reset' =>  'reset',
         ],
-        'register'  =>  'registre',
+        'register'  =>  'register',
     ],
     'campsite'                      => 'campsite/{id}/{slug?}',
     'delete-building'               => 'suprimer-batiment/{id}',
