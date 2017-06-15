@@ -46,7 +46,7 @@
 
                                     <div class="col-md-12">
                                         <select name="movement_id" id="movement_id" class="form-control" value="{{ old('movement_id') }}" placeholder="{{ trans('forms.placeholders.youthmovement') }}" required>
-                                            <option value="" disabled selected>Youth movement</option>
+                                            <option value="" disabled selected>{{ trans('forms.placeholders.youthmovement') }}</option>
                                             @for ($i = 1; $i < 7; $i++)
                                                 <option value="{{$i}}">{{ trans('movements.'.$i) }}</option>
                                             @endfor
