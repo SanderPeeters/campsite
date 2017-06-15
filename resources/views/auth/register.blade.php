@@ -8,7 +8,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6 col-md-offset-3">
-                    <div class="panel marg-top-rel panel-default">
+                    <div class="panel marg-top-rel m-b-80 panel-default">
                         <div class="panel-body">
                             <div class="col-md-12 text-center p-b-20">
                                 <h1 class="color-primary">Campsite</h1>
